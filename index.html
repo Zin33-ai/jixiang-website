@@ -53,6 +53,52 @@
             overflow-x: hidden;
         }
         
+        /* 浮動功能按鈕 */
+        .floating-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(30, 58, 138, 0.4);
+            color: var(--white);
+        }
+        
+        .floating-btn .icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .floating-btn:hover .icon {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                right: 15px;
+                bottom: 15px;
+                font-size: 1.2rem;
+            }
+        }
+        
         /* 導航欄 */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
@@ -425,6 +471,21 @@
             color: var(--white);
         }
         
+        /* LINE 按鈕樣式 */
+        .line-btn {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .line-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .line-btn img {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
         .business-hours {
             text-align: center;
             margin-top: 3rem;
@@ -523,6 +584,11 @@
     </style>
 </head>
 <body>
+    <!-- 浮動功能按鈕 -->
+    <div class="floating-btn" onclick="scrollToTop()" title="回到首頁">
+        <i class="bi bi-house-heart-fill icon"></i>
+    </div>
+
     <!-- 導航欄 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -732,33 +798,37 @@
                     </div>
                 </div>
                 
-                <!-- LINE 諮詢 -->
+                <!-- LINE 房客諮詢 -->
                 <div class="col-lg-4 col-md-6">
                     <div class="contact-card fade-in">
                         <div class="contact-icon">
                             <i class="bi bi-chat-dots-fill"></i>
                         </div>
-                        <h3 class="contact-title">LINE 官方帳號</h3>
+                        <h3 class="contact-title">房客專線</h3>
                         <div class="contact-info">
-                            <p>房東專線 | 房客專線</p>
+                            <p>租屋需求、居住諮詢</p>
                             <p>24小時線上客服</p>
                         </div>
-                        <a href="#" class="contact-btn">加入好友</a>
+                        <a href="https://lin.ee/izjYq9H" class="line-btn">
+                            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0">
+                        </a>
                     </div>
                 </div>
                 
-                <!-- 信箱諮詢 -->
+                <!-- LINE 房東諮詢 -->
                 <div class="col-lg-4 col-md-6">
                     <div class="contact-card fade-in">
                         <div class="contact-icon">
-                            <i class="bi bi-envelope-fill"></i>
+                            <i class="bi bi-building-fill"></i>
                         </div>
-                        <h3 class="contact-title">信箱諮詢</h3>
+                        <h3 class="contact-title">房東專線</h3>
                         <div class="contact-info">
-                            <p>aaa95969596@gmail.com</p>
-                            <p>詳細諮詢，專業回覆</p>
+                            <p>出租委託、包租代管</p>
+                            <p>節稅優惠諮詢</p>
                         </div>
-                        <a href="mailto:aaa95969596@gmail.com" class="contact-btn">立即寫信</a>
+                        <a href="https://lin.ee/elZYPEn" class="line-btn">
+                            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友" height="36" border="0">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -770,10 +840,12 @@
                     <div class="col-md-6">
                         <p><strong>地址：</strong>24251新北市新莊區昌平街84號4樓</p>
                         <p><strong>營業時間：</strong>週一至週六 9:00-18:00</p>
+                        <p><strong>信箱：</strong>aaa95969596@gmail.com</p>
                     </div>
                     <div class="col-md-6">
                         <p><strong>統一編號：</strong>24400364</p>
                         <p><strong>證照字號：</strong>(105)新北經字第003276號</p>
+                        <p><strong>服務專線：</strong>02-2998-9596</p>
                     </div>
                 </div>
             </div>
@@ -807,6 +879,14 @@
     
     <!-- Custom JavaScript -->
     <script>
+        // 浮動按鈕功能
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
         // 頁面載入動畫
         document.addEventListener('DOMContentLoaded', function() {
             // 淡入動畫
@@ -882,7 +962,6 @@
             });
             
             // 導航欄滾動效果
-            let lastScrollTop = 0;
             const navbar = document.querySelector('.navbar');
             
             window.addEventListener('scroll', function() {
@@ -895,8 +974,6 @@
                     navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                     navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
                 }
-                
-                lastScrollTop = scrollTop;
             });
             
             // 初始動畫延遲
@@ -909,20 +986,22 @@
             }, 300);
         });
         
-        // 表單提交處理（未來擴展用）
-        function handleContactForm(event) {
-            event.preventDefault();
-            // 未來可以在這裡添加表單處理邏輯
-            alert('感謝您的詢問！我們會盡快與您聯絡。');
-        }
-        
-        // 電話點擊追蹤（分析用）
+        // 電話點擊追蹤
         function trackPhoneClick() {
-            // Google Analytics 事件追蹤
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'phone_click', {
                     'event_category': 'contact',
                     'event_label': '02-2998-9596'
+                });
+            }
+        }
+        
+        // LINE 點擊追蹤
+        function trackLineClick(type) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'line_click', {
+                    'event_category': 'contact',
+                    'event_label': type
                 });
             }
         }
@@ -932,23 +1011,36 @@
             link.addEventListener('click', trackPhoneClick);
         });
         
-        // LINE 按鈕點擊追蹤（未來可以添加實際 LINE 連結）
-        function openLineChat() {
-            // 未來添加實際的 LINE 官方帳號連結
-            alert('LINE 官方帳號功能準備中，請直接撥打電話：02-2998-9596');
-        }
-        
-        // 頁面效能優化
-        window.addEventListener('load', function() {
-            // 預載重要圖片
-            const imageUrls = [
-                // 未來可以添加重要圖片的 URL
-            ];
-            
-            imageUrls.forEach(url => {
-                const img = new Image();
-                img.src = url;
+        // 為 LINE 連結添加點擊追蹤
+        document.querySelectorAll('a[href*="lin.ee"]').forEach(link => {
+            link.addEventListener('click', function() {
+                const isLandlord = this.href.includes('elZYPEn');
+                trackLineClick(isLandlord ? 'landlord' : 'tenant');
             });
+        });
+        
+        // 浮動按鈕互動效果
+        const floatingBtn = document.querySelector('.floating-btn');
+        
+        // 滾動時顯示/隱藏
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 200) {
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.transform = 'scale(1)';
+            } else {
+                floatingBtn.style.opacity = '0.7';
+                floatingBtn.style.transform = 'scale(0.9)';
+            }
+        });
+        
+        // 點擊效果
+        floatingBtn.addEventListener('click', function() {
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
         });
         
         // 響應式處理
@@ -966,16 +1058,5 @@
         window.addEventListener('resize', handleResize);
         handleResize(); // 初始執行
     </script>
-    
-    <!-- Google Analytics (未來添加) -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    -->
 </body>
 </html>
