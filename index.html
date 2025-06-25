@@ -267,15 +267,16 @@
         .service-card {
             background: var(--white);
             border-radius: 20px;
-            padding: 2.5rem 1.5rem 4rem 1.5rem;
+            padding: 2.5rem 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid #E5E7EB;
             height: 100%;
             position: relative;
             overflow: hidden;
-            display: flex;              
-            flex-direction: column; 
+            display: flex;
+            flex-direction: column;
+            min-height: 450px;
         }
         
         .service-card::before {
@@ -333,14 +334,6 @@
             color: var(--primary-blue);
             margin-bottom: 1rem;
         }
-
-        .service-card .contact-btn {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: auto;
-}
         
         .service-description {
             color: var(--text-light);
@@ -351,6 +344,7 @@
         .service-features {
             text-align: left;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
         
         .service-features li {
@@ -363,6 +357,13 @@
             color: var(--accent-orange);
             font-weight: 600;
             margin-right: 0.5rem;
+        }
+        
+        .service-card .contact-btn {
+            margin-top: auto;
+            align-self: center;
+            width: auto;
+            min-width: 120px;
         }
         
         /* 公司實力區 */
@@ -674,7 +675,7 @@
                             <li>房客優質住宅</li>
                             <li>落實居住正義</li>
                         </ul>
-                        <a href="#contact" class="contact-btn">了解更多</a>
+                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
@@ -692,7 +693,7 @@
                             <li>貸款協助服務</li>
                             <li>交易安全保障</li>
                         </ul>
-                        <a href="#contact" class="contact-btn">了解更多</a>
+                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
@@ -710,7 +711,7 @@
                             <li>租金收取代理</li>
                             <li>房屋維護協調</li>
                         </ul>
-                        <a href="#contact" class="contact-btn">了解更多</a>
+                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
@@ -728,7 +729,7 @@
                             <li>繼承贈與登記</li>
                             <li>專業責任保險</li>
                         </ul>
-                        <a href="#contact" class="contact-btn">了解更多</a>
+                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
                     </div>
                 </div>
             </div>
