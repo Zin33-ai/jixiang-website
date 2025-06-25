@@ -267,13 +267,16 @@
         .service-card {
             background: var(--white);
             border-radius: 20px;
-            padding: 2.5rem 1.5rem;
+            padding: 2.5rem 1.5rem 4rem 1.5rem;
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid #E5E7EB;
             height: 100%;
             position: relative;
             overflow: hidden;
+            display: flex;              
+            flex-direction: column; 
+            padding: 2.5rem 1.5rem 4rem 1.5rem;
         }
         
         .service-card::before {
@@ -331,6 +334,14 @@
             color: var(--primary-blue);
             margin-bottom: 1rem;
         }
+
+        .service-card .contact-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: auto;
+}
         
         .service-description {
             color: var(--text-light);
@@ -664,7 +675,7 @@
                             <li>房客優質住宅</li>
                             <li>落實居住正義</li>
                         </ul>
-                        <a href="#contact" class="contact-btn">立即諮詢</a>
+                        <a href="#contact" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
