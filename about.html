@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我們 - 吉翔不動產有限公司</title>
+    <meta name="description" content="吉翔不動產成立於民國98年，15年在地深耕經驗，專業團隊提供一條龍不動產服務，積極參與社會住宅推廣與公益活動。">
+    <meta name="keywords" content="吉翔不動產,關於我們,專業團隊,人才招募,企業社會責任,CSR,社會住宅">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="關於我們 - 吉翔不動產有限公司">
+    <meta property="og:description" content="15年在地深耕，專業團隊，積極參與社會責任">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jixianghelp.com/about.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --secondary-blue: #3B82F6;
+            --light-blue: #DBEAFE;
+            --accent-orange: #FF9800;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --white: #FFFFFF;
+            --light-gray: #F9FAFB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* 浮動功能按鈕 */
+        .floating-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(30, 58, 138, 0.4);
+            color: var(--white);
+        }
+        
+        /* 導航欄 */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue) !important;
+        }
+        
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary-blue) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-orange);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .navbar-phone {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-phone:hover {
+            color: var(--accent-orange);
+        }
+        
+        /* 頁面頂部區域 */
+        .page-header {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--white);
+            opacity: 0.9;
+        }
+        
+        /* 內容區塊樣式 */
+        .content-section {
+            padding: 5rem 0;
+        }
+        
+        .content-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+        
+        /* 關於吉翔區塊 */
+        .about-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .about-icon {
+            font-size: 3rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .about-text {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .value-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .value-item:hover {
+            background: var(--light-blue);
+            transform: translateX(10px);
+        }
+        
+        .value-icon {
+            font-size: 2rem;
+            color: var(--accent-orange);
+            margin-right: 1rem;
+            min-width: 60px;
+        }
+        
+        .value-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .value-content p {
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        /* 團隊區塊 */
+        .team-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+        
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-position {
+            color: var(--accent-orange);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .team-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .team-placeholder {
+            border: 2px dashed var(--secondary-blue);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .team-placeholder .team-avatar {
+            background: transparent;
+            border: 2px dashed var(--secondary-blue);
+            color: var(--secondary-blue);
+        }
+        
+        /* 招募區塊 */
+        .job-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .job-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .job-card.job-placeholder {
+            border: 2px dashed var(--secondary-blue);
+            background: rgba(59, 130, 246, 0.05);
+            padding: 3rem 2rem;
+        }
+        
+        .job-placeholder-icon {
+            font-size: 4rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-placeholder-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-detail {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+        }
+        
+        .job-detail i {
+            color: var(--accent-orange);
+            margin-right: 0.5rem;
+        }
+        
+        .job-requirements {
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-requirements h5 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-requirements ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .job-requirements li {
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .benefit-item.benefit-placeholder {
+            border: 2px dashed var(--accent-orange);
+            background: rgba(255, 152, 0, 0.05);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-placeholder .benefit-icon {
+            color: var(--accent-orange);
+        }
+        
+        .benefit-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .apply-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .apply-section.apply-placeholder {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.8));
+            border: 2px dashed var(--white);
+        }
+        
+        .apply-section h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .apply-section p {
+            color: var(--white);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-apply {
+            background: var(--accent-orange);
+            border: none;
+            color: var(--white);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .btn-apply:hover {
+            background: #F57C00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+            color: var(--white);
+        }
+        
+        .btn-apply.btn-placeholder {
+            background: rgba(255, 152, 0, 0.7);
+            cursor: default;
+            pointer-events: none;
+        }
+        
+        .btn-placeholder:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* CSR區塊 */
+        .csr-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .csr-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+        }
+        
+        .csr-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .csr-icon {
+            font-size: 3rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .csr-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .csr-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .csr-activities {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .csr-activities li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .csr-activities li::before {
+            content: '✓';
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .job-details {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                right: 15px;
+                bottom: 15px;
+                font-size: 1.2rem;
+            }
+            
+            .navbar-phone {
+                display: none;
+            }
+        }
+        
+        /* 動畫效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 浮動功能按鈕 -->
+    <div class="floating-btn" onclick="scrollToTop()" title="回到首頁">
+        <a href="index.html" style="color: inherit; text-decoration: none;">
+            <i class="bi bi-house-heart-fill"></i>
+        </a>
+    </div>
+
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-house-heart-fill me-2"></i>
+                吉翔不動產有限公司
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">服務項目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">最新消息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+                
+                <a href="tel:02-2998-9596" class="navbar-phone">
+                    <i class="bi bi-telephone-fill me-1"></i>
+                    02-2998-9596
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 頁面標題區 -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="page-title fade-in">關於吉翔不動產</h1>
+                <p class="page-subtitle fade-in">15年在地深耕，值得信賴的不動產夥伴</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於吉翔區塊 -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in">關於吉翔</h2>
+            
+            <!-- 公司簡介 -->
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <div class="about-card slide-in-left">
+                        <div class="about-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h3 class="about-title">公司簡介</h3>
+                        <p class="about-text">
+                            吉翔不動產有限公司成立於民國98年5月，至今已深耕不動產市場15年。我們秉持「專業、誠信、服務」的經營理念，
+                            從傳統的房屋買賣仲介服務，逐步拓展至包租代管、地政士代書等一條龍專業服務。
+                        </p>
+                        <p class="about-text">
+                            作為內政部營建署認證的社會住宅包租代管第四期合法廠商，我們不僅提供專業的不動產服務，
+                            更積極參與政府推動的居住正義政策，為社會盡一份心力。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-card slide-in-right">
+                        <div class="about-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3 class="about-title">在地深耕</h3>
+                        <p class="about-text">
+                            位於新北市新莊區的我們，對當地房地產市場有著深度的了解與豐富的經驗。
+                            15年來，我們見證了新莊地區的發展變遷，也累積了豐富的在地資源與人脈網絡。
+                        </p>
+                        <p class="about-text">
+                            從新莊副都心的崛起，到捷運路網的完善，我們與這片土地共同成長，
+                            為無數家庭找到理想的居住環境，也協助眾多投資者實現資產配置目標。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 核心價值 -->
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-center mb-4 fade-in">核心價值</h3>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="value-item fade-in">
+                                <div class="value-icon">
+                                    <i class="bi bi-award"></i>
+                                </div>
+                                <div class="value-content">
+                                    <h4>專業服務</h4>
+                                    <p>具備完整的不動產經紀人證照，提供專業可靠的服務品質</p>
+                                </div>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <div class="value-content">
+                                    <h4>誠信經營</h4>
+                                    <p>透明公開的交易流程，建立客戶長期信任關係</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="value-item fade-in">
+                                <div class="value-icon">
+                                    <i class="bi bi-gem"></i>
+                                </div>
+                                <div class="value-content">
+                                    <h4>品質保證</h4>
+                                    <p>從諮詢到成交的一條龍服務，確保每個環節的品質</p>
+                                </div>
+                            </div>
+                            <div class="value-item fade-in">
+                                <div class="value-icon">
+                                    <i class="bi bi-heart"></i>
+                                </div>
+                                <div class="value-content">
+                                    <h4>社會責任</h4>
+                                    <p>積極參與社會住宅推廣，實踐企業社會責任</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 經營團隊區塊 -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in">經營團隊</h2>
+            <div class="text-center mb-4 fade-in">
+                <p class="lead text-muted">專業團隊，值得信賴</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- 團隊成員預留位置 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card team-placeholder fade-in">
+                        <div class="team-avatar">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                        <h4 class="team-name">團隊成員</h4>
+                        <p class="team-position">建置中</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card team-placeholder fade-in">
+                        <div class="team-avatar">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                        <h4 class="team-name">團隊成員</h4>
+                        <p class="team-position">建置中</p>
+                        <p class="team-description">
+                            團隊成員資訊建置中，敬請期待
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card team-placeholder fade-in">
+                        <div class="team-avatar">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                        <h4 class="team-name">團隊成員</h4>
+                        <p class="team-position">建置中</p>
+                        <p class="team-description">
+                            團隊成員資訊建置中，敬請期待
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 人才招募區塊 -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in">人才招募</h2>
+            <div class="text-center mb-5 fade-in">
+                <p class="lead text-muted">加入我們，共創不動產服務新未來</p>
+            </div>
+            
+            <!-- 職缺預告 -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="job-card job-placeholder fade-in">
+                        <div class="text-center">
+                            <div class="job-placeholder-icon">
+                                <i class="bi bi-briefcase"></i>
+                            </div>
+                            <h4 class="job-title">職缺資訊</h4>
+                            <p class="job-placeholder-text">
+                                我們正在規劃更完善的人才招募計畫<br>
+                                精彩的職涯機會即將推出，敬請期待！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 福利制度預告 -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="text-center mb-4 fade-in">員工福利</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item benefit-placeholder fade-in">
+                            <div class="benefit-icon">
+                                <i class="bi bi-cash-stack"></i>
+                            </div>
+                            <h5 class="benefit-title">薪資福利</h5>
+                            <p class="benefit-description">
+                                完善的薪資制度<br>
+                                詳細內容敬請期待
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-item benefit-placeholder fade-in">
+                            <div class="benefit-icon">
+                                <i class="bi bi-shield-plus"></i>
+                            </div>
+                            <h5 class="benefit-title">保險保障</h5>
+                            <p class="benefit-description">
+                                全方位保險規劃<br>
+                                詳細內容敬請期待
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-item benefit-placeholder fade-in">
+                            <div class="benefit-icon">
+                                <i class="bi bi-mortarboard"></i>
+                            </div>
+                            <h5 class="benefit-title">教育訓練</h5>
+                            <p class="benefit-description">
+                                專業成長培訓<br>
+                                詳細內容敬請期待
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-item benefit-placeholder fade-in">
+                            <div class="benefit-icon">
+                                <i class="bi bi-arrow-up-circle"></i>
+                            </div>
+                            <h5 class="benefit-title">升遷發展</h5>
+                            <p class="benefit-description">
+                                職涯發展規劃<br>
+                                詳細內容敬請期待
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-item benefit-placeholder fade-in">
+                            <div class="benefit-icon">
+                                <i class="bi bi-calendar-heart"></i>
+                            </div>
+                            <h5 class="benefit-title">休假制度</h5>
+                            <p class="benefit-description">
+                                彈性休假安排<br>
+                                詳細內容敬請期待
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-item benefit-placeholder fade-in">
+                            <div class="benefit-icon">
+                                <i class="bi bi-emoji-smile"></i>
+                            </div>
+                            <h5 class="benefit-title">員工活動</h5>
+                            <p class="benefit-description">
+                                豐富企業文化<br>
+                                詳細內容敬請期待
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 招募預告 -->
+            <div class="apply-section apply-placeholder fade-in">
+                <h3>準備加入我們嗎？</h3>
+                <p>人才招募計畫籌備中，精彩機會即將推出</p>
+                <div class="btn-apply btn-placeholder">
+                    <i class="bi bi-hourglass-split me-2"></i>
+                    敬請期待
+                </div>
+                <div class="mt-3">
+                    <small style="color: rgba(255,255,255,0.8);">
+                        如有意願加入團隊，歡迎來電洽詢：02-2998-9596
+                    </small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CSR專區 -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in">CSR 企業社會責任</h2>
+            <div class="text-center mb-5 fade-in">
+                <p class="lead text-muted">積極參與社會服務，實踐企業社會責任</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- 社會住宅宣講 -->
+                <div class="col-lg-6">
+                    <div class="csr-card fade-in">
+                        <div class="csr-icon">
+                            <i class="bi bi-megaphone"></i>
+                        </div>
+                        <h3 class="csr-title">社會住宅政策宣講</h3>
+                        <p class="csr-description">
+                            作為內政部營建署認證的包租代管廠商，我們積極參與社會住宅政策的推廣宣講活動，
+                            協助民眾了解政府推動的居住正義政策，讓更多需要的家庭能享受到優質的居住環境。
+                        </p>
+                        <ul class="csr-activities">
+                            <li>參與政府機關舉辦的社會住宅說明會</li>
+                            <li>協助房東了解包租代管政策優惠</li>
+                            <li>輔導房客申請社會住宅相關補助</li>
+                            <li>推廣居住正義理念與實務執行</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 地政局志工服務 -->
+                <div class="col-lg-6">
+                    <div class="csr-card fade-in">
+                        <div class="csr-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3 class="csr-title">地政局志工協助服務</h3>
+                        <p class="csr-description">
+                            我們的專業團隊定期到新北市各地政事務所擔任志工，協助民眾辦理各項不動產相關業務，
+                            運用我們的專業知識為民眾提供免費諮詢服務，減少民眾洽辦業務的困擾。
+                        </p>
+                        <ul class="csr-activities">
+                            <li>協助民眾填寫不動產登記申請書</li>
+                            <li>提供不動產交易相關諮詢服務</li>
+                            <li>協助解答產權移轉相關問題</li>
+                            <li>引導民眾使用地政便民服務</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 預留其他CSR活動空間 -->
+                <div class="col-lg-6">
+                    <div class="csr-card fade-in" style="border: 2px dashed var(--secondary-blue); background: rgba(59, 130, 246, 0.05);">
+                        <div class="csr-icon" style="color: var(--secondary-blue);">
+                            <i class="bi bi-plus-circle"></i>
+                        </div>
+                        <h3 class="csr-title">更多CSR活動</h3>
+                        <p class="csr-description">
+                            我們持續關注社會議題，尋找更多回饋社會的機會。
+                            未來將規劃更多企業社會責任活動，為社會貢獻更多正面力量。
+                        </p>
+                        <ul class="csr-activities">
+                            <li>環境保護相關活動</li>
+                            <li>弱勢族群關懷服務</li>
+                            <li>教育公益推廣活動</li>
+                            <li>社區發展參與計畫</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- CSR理念 -->
+                <div class="col-lg-6">
+                    <div class="csr-card fade-in">
+                        <div class="csr-icon">
+                            <i class="bi bi-heart-fill"></i>
+                        </div>
+                        <h3 class="csr-title">企業責任理念</h3>
+                        <p class="csr-description">
+                            我們相信企業的成功不僅來自於營利，更重要的是對社會的貢獻。
+                            透過專業服務回饋社會，實踐「取之於社會，用之於社會」的經營理念。
+                        </p>
+                        <ul class="csr-activities">
+                            <li>推動居住正義，服務弱勢族群</li>
+                            <li>提供專業諮詢，促進社會和諧</li>
+                            <li>培育不動產專業人才</li>
+                            <li>持續關注社會發展議題</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="footer" style="background: var(--primary-blue); color: var(--white); padding: 2rem 0 1rem;">
+        <div class="container">
+            <div class="text-center">
+                <h5>吉翔不動產有限公司</h5>
+                <div style="margin: 1rem 0;">
+                    <a href="index.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">首頁</a>
+                    <span style="color: var(--white); opacity: 0.5;">|</span>
+                    <a href="about.html" style="color: var(--accent-orange); text-decoration: none; margin: 0 1rem; opacity: 1;">關於我們</a>
+                    <span style="color: var(--white); opacity: 0.5;">|</span>
+                    <a href="services.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">服務項目</a>
+                    <span style="color: var(--white); opacity: 0.5;">|</span>
+                    <a href="contact.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">聯絡我們</a>
+                </div>
+                <div style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">
+                    <p>統一編號：24400364 | 不動產經紀人證書字號：(105)新北經字第003276號</p>
+                    <p>&copy; 2024 吉翔不動產有限公司 版權所有</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // 回到頂部功能
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // 頁面載入動畫
+        document.addEventListener('DOMContentLoaded', function() {
+            // 淡入動畫觀察器
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // 觀察所有需要動畫的元素
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 導航欄滾動效果
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            });
+            
+            // 初始動畫延遲
+            setTimeout(() => {
+                document.querySelectorAll('.page-header .fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 300);
+        });
+        
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 浮動按鈕互動效果
+        const floatingBtn = document.querySelector('.floating-btn');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 200) {
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.transform = 'scale(1)';
+            } else {
+                floatingBtn.style.opacity = '0.7';
+                floatingBtn.style.transform = 'scale(0.9)';
+            }
+        });
+        
+        // 電話點擊追蹤
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'phone_click', {
+                        'event_category': 'contact',
+                        'event_label': '02-2998-9596'
+                    });
+                }
+            });
+        });
+        
+        // 響應式處理
+        function handleResize() {
+            const isMobile = window.innerWidth < 768;
+            // 可在此處添加響應式邏輯
+        }
+        
+        window.addEventListener('resize', handleResize);
+        handleResize(); // 初始執行
+    </script>
+</body>
+</html>
