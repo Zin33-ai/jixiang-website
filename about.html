@@ -7,27 +7,21 @@
     <meta name="description" content="吉翔不動產成立於民國98年，15年在地深耕經驗，專業團隊提供一條龍不動產服務，積極參與社會住宅推廣與公益活動。">
     <meta name="keywords" content="吉翔不動產,關於我們,專業團隊,人才招募,企業社會責任,CSR,社會住宅">
     
-    <!-- Open Graph -->
     <meta property="og:title" content="關於我們 - 吉翔不動產有限公司">
     <meta property="og:description" content="15年在地深耕，專業團隊，積極參與社會責任">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.jixianghelp.com/about.html">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Custom CSS -->
     <style>
         :root {
             --primary-blue: #1E3A8A;
@@ -576,6 +570,40 @@
             font-size: 1.1rem;
         }
         
+        /* 頁尾 */
+        .footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-orange);
+        }
+        
+        .footer-info {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
         /* 響應式設計 */
         @media (max-width: 768px) {
             .page-title {
@@ -644,14 +672,12 @@
     </style>
 </head>
 <body>
-    <!-- 浮動功能按鈕 -->
     <div class="floating-btn" onclick="scrollToTop()" title="回到首頁">
         <a href="index.html" style="color: inherit; text-decoration: none;">
             <i class="bi bi-house-heart-fill"></i>
         </a>
     </div>
 
-    <!-- 導航欄 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -659,21 +685,28 @@
                 吉翔不動產有限公司
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-             <div class="footer-links">
-                    <a href="index.html">首頁</a>
-                    <span>|</span>
-                    <a href="about.html" style="color: var(--accent-orange);">關於我們</a>
-                    <span>|</span>
-                    <a href="services.html">服務項目</a>
-                    <span>|</span>
-                    <a href="news.html">最新消息</a>
-                    <span>|</span>
-                    <a href="contact.html">聯絡我們</a>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="about.html">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">服務項目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">最新消息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">聯絡我們</a>
+                    </li>
+                </ul>
                 
                 <a href="tel:02-2998-9596" class="navbar-phone">
                     <i class="bi bi-telephone-fill me-1"></i>
@@ -683,7 +716,6 @@
         </div>
     </nav>
 
-    <!-- 頁面標題區 -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
@@ -693,12 +725,10 @@
         </div>
     </section>
 
-    <!-- 關於吉翔區塊 -->
     <section class="content-section">
         <div class="container">
             <h2 class="section-title fade-in">關於吉翔</h2>
             
-            <!-- 公司簡介 -->
             <div class="row mb-5">
                 <div class="col-lg-6">
                     <div class="about-card slide-in-left">
@@ -734,7 +764,6 @@
                 </div>
             </div>
             
-            <!-- 核心價值 -->
             <div class="row">
                 <div class="col-12">
                     <h3 class="text-center mb-4 fade-in">核心價值</h3>
@@ -785,7 +814,6 @@
         </div>
     </section>
 
-    <!-- 經營團隊區塊 -->
     <section class="content-section">
         <div class="container">
             <h2 class="section-title fade-in">經營團隊</h2>
@@ -794,7 +822,6 @@
             </div>
             
             <div class="row g-4">
-                <!-- 團隊成員預留位置 -->
                 <div class="col-lg-3 col-md-6">
                     <div class="team-card team-placeholder fade-in">
                         <div class="team-avatar">
@@ -834,7 +861,6 @@
         </div>
     </section>
 
-    <!-- 人才招募區塊 -->
     <section class="content-section">
         <div class="container">
             <h2 class="section-title fade-in">人才招募</h2>
@@ -842,7 +868,6 @@
                 <p class="lead text-muted">加入我們，共創不動產服務新未來</p>
             </div>
             
-            <!-- 職缺預告 -->
             <div class="row mb-5">
                 <div class="col-12">
                     <div class="job-card job-placeholder fade-in">
@@ -860,7 +885,6 @@
                 </div>
             </div>
             
-            <!-- 福利制度預告 -->
             <div class="row mb-5">
                 <div class="col-12">
                     <h3 class="text-center mb-4 fade-in">員工福利</h3>
@@ -934,7 +958,6 @@
                 </div>
             </div>
             
-            <!-- 招募預告 -->
             <div class="apply-section apply-placeholder fade-in">
                 <h3>準備加入我們嗎？</h3>
                 <p>人才招募計畫籌備中，精彩機會即將推出</p>
@@ -951,7 +974,6 @@
         </div>
     </section>
 
-    <!-- CSR專區 -->
     <section class="content-section">
         <div class="container">
             <h2 class="section-title fade-in">CSR 企業社會責任</h2>
@@ -960,7 +982,6 @@
             </div>
             
             <div class="row g-4">
-                <!-- 社會住宅宣講 -->
                 <div class="col-lg-6">
                     <div class="csr-card fade-in">
                         <div class="csr-icon">
@@ -980,7 +1001,6 @@
                     </div>
                 </div>
                 
-                <!-- 地政局志工服務 -->
                 <div class="col-lg-6">
                     <div class="csr-card fade-in">
                         <div class="csr-icon">
@@ -1000,7 +1020,6 @@
                     </div>
                 </div>
                 
-                <!-- 預留其他CSR活動空間 -->
                 <div class="col-lg-6">
                     <div class="csr-card fade-in" style="border: 2px dashed var(--secondary-blue); background: rgba(59, 130, 246, 0.05);">
                         <div class="csr-icon" style="color: var(--secondary-blue);">
@@ -1020,7 +1039,6 @@
                     </div>
                 </div>
                 
-                <!-- CSR理念 -->
                 <div class="col-lg-6">
                     <div class="csr-card fade-in">
                         <div class="csr-icon">
@@ -1043,23 +1061,22 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
-    <footer class="footer" style="background: var(--primary-blue); color: var(--white); padding: 2rem 0 1rem;">
+    <footer class="footer">
         <div class="container">
-            <div class="text-center">
+            <div class="footer-content">
                 <h5>吉翔不動產有限公司</h5>
-                <div style="margin: 1rem 0;">
-                    <a href="index.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">首頁</a>
-                    <span style="color: var(--white); opacity: 0.5;">|</span>
-                    <a href="about.html" style="color: var(--accent-orange); text-decoration: none; margin: 0 1rem; opacity: 1;">關於我們</a>
-                    <span style="color: var(--white); opacity: 0.5;">|</span>
-                    <a href="services.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">服務項目</a>
-                    <span style="color: var(--white); opacity: 0.5;">|</span>
-                    <a href="news.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">最新消息</a>
-                    <span style="color: var(--white); opacity: 0.5;">|</span>
-                    <a href="contact.html" style="color: var(--white); text-decoration: none; margin: 0 1rem; opacity: 0.8; transition: opacity 0.3s ease;">聯絡我們</a>
+                <div class="footer-links">
+                    <a href="index.html">首頁</a>
+                    <span>|</span>
+                    <a href="about.html" class="active">關於我們</a>
+                    <span>|</span>
+                    <a href="services.html">服務項目</a>
+                    <span>|</span>
+                    <a href="news.html">最新消息</a>
+                    <span>|</span>
+                    <a href="contact.html">聯絡我們</a>
                 </div>
-                <div style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">
+                <div class="footer-info">
                     <p>統一編號：24400364 | 不動產經紀人證書字號：(105)新北經字第003276號</p>
                     <p>&copy; 2024 吉翔不動產有限公司 版權所有</p>
                 </div>
@@ -1067,10 +1084,8 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
     <script>
         // 回到頂部功能
         function scrollToTop() {
@@ -1126,13 +1141,15 @@
             }, 300);
         });
         
-        // 平滑滾動
+        // 平滑滾動 (針對內部錨點連結)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offsetTop = target.offsetTop - 80;
+                    // 考慮導航欄高度，調整滾動位置
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const offsetTop = target.offsetTop - navbarHeight - 20; // 額外減去20px作為間距
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -1170,7 +1187,6 @@
         
         // 響應式處理
         function handleResize() {
-            const isMobile = window.innerWidth < 768;
             // 可在此處添加響應式邏輯
         }
         
