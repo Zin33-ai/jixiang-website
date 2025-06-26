@@ -38,6 +38,8 @@
             --text-dark: #1F2937;
             --text-light: #6B7280;
             --white: #FFFFFF;
+            --light-gray: #F9FAFB;
+            --green: #10B981;
         }
         
         * {
@@ -79,14 +81,6 @@
             transform: scale(1.1);
             box-shadow: 0 8px 30px rgba(30, 58, 138, 0.4);
             color: var(--white);
-        }
-        
-        .floating-btn .icon {
-            transition: transform 0.3s ease;
-        }
-        
-        .floating-btn:hover .icon {
-            transform: scale(1.1);
         }
         
         @media (max-width: 768px) {
@@ -250,10 +244,10 @@
             transform: translateY(-2px);
         }
         
-        /* 服務項目區 */
-        .services-section {
+        /* 最新消息區 */
+        .news-section {
             padding: 5rem 0;
-            background: var(--white);
+            background: var(--light-gray);
         }
         
         .section-title {
@@ -261,7 +255,143 @@
             font-weight: 700;
             color: var(--primary-blue);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .news-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .news-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            z-index: 2;
+        }
+        
+        .news-badge.hot {
+            background: #EF4444;
+        }
+        
+        .news-badge.new {
+            background: var(--green);
+        }
+        
+        .news-badge.policy {
+            background: var(--secondary-blue);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .news-image i {
+            font-size: 3rem;
+            color: var(--white);
+            opacity: 0.7;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .news-excerpt {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .news-link {
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .news-link:hover {
+            color: var(--accent-orange);
+        }
+        
+        /* 服務項目區 */
+        .services-section {
+            padding: 5rem 0;
+            background: var(--white);
         }
         
         .service-card {
@@ -574,6 +704,10 @@
             .navbar-phone {
                 display: none;
             }
+            
+            .news-image {
+                height: 150px;
+            }
         }
         
         /* 動畫效果 */
@@ -603,7 +737,7 @@
     <!-- 導航欄 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <i class="bi bi-house-heart-fill me-2"></i>
                 吉翔不動產有限公司
             </a>
@@ -618,13 +752,13 @@
                         <a class="nav-link" href="about.html">關於我們</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">服務項目</a>
+                        <a class="nav-link" href="services.html">服務項目</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#news">最新消息</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">聯絡我們</a>
+                        <a class="nav-link" href="contact.html">聯絡我們</a>
                     </li>
                 </ul>
                 
@@ -648,10 +782,84 @@
                         內政部營建署社會住宅包租代管 合法第四期廠商
                     </div>
                     <div class="hero-buttons d-flex fade-in">
-                        <a href="#contact" class="btn-primary-custom me-3">立即諮詢</a>
+                        <a href="contact.html" class="btn-primary-custom me-3">立即諮詢</a>
                         <a href="#services" class="btn-outline-custom">了解更多</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新消息區 -->
+    <section id="news" class="news-section">
+        <div class="container">
+            <h2 class="section-title fade-in">最新消息</h2>
+            <p class="section-subtitle fade-in">
+                掌握最新房市動態與政策資訊，讓您投資置產更有保障
+            </p>
+            
+            <div class="row g-4">
+                <!-- 新聞1 - 社會住宅政策 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card fade-in">
+                        <div class="news-badge policy">政策</div>
+                        <div class="news-image">
+                            <i class="bi bi-house-check"></i>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">2024年12月15日</div>
+                            <h3 class="news-title">2025年社會住宅包租代管最新政策</h3>
+                            <p class="news-excerpt">
+                                內政部公布2025年社會住宅包租代管計畫，房東享有更多節稅優惠，租金收入免稅額度提高，同時提供專業管理服務...
+                            </p>
+                            <a href="#" class="news-link">閱讀更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新聞2 - 房市趨勢 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card fade-in">
+                        <div class="news-badge hot">熱門</div>
+                        <div class="news-image">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">2024年12月10日</div>
+                            <h3 class="news-title">新莊副都心房市行情分析</h3>
+                            <p class="news-excerpt">
+                                隨著捷運環狀線通車，新莊副都心成為熱門置產區域。分析各大重劃區房價走勢，提供您最準確的投資建議...
+                            </p>
+                            <a href="#" class="news-link">閱讀更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新聞3 - 公司動態 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card fade-in">
+                        <div class="news-badge new">最新</div>
+                        <div class="news-image">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">2024年12月5日</div>
+                            <h3 class="news-title">吉翔不動產榮獲優良廠商認證</h3>
+                            <p class="news-excerpt">
+                                本公司憑藉專業服務品質與客戶滿意度，獲得新北市政府頒發優良包租代管業者認證，持續為客戶提供最優質的服務...
+                            </p>
+                            <a href="#" class="news-link">閱讀更多 <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更多消息按鈕 -->
+            <div class="text-center mt-4 fade-in">
+                <a href="#" class="btn-primary-custom">
+                    <i class="bi bi-newspaper me-2"></i>
+                    查看更多消息
+                </a>
             </div>
         </div>
     </section>
@@ -675,7 +883,7 @@
                             <li>房客優質住宅</li>
                             <li>落實居住正義</li>
                         </ul>
-                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
+                        <a href="services.html" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
@@ -693,7 +901,7 @@
                             <li>貸款協助服務</li>
                             <li>交易安全保障</li>
                         </ul>
-                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
+                        <a href="services.html" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
@@ -711,7 +919,7 @@
                             <li>租金收取代理</li>
                             <li>房屋維護協調</li>
                         </ul>
-                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
+                        <a href="services.html" class="contact-btn">了解更多</a>
                     </div>
                 </div>
                 
@@ -729,7 +937,7 @@
                             <li>繼承贈與登記</li>
                             <li>專業責任保險</li>
                         </ul>
-                        <a href="javascript:void(0)" class="contact-btn">了解更多</a>
+                        <a href="services.html" class="contact-btn">了解更多</a>
                     </div>
                 </div>
             </div>
@@ -869,13 +1077,13 @@
             <div class="footer-content">
                 <h5>吉翔不動產有限公司</h5>
                 <div class="footer-links">
+                    <a href="index.html" style="color: var(--accent-orange);">首頁</a>
+                    <span>|</span>
                     <a href="about.html">關於我們</a>
                     <span>|</span>
-                    <a href="#services">服務項目</a>
+                    <a href="services.html">服務項目</a>
                     <span>|</span>
-                    <a href="#news">最新消息</a>
-                    <span>|</span>
-                    <a href="#contact">聯絡我們</a>
+                    <a href="contact.html">聯絡我們</a>
                 </div>
                 <div class="footer-info">
                     <p>統一編號：24400364 | 不動產經紀人證書字號：(105)新北經字第003276號</p>
