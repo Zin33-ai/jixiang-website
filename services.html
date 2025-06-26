@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服務項目 - 吉翔不動產有限公司</title>
+    <meta name="description" content="吉翔不動產提供社會住宅包租代管、房屋買賣仲介、租屋管理服務、地政士代書業務等專業一條龍服務，15年在地深耕經驗。">
+    <meta name="keywords" content="吉翔不動產,服務項目,社會住宅包租代管,房屋買賣,租屋管理,地政士代書,新莊不動產">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="服務項目 - 吉翔不動產有限公司">
+    <meta property="og:description" content="專業一條龍不動產服務，滿足您的所有需求">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jixianghelp.com/services.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-blue: #1E3A8A;
+            --secondary-blue: #3B82F6;
+            --light-blue: #DBEAFE;
+            --accent-orange: #FF9800;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --white: #FFFFFF;
+            --light-gray: #F9FAFB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* 浮動功能按鈕 */
+        .floating-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(30, 58, 138, 0.4);
+            color: var(--white);
+        }
+        
+        @media (max-width: 768px) {
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                right: 15px;
+                bottom: 15px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* 導航欄 */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue) !important;
+        }
+        
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--secondary-blue) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-orange);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .navbar-phone {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-phone:hover {
+            color: var(--accent-orange);
+        }
+        
+        /* 頁面頂部區域 */
+        .page-header {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--white);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .page-badge {
+            background: var(--accent-orange);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+        
+        /* 服務項目區 */
+        .services-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-orange);
+            border-radius: 2px;
+        }
+        
+        .section-description {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card.featured {
+            border: 2px solid var(--accent-orange);
+            position: relative;
+        }
+        
+        .service-card.featured::after {
+            content: '推薦';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-orange);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card.featured .service-icon {
+            color: var(--accent-orange);
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .service-features {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .service-features li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .service-highlights {
+            background: var(--light-blue);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary-blue);
+        }
+        
+        .service-highlights h5 {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-highlights p {
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .service-card .contact-btn {
+            margin-top: auto;
+            align-self: center;
+            width: auto;
+            min-width: 140px;
+        }
+        
+        .contact-btn {
+            background: var(--secondary-blue);
+            border: none;
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .contact-btn:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+        }
+        
+        .service-card.featured .contact-btn {
+            background: var(--accent-orange);
+        }
+        
+        .service-card.featured .contact-btn:hover {
+            background: #F57C00;
+        }
+        
+        /* 為什麼選擇我們區 */
+        .why-choose-section {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+        
+        .advantage-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .advantage-icon {
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .advantage-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+        }
+        
+        .advantage-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* CTA 區域 */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            padding: 4rem 0;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta-primary {
+            background: var(--accent-orange);
+            border: none;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-cta-primary:hover {
+            background: #F57C00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+            color: var(--white);
+        }
+        
+        .btn-cta-secondary {
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: transparent;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-cta-secondary:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        /* 頁尾 */
+        .footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        .footer-links {
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-orange);
+        }
+        
+        .footer-info {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-cta-primary,
+            .btn-cta-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .navbar-phone {
+                display: none;
+            }
+        }
+        
+        /* 動畫效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 浮動功能按鈕 -->
+    <div class="floating-btn" onclick="scrollToTop()" title="回到首頁">
+        <a href="index.html" style="color: inherit; text-decoration: none;">
+            <i class="bi bi-house-heart-fill"></i>
+        </a>
+    </div>
+
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-house-heart-fill me-2"></i>
+                吉翔不動產有限公司
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">服務項目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">最新消息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+                
+                <a href="tel:02-2998-9596" class="navbar-phone">
+                    <i class="bi bi-telephone-fill me-1"></i>
+                    02-2998-9596
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 頁面標題區 -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="page-title fade-in">專業服務項目</h1>
+                <p class="page-subtitle fade-in">一條龍專業服務，滿足您所有不動產需求</p>
+                <div class="page-badge fade-in">
+                    <i class="bi bi-award-fill me-2"></i>
+                    內政部營建署社會住宅包租代管 合法第四期廠商
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服務項目區 -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title fade-in">核心服務</h2>
+            <p class="section-description fade-in">
+                15年專業經驗，提供房屋買賣、租賃管理、社會住宅包租代管、地政士代書等全方位不動產服務
+            </p>
+            
+            <div class="row g-4">
+                <!-- 社會住宅包租代管 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card featured fade-in">
+                        <div class="service-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+                        <h3 class="service-title">社會住宅包租代管</h3>
+                        <p class="service-description">內政部合法第四期廠商，專業包租代管服務</p>
+                        
+                        <div class="service-highlights">
+                            <h5><i class="bi bi-star-fill me-1"></i>政府認證專業</h5>
+                            <p>內政部營建署正式認證，合法經營有保障</p>
+                        </div>
+                        
+                        <ul class="service-features list-unstyled">
+                            <li>房東節稅優惠輔導</li>
+                            <li>房客優質住宅媒合</li>
+                            <li>落實居住正義理念</li>
+                            <li>專業維護管理服務</li>
+                            <li>法律風險完全保障</li>
+                        </ul>
+                        <a href="social-housing.html" class="contact-btn">詳細了解</a>
+                    </div>
+                </div>
+                
+                <!-- 房屋買賣仲介 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <h3 class="service-title">房屋買賣仲介</h3>
+                        <p class="service-description">15年在地深耕，專業不動產買賣服務</p>
+                        
+                        <div class="service-highlights">
+                            <h5><i class="bi bi-geo-alt-fill me-1"></i>在地深耕優勢</h5>
+                            <p>新莊地區15年經營，熟悉當地市場行情</p>
+                        </div>
+                        
+                        <ul class="service-features list-unstyled">
+                            <li>免費專業房屋估價</li>
+                            <li>全方位行銷推廣</li>
+                            <li>銀行貸款協助服務</li>
+                            <li>交易流程安全保障</li>
+                            <li>稅務規劃專業建議</li>
+                        </ul>
+                        <a href="property-sales.html" class="contact-btn">詳細了解</a>
+                    </div>
+                </div>
+                
+                <!-- 租屋管理服務 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">
+                            <i class="bi bi-key"></i>
+                        </div>
+                        <h3 class="service-title">租屋管理服務</h3>
+                        <p class="service-description">一條龍租屋服務，從出租到管理</p>
+                        
+                        <div class="service-highlights">
+                            <h5><i class="bi bi-shield-check me-1"></i>全程管理保障</h5>
+                            <p>從租客篩選到日常維護，全程專業服務</p>
+                        </div>
+                        
+                        <ul class="service-features list-unstyled">
+                            <li>嚴格租客篩選機制</li>
+                            <li>租約法律條款保障</li>
+                            <li>租金收取代理服務</li>
+                            <li>房屋維護問題協調</li>
+                            <li>糾紛處理專業協助</li>
+                        </ul>
+                        <a href="rental-management.html" class="contact-btn">詳細了解</a>
+                    </div>
+                </div>
+                
+                <!-- 地政士代書業務 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <h3 class="service-title">地政士代書業務</h3>
+                        <p class="service-description">專業地政士，產權移轉安心有保障</p>
+                        
+                        <div class="service-highlights">
+                            <h5><i class="bi bi-award me-1"></i>專業證照保障</h5>
+                            <p>合格地政士執照，專業責任保險保障</p>
+                        </div>
+                        
+                        <ul class="service-features list-unstyled">
+                            <li>不動產過戶登記</li>
+                            <li>銀行抵押權設定</li>
+                            <li>繼承贈與土地登記</li>
+                            <li>建物測量與分割</li>
+                            <li>地政疑難問題諮詢</li>
+                        </ul>
+                        <a href="notary-services.html" class="contact-btn">詳細了解</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 為什麼選擇我們 -->
+    <section class="why-choose-section">
+        <div class="container">
+            <h2 class="section-title fade-in">為什麼選擇吉翔不動產</h2>
+            <p class="section-description fade-in">
+                15年在地深耕經驗，累積豐富實務經驗與客戶信任
+            </p>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-patch-check-fill"></i>
+                        </div>
+                        <h4 class="advantage-title">政府認證</h4>
+                        <p class="advantage-description">
+                            內政部營建署社會住宅包租代管合法第四期廠商，政府認證專業可靠
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h4 class="advantage-title">15年經驗</h4>
+                        <p class="advantage-description">
+                            自民國98年成立至今，累積豐富實務經驗與專業知識
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <h4 class="advantage-title">在地深耕</h4>
+                        <p class="advantage-description">
+                            深耕新莊地區，熟悉當地市場與發展趨勢
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-gear-wide-connected"></i>
+                        </div>
+                        <h4 class="advantage-title">一條龍服務</h4>
+                        <p class="advantage-description">
+                            從買賣仲介到租賃管理，提供完整專業服務
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-shield-fill-check"></i>
+                        </div>
+                        <h4 class="advantage-title">法律保障</h4>
+                        <p class="advantage-description">
+                            專業責任保險，完善的法律風險保障機制
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h4 class="advantage-title">專業團隊</h4>
+                        <p class="advantage-description">
+                            擁有不動產經紀人、地政士等專業證照團隊
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4 class="advantage-title">貼心服務</h4>
+                        <p class="advantage-description">
+                            提供LINE專線諮詢，24小時專業客服支援
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="advantage-card fade-in">
+                        <div class="advantage-icon">
+                            <i class="bi bi-heart-fill"></i>
+                        </div>
+                        <h4 class="advantage-title">社會責任</h4>
+                        <p class="advantage-description">
+                            積極參與社會住宅推廣，實踐企業社會責任
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 區域 -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title fade-in">準備開始您的不動產之旅嗎？</h2>
+                <p class="cta-description fade-in">
+                    無論是買賣、租賃或投資，我們都能提供最專業的服務與建議
+                </p>
+                <div class="cta-buttons fade-in">
+                    <a href="tel:02-2998-9596" class="btn-cta-primary">
+                        <i class="bi bi-telephone-fill me-2"></i>
+                        立即致電諮詢
+                    </a>
+                    <a href="contact.html" class="btn-cta-secondary">
+                        <i class="bi bi-chat-dots me-2"></i>
+                        線上聯絡我們
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h5>吉翔不動產有限公司</h5>
+                <div class="footer-links">
+                    <a href="index.html">首頁</a>
+                    <span>|</span>
+                    <a href="about.html">關於我們</a>
+                    <span>|</span>
+                    <a href="services.html" style="color: var(--accent-orange);">服務項目</a>
+                    <span>|</span>
+                    <a href="contact.html">聯絡我們</a>
+                </div>
+                <div class="footer-info">
+                    <p>統一編號：24400364 | 不動產經紀人證書字號：(105)新北經字第003276號</p>
+                    <p>&copy; 2024 吉翔不動產有限公司 版權所有</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // 回到頂部功能
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // 頁面載入動畫
+        document.addEventListener('DOMContentLoaded', function() {
+            // 淡入動畫觀察器
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // 觀察所有需要動畫的元素
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // 導航欄滾動效果
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            });
+            
+            // 初始動畫延遲
+            setTimeout(() => {
+                document.querySelectorAll('.page-header .fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 300);
+        });
+        
+        // 電話點擊追蹤
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'phone_click', {
+                        'event_category': 'contact',
+                        'event_label': '02-2998-9596'
+                    });
+                }
+            });
+        });
+        
+        // 浮動按鈕互動效果
+        const floatingBtn = document.querySelector('.floating-btn');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 200) {
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.transform = 'scale(1)';
+            } else {
+                floatingBtn.style.opacity = '0.7';
+                floatingBtn.style.transform = 'scale(0.9)';
+            }
+        });
+        
+        // 響應式處理
+        function handleResize() {
+            const isMobile = window.innerWidth < 768;
+            // 可在此處添加響應式邏輯
+        }
+        
+        window.addEventListener('resize', handleResize);
+        handleResize(); // 初始執行
+    </script>
+</body>
+</html>
