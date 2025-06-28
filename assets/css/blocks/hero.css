@@ -1,0 +1,238 @@
+/* ==========================================================================
+   首頁大圖區塊模組 - Safari 優化
+   ========================================================================== */
+
+.page-header, 
+.hero-section {
+    /* Safari 漸變後備 */
+    background: var(--light-blue);
+    background: -webkit-linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 針對其他頁面的 page-header */
+.page-header {
+    min-height: auto;
+    padding: 150px 0 80px;
+    text-align: center;
+}
+
+.page-header::before, 
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.page-header-content, 
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.page-title, 
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.page-subtitle, 
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--white);
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+/* 首頁特有樣式 */
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+}
+
+.hero-badge, 
+.page-badge, 
+.page-highlight {
+    background: var(--accent-orange);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    /* Safari 圓角前綴 */
+    -webkit-border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Safari 彈性佈局修復 */
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    -webkit-justify-content: center;
+}
+
+.btn-primary-custom {
+    background: var(--accent-orange);
+    border: none;
+    padding: 0.875rem 2rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    -webkit-border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    color: var(--white);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary-custom:hover {
+    background: #F57C00;
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+    color: var(--white);
+}
+
+.btn-outline-custom {
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 0.875rem 2rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    -webkit-border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    background: transparent;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-outline-custom:hover {
+    background: var(--white);
+    color: var(--primary-blue);
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .page-title, 
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .page-subtitle, 
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary-custom,
+    .btn-outline-custom {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: var(--spacing-sm);
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title,
+    .page-title {
+        font-size: var(--font-4xl);
+        line-height: var(--leading-tight);
+    }
+    
+    .hero-section,
+    .page-header {
+        padding: 100px 0 var(--spacing-2xl);
+    }
+}
+
+/* 橫向手機優化 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section,
+    .page-header {
+        min-height: auto;
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .hero-title,
+    .page-title {
+        font-size: var(--font-3xl);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .hero-subtitle,
+    .page-subtitle {
+        font-size: var(--font-base);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .hero-badge,
+    .page-badge {
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+/* Safari 瀏覽器特定樣式 */
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+        .hero-section,
+        .page-header {
+            background-attachment: scroll !important;
+            background: var(--secondary-blue) !important;
+        }
+    }
+}
+
+/* 列印樣式 */
+@media print {
+    .page-header,
+    .hero-section {
+        background: none !important;
+        color: #000 !important;
+        padding: 1rem 0 !important;
+    }
+    
+    .page-title,
+    .hero-title {
+        color: #000 !important;
+        font-size: 24pt !important;
+    }
+}
