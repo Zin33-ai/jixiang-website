@@ -1,0 +1,41 @@
+/* ==========================================================================
+   頁尾樣式模組
+   ========================================================================== */
+
+.footer {
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 2rem 0 1rem;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-links {
+    margin: 1rem 0;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 1rem;
+    opacity: 0.8;
+    transition: opacity var(--transition-normal);
+    -webkit-transition: opacity var(--transition-normal);
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--accent-orange);
+}
+
+.footer-links a.active {
+    color: var(--accent-orange);
+}
+
+.footer-info {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 1rem;
+}
