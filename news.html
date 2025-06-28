@@ -6,34 +6,55 @@
     <title>最新消息 - 吉翔不動產有限公司</title>
     <meta name="description" content="掌握最新房市動態、政策法規、租房新知與專業建議。吉翔不動產為您提供第一手房地產資訊。">
     <meta name="keywords" content="房市動態,政策法規,租房新知,不動產新聞,吉翔不動產">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css.txt">
 </head>
-<body class="news-page">
-    <button class="floating-btn" onclick="scrollToTop()" title="回到頂部" aria-label="回到頂部">
+<body>
+    <div class="floating-btn" onclick="scrollToTop()" title="回到頂部">
         <i class="bi bi-arrow-up"></i>
-    </button>
+    </div>
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="bi bi-house-heart-fill me-2"></i>吉翔不動產有限公司
+                <i class="bi bi-house-heart-fill me-2"></i>
+                吉翔不動產有限公司
             </a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">關於我們</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">服務項目</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="news.html">最新消息</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">服務項目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="news.html">最新消息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">聯絡我們</a>
+                    </li>
                 </ul>
+                
                 <a href="tel:02-2998-9596" class="navbar-phone">
-                    <i class="bi bi-telephone-fill me-1"></i>02-2998-9596
+                    <i class="bi bi-telephone-fill me-1"></i>
+                    02-2998-9596
                 </a>
             </div>
         </div>
@@ -42,68 +63,402 @@
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
-                <div class="page-highlight fade-in">
-                    <i class="bi bi-newspaper me-2"></i>最新房市資訊
-                </div>
-                <h1 class="page-title fade-in">最新消息</h1>
-                <p class="page-subtitle fade-in">掌握房市脈動，獲取第一手資訊</p>
+                <h1 class="page-title fade-in">
+                    <i class="bi bi-newspaper me-3"></i>
+                    最新消息
+                </h1>
+                <p class="page-subtitle fade-in">
+                    掌握房市脈動，獲取第一手資訊
+                </p>
             </div>
         </div>
     </section>
 
-    <section class="filter-section fade-in container">
-        <div class="search-box">
-            <i class="bi bi-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="搜尋新聞標題或關鍵字..." aria-label="搜尋新聞">
-        </div>
-        <div class="filter-row">
-            <label for="dateFilter">時間篩選：</label>
-            <select id="dateFilter" class="filter-select" onchange="handleDateFilter(this.value)">
-                <option value="all">全部時間</option>
-                <option value="month">最近一個月</option>
-                <option value="quarter">最近三個月</option>
-                <option value="year">最近一年</option>
-            </select>
-            <label for="sortFilter">排序方式：</label>
-            <select id="sortFilter" class="filter-select" onchange="handleSort(this.value)">
-                <option value="date-desc">最新優先</option>
-                <option value="date-asc">最舊優先</option>
-                <option value="popular">熱門優先</option>
-            </select>
-        </div>
-        <div class="category-tabs">
-            <a href="#" class="category-tab active" data-category="all"><i class="bi bi-grid"></i> 全部</a>
-            <a href="#" class="category-tab" data-category="policy"><i class="bi bi-building"></i> 政策法規</a>
-            <a href="#" class="category-tab" data-category="market"><i class="bi bi-graph-up-arrow"></i> 房市動態</a>
-            <a href="#" class="category-tab" data-category="company"><i class="bi bi-award"></i> 公司消息</a>
-            <a href="#" class="category-tab" data-category="knowledge"><i class="bi bi-lightbulb"></i> 租房新知</a>
-        </div>
-    </section>
-
-    <section class="news-list container">
-        <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20">
-            <div class="news-header">
-                <div class="news-meta">
-                    <div class="news-date"><i class="bi bi-calendar3"></i>2024年12月20日</div>
-                    <span class="news-badge knowledge">租房新知</span>
-                </div>
+    <div class="container">
+        <section class="category-nav fade-in">
+            <div class="category-tabs">
+                <a href="#" class="category-tab active" data-category="all">
+                    <i class="bi bi-grid"></i>全部消息
+                </a>
+                <a href="#" class="category-tab" data-category="policy">
+                    <i class="bi bi-building"></i>政策法規
+                </a>
+                <a href="#" class="category-tab" data-category="market">
+                    <i class="bi bi-graph-up-arrow"></i>房市動態
+                </a>
+                <a href="#" class="category-tab" data-category="company">
+                    <i class="bi bi-award"></i>公司消息
+                </a>
+                <a href="#" class="category-tab" data-category="knowledge">
+                    <i class="bi bi-lightbulb"></i>租房新知
+                </a>
             </div>
-            <div class="news-content">
-                <h2 class="news-title">2025年租屋新制上路：房東房客必知的權益保障</h2>
-                <p class="news-excerpt">新年度租屋新制即將實施，包含押金上限規定、修繕責任歸屬、提前解約條件等重要變更。本文為您詳細解析...</p>
-                <div class="news-footer">
-                    <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                    <div class="share-buttons">
-                        <a href="#" class="share-btn facebook" onclick="shareToFacebook()"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="share-btn line" onclick="shareToLine()"><i class="bi bi-line"></i></a>
-                        <a href="#" class="share-btn copy" onclick="copyLink()"><i class="bi bi-link-45deg"></i></a>
+        </section>
+
+        <section class="filter-section fade-in">
+            <div class="search-box">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="搜尋新聞標題或關鍵字..." onkeyup="handleSearch(this.value)">
+            </div>
+            <div class="filter-row">
+                <label>時間篩選：</label>
+                <select class="filter-select" onchange="handleDateFilter(this.value)">
+                    <option value="all">全部時間</option>
+                    <option value="month">最近一個月</option>
+                    <option value="quarter">最近三個月</option>
+                    <option value="year">最近一年</option>
+                </select>
+                
+                <label>排序方式：</label>
+                <select class="filter-select" onchange="handleSort(this.value)">
+                    <option value="date-desc">最新優先</option>
+                    <option value="date-asc">最舊優先</option>
+                    <option value="popular">熱門優先</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <section class="news-list">
+                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <div class="news-date">
+                                <i class="bi bi-calendar3"></i>
+                                2024年12月20日
+                            </div>
+                            <span class="news-badge knowledge">租房新知</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-title">2025年租屋新制上路：房東房客必知的權益保障</h2>
+                        <p class="news-excerpt">
+                            新年度租屋新制即將實施，包含押金上限規定、修繕責任歸屬、提前解約條件等重要變更。本文為您詳細解析房東與房客的權利義務，確保雙方權益獲得充分保障。特別針對社會住宅包租代管業務，政府提供更多優惠措施...
+                        </p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                    <i class="bi bi-line"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-item fade-in" data-category="policy" data-date="2024-12-15">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <div class="news-date">
+                                <i class="bi bi-calendar3"></i>
+                                2024年12月15日
+                            </div>
+                            <span class="news-badge policy">政策法規</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-title">2025年社會住宅包租代管計畫擴大辦理</h2>
+                        <p class="news-excerpt">
+                            內政部宣布2025年社會住宅包租代管計畫將擴大辦理，目標新增2萬戶社會住宅。房東加入包租代管可享有租金收入免稅、修繕補助、居家安全險等多項優惠。同時強化租客居住品質保障，提供更穩定的租屋環境...
+                        </p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                    <i class="bi bi-line"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-item fade-in" data-category="market" data-date="2024-12-12">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <div class="news-date">
+                                <i class="bi bi-calendar3"></i>
+                                2024年12月12日
+                            </div>
+                            <span class="news-badge market">房市動態</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-title">新莊副都心房價走勢分析：捷運環狀線效應持續發酵</h2>
+                        <p class="news-excerpt">
+                            隨著捷運環狀線全線通車，新莊副都心地區房價穩步上揚。根據最新實價登錄資料，區域內新成屋均價已突破每坪55萬元。分析師指出，交通便利性提升加上重大建設陸續完工，預期未來房價仍有支撐...
+                        </p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                    <i class="bi bi-line"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-08">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <div class="news-date">
+                                <i class="bi bi-calendar3"></i>
+                                2024年12月8日
+                            </div>
+                            <span class="news-badge knowledge">租房新知</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-title">租屋族必看：如何辨識優質房東與避開租屋陷阱</h2>
+                        <p class="news-excerpt">
+                            租屋市場資訊不對稱，租客常面臨各種風險。本文教您如何識別良心房東、檢查房屋狀況、確認合約條款，以及遇到糾紛時的處理方式。特別提醒年輕租客注意的重點事項，讓您租屋更安心...
+                        </p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                    <i class="bi bi-line"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-item fade-in" data-category="company" data-date="2024-12-05">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <div class="news-date">
+                                <i class="bi bi-calendar3"></i>
+                                2024年12月5日
+                            </div>
+                            <span class="news-badge company">公司消息</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-title">吉翔不動產入選第四期公會版社會住宅包租代管業者</h2>
+                        <p class="news-excerpt">
+                            本公司正式通過審核，成為內政部營建署第四期公會版社會住宅包租代管計畫的合格業者。憑藉15年不動產專業經驗與優質服務品質，我們將持續為房東提供專業包租代管服務，為房客創造優質居住環境，共同落實居住正義政策...
+                        </p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                    <i class="bi bi-line"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-01">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <div class="news-date">
+                                <i class="bi bi-calendar3"></i>
+                                2024年12月1日
+                            </div>
+                            <span class="news-badge knowledge">租房新知</span>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h2 class="news-title">小資族租屋指南：預算分配與看房重點大公開</h2>
+                        <p class="news-excerpt">
+                            對於初入社會的小資族來說，租屋是人生重要的一步。本文分享實用的租屋預算分配原則、看房時的檢查重點、以及如何選擇適合的居住區域。讓您用有限的預算找到理想的租屋處...
+                        </p>
+                        <div class="news-footer">
+                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                    <i class="bi bi-line"></i>
+                                </a>
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                    <i class="bi bi-link-45deg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="pagination-section">
+                    <div class="pagination-custom">
+                        <a href="#" class="page-link-custom">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                        <a href="#" class="page-link-custom active">1</a>
+                        <a href="#" class="page-link-custom">2</a>
+                        <a href="#" class="page-link-custom">3</a>
+                        <a href="#" class="page-link-custom">4</a>
+                        <a href="#" class="page-link-custom">5</a>
+                        <a href="#" class="page-link-custom">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
                     </div>
                 </div>
+            </section>
+
+            <aside class="sidebar">
+                <div class="sidebar-section fade-in">
+                    <h3 class="sidebar-title">
+                        <i class="bi bi-fire me-2"></i>
+                        熱門消息
+                    </h3>
+                    <div class="popular-news-item">
+                        <div class="popular-news-number">1</div>
+                        <div class="popular-news-content">
+                            <div class="popular-news-title">2025年租屋新制上路：房東房客必知的權益保障</div>
+                            <div class="popular-news-date">2024-12-20</div>
+                        </div>
+                    </div>
+                    <div class="popular-news-item">
+                        <div class="popular-news-number">2</div>
+                        <div class="popular-news-content">
+                            <div class="popular-news-title">社會住宅包租代管計畫擴大辦理</div>
+                            <div class="popular-news-date">2024-12-15</div>
+                        </div>
+                    </div>
+                    <div class="popular-news-item">
+                        <div class="popular-news-number">3</div>
+                        <div class="popular-news-content">
+                            <div class="popular-news-title">新莊副都心房價走勢分析</div>
+                            <div class="popular-news-date">2024-12-12</div>
+                        </div>
+                    </div>
+                    <div class="popular-news-item">
+                        <div class="popular-news-number">4</div>
+                        <div class="popular-news-content">
+                            <div class="popular-news-title">如何辨識優質房東與避開租屋陷阱</div>
+                            <div class="popular-news-date">2024-12-08</div>
+                        </div>
+                    </div>
+                    <div class="popular-news-item">
+                        <div class="popular-news-number">5</div>
+                        <div class="popular-news-content">
+                            <div class="popular-news-title">小資族租屋指南：預算分配與看房重點</div>
+                            <div class="popular-news-date">2024-12-01</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section fade-in">
+                    <h3 class="sidebar-title">
+                        <i class="bi bi-pie-chart me-2"></i>
+                        消息分類
+                    </h3>
+                    <div class="category-stats">
+                        <div class="category-stat-item">
+                            <span><i class="bi bi-lightbulb text-warning me-2"></i>租房新知</span>
+                            <span class="badge" style="background: var(--accent-orange);">15</span>
+                        </div>
+                        <div class="category-stat-item">
+                            <span><i class="bi bi-building text-primary me-2"></i>政策法規</span>
+                            <span class="badge" style="background: var(--secondary-blue);">8</span>
+                        </div>
+                        <div class="category-stat-item">
+                            <span><i class="bi bi-graph-up-arrow text-danger me-2"></i>房市動態</span>
+                            <span class="badge" style="background: var(--red);">12</span>
+                        </div>
+                        <div class="category-stat-item">
+                            <span><i class="bi bi-award text-success me-2"></i>公司消息</span>
+                            <span class="badge" style="background: var(--green);">6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section fade-in">
+                    <h3 class="sidebar-title">
+                        <i class="bi bi-headset me-2"></i>
+                        需要協助？
+                    </h3>
+                    <div class="text-center">
+                        <p class="mb-3" style="color: var(--text-light); font-size: 0.9rem;">
+                            有任何房屋相關問題，歡迎隨時與我們聯繫
+                        </p>
+                        <a href="tel:02-2998-9596" class="contact-btn w-100 mb-3">
+                            <i class="bi bi-telephone-fill me-2"></i>
+                            電話諮詢
+                        </a>
+                        
+                        <div class="line-section mb-3">
+                            <h6 style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">
+                                <i class="bi bi-line me-2"></i>加入 LINE 獲取最新消息
+                            </h6>
+                            <div class="d-flex flex-column gap-2">
+                                <a href="https://lin.ee/izjYq9H" class="line-btn-small">
+                                    <i class="bi bi-person-fill me-2"></i>
+                                    房客專線
+                                    <small class="d-block">租屋需求、居住諮詢</small>
+                                </a>
+                                <a href="https://lin.ee/elZYPEn" class="line-btn-small">
+                                    <i class="bi bi-building-fill me-2"></i>
+                                    房東專線
+                                    <small class="d-block">出租委託、包租代管</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h5>吉翔不動產有限公司</h5>
+                <div class="footer-links">
+                    <a href="index.html">首頁</a>
+                    <span>|</span>
+                    <a href="about.html">關於我們</a>
+                    <span>|</span>
+                    <a href="services.html">服務項目</a>
+                    <span>|</span>
+                    <a href="news.html" style="color: var(--accent-orange);">最新消息</a>
+                    <span>|</span>
+                    <a href="contact.html">聯絡我們</a>
+                </div>
+                <div class="footer-info">
+                    <p>統一編號：24400364 | 不動產經紀人證書字號：(105)新北經字第003276號</p>
+                    <p>&copy; 2024 吉翔不動產有限公司 版權所有</p>
+                </div>
             </div>
-        </article>
-    </section>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    
+    <script src="main.js.txt"></script>
 </body>
 </html>
