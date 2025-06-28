@@ -1,5 +1,5 @@
 /**
- * 吉翔不動產有限公司 - 主要 JavaScript 檔案
+ * 吉翔不動產有限公司 - 主要 JavaScript 檔案 
  * Safari 兼容優化版本
  */
 
@@ -48,7 +48,6 @@
             
             // 延遲執行初始動畫
             setTimeout(triggerInitialAnimations, 300);
-            
             console.log('吉翔不動產網站初始化完成');
         } catch (error) {
             console.error('初始化過程中發生錯誤:', error);
@@ -70,7 +69,6 @@
         }
         
         const observer = new IntersectionObserver(handleIntersection, config.observerOptions);
-        
         // 觀察所有需要動畫的元素
         document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
             observer.observe(el);
@@ -158,7 +156,6 @@
         
         // 滾動事件
         window.addEventListener('scroll', onScroll, { passive: true });
-        
         // 點擊效果
         floatingBtn.addEventListener('click', function() {
             this.style.transform = 'scale(0.9)';
@@ -195,14 +192,12 @@
         const startY = window.pageYOffset;
         const diff = targetY - startY;
         const startTime = performance.now();
-        
         function step(timestamp) {
             const elapsed = timestamp - startTime;
             const progress = Math.min(elapsed / duration, 1);
             const easeProgress = easeInOutCubic(progress);
             
             window.scrollTo(0, startY + diff * easeProgress);
-            
             if (progress < 1) {
                 requestAnimationFrame(step);
             }
@@ -250,7 +245,6 @@
     
     function initializeCounters() {
         const counters = document.querySelectorAll('.counter[data-count]');
-        
         const counterObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -259,7 +253,6 @@
                 }
             });
         });
-        
         counters.forEach(counter => {
             counterObserver.observe(counter);
         });
@@ -270,7 +263,6 @@
         const duration = config.counterDuration;
         const step = target / (duration / 16);
         let current = 0;
-        
         const timer = setInterval(() => {
             current += step;
             if (current >= target) {
@@ -294,7 +286,6 @@
                 el.classList.add('visible');
             }, index * config.animationDelay);
         });
-        
         // 初始化計數器
         if (document.querySelector('.counter[data-count]')) {
             initializeCounters();
@@ -307,7 +298,6 @@
     
     function initializePageSpecificFeatures() {
         const currentPage = getCurrentPage();
-        
         switch (currentPage) {
             case 'news':
                 initializeNewsFeatures();
@@ -354,6 +344,14 @@
         setupNewsFiltering();
         setupSocialSharing();
         
+        [cite_start]// 從 news.html.txt 整合過來的熱門新聞點擊事件 [cite: 287]
+        document.querySelectorAll('.popular-news-item').forEach(item => {
+            item.addEventListener('click', function() {
+                [cite_start]console.log('點擊熱門新聞:', this.querySelector('.popular-news-title').textContent); // [cite: 287]
+                // 這裡可以加入跳轉到對應新聞的邏輯
+            });
+        });
+
         console.log('新聞頁面功能已初始化');
     }
     
@@ -374,7 +372,6 @@
     
     function filterNewsByCategory(category) {
         const newsItems = document.querySelectorAll('.news-item');
-        
         newsItems.forEach(item => {
             const itemCategory = item.getAttribute('data-category');
             const shouldShow = category === 'all' || itemCategory === category;
@@ -413,7 +410,6 @@
                 handleSearch(this.value);
             }, 300);
         });
-        
         // 支援鍵盤搜尋
         searchInput.addEventListener('keyup', function(e) {
             if (e.key === 'Enter') {
@@ -423,107 +419,105 @@
         });
     }
     
-    window.handleSearch = function(query) {
+    [cite_start]window.handleSearch = function(query) { // [cite: 260]
         const newsItems = document.querySelectorAll('.news-item');
-        const searchQuery = query.toLowerCase().trim();
+        const searchQuery = query.toLowerCase().trim(); [cite_start]// [cite: 261]
         
         newsItems.forEach(item => {
-            const title = item.querySelector('.news-title')?.textContent.toLowerCase() || '';
-            const excerpt = item.querySelector('.news-excerpt')?.textContent.toLowerCase() || '';
+            [cite_start]const title = item.querySelector('.news-title')?.textContent.toLowerCase() || ''; // [cite: 261]
+            const excerpt = item.querySelector('.news-excerpt')?.textContent.toLowerCase() || ''; [cite_start]// [cite: 261]
             
             const matches = searchQuery === '' || 
                            title.includes(searchQuery) || 
                            excerpt.includes(searchQuery);
             
-            item.style.display = matches ? 'block' : 'none';
+            item.style.display = matches ? 'block' : 'none'; [cite_start]// [cite: 262]
         });
     };
     
     function setupNewsFiltering() {
         // 日期篩選
-        window.handleDateFilter = function(period) {
+        [cite_start]window.handleDateFilter = function(period) { // [cite: 264]
             const newsItems = document.querySelectorAll('.news-item');
-            const now = new Date();
+            const now = new Date(); [cite_start]// [cite: 264]
             
             newsItems.forEach(item => {
-                const itemDateStr = item.getAttribute('data-date');
+                [cite_start]const itemDateStr = item.getAttribute('data-date'); // [cite: 264]
                 if (!itemDateStr) return;
                 
-                const itemDate = new Date(itemDateStr);
+                const itemDate = new Date(itemDateStr); [cite_start]// [cite: 264]
                 let shouldShow = true;
+ 
                 
-                switch (period) {
-                    case 'month':
-                        const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-                        shouldShow = itemDate >= oneMonthAgo;
+                [cite_start]switch (period) { // [cite: 265, 266, 267, 268]
+                    [cite_start]case 'month': // [cite: 265]
+                        const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate()); [cite_start]// [cite: 265]
+                        shouldShow = itemDate >= oneMonthAgo; [cite_start]// [cite: 265]
                         break;
-                    case 'quarter':
-                        const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
-                        shouldShow = itemDate >= threeMonthsAgo;
+                    [cite_start]case 'quarter': // [cite: 266]
+                        const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate()); [cite_start]// [cite: 266]
+                        shouldShow = itemDate >= threeMonthsAgo; [cite_start]// [cite: 266]
                         break;
-                    case 'year':
-                        const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
-                        shouldShow = itemDate >= oneYearAgo;
+                    [cite_start]case 'year': // [cite: 267]
+                        const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()); [cite_start]// [cite: 267]
+                        shouldShow = itemDate >= oneYearAgo; [cite_start]// [cite: 267]
                         break;
-                    default:
-                        shouldShow = true;
+                    [cite_start]default: // [cite: 268]
+                        shouldShow = true; [cite_start]// [cite: 268]
                 }
                 
-                item.style.display = shouldShow ? 'block' : 'none';
+                item.style.display = shouldShow ? 'block' : 'none'; [cite_start]// [cite: 269]
             });
         };
         
         // 排序功能
-        window.handleSort = function(sortType) {
-            const newsList = document.querySelector('.news-list');
-            const newsItems = Array.from(document.querySelectorAll('.news-item'));
-            const paginationSection = document.querySelector('.pagination-section');
+        [cite_start]window.handleSort = function(sortType) { // [cite: 270]
+            const newsList = document.querySelector('.news-list'); [cite_start]// [cite: 270]
+            const newsItems = Array.from(document.querySelectorAll('.news-item')); [cite_start]// [cite: 270]
+            const paginationSection = document.querySelector('.pagination-section'); [cite_start]// [cite: 273]
             
-            newsItems.sort((a, b) => {
-                const dateA = new Date(a.getAttribute('data-date'));
-                const dateB = new Date(b.getAttribute('data-date'));
+            [cite_start]newsItems.sort((a, b) => { // [cite: 271]
+                const dateA = new Date(a.getAttribute('data-date')); [cite_start]// [cite: 271]
+                const dateB = new Date(b.getAttribute('data-date')); [cite_start]// [cite: 271]
                 
-                switch (sortType) {
-                    case 'date-desc':
-                        return dateB - dateA;
-                    case 'date-asc':
-                        return dateA - dateB;
-                    case 'popular':
+                [cite_start]switch (sortType) { // [cite: 271]
+                    [cite_start]case 'date-desc': // [cite: 271]
+                        return dateB - dateA; [cite_start]// [cite: 271]
+                    [cite_start]case 'date-asc': // [cite: 271]
+                        return dateA - dateB; [cite_start]// [cite: 271]
+                    [cite_start]case 'popular': // [cite: 271]
                         // 暫時使用隨機排序作為示例
-                        return Math.random() - 0.5;
-                    default:
-                        return 0;
+                        return Math.random() - 0.5; [cite_start]// [cite: 272]
+                    [cite_start]default: // [cite: 272]
+                        return 0; [cite_start]// [cite: 272]
                 }
             });
-            
             // 重新排列 DOM 元素
-            newsItems.forEach(item => {
-                newsList.insertBefore(item, paginationSection);
+            [cite_start]newsItems.forEach(item => { // [cite: 274]
+                newsList.insertBefore(item, paginationSection); [cite_start]// [cite: 274]
             });
         };
     }
     
     function setupSocialSharing() {
         // Facebook 分享
-        window.shareToFacebook = function() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
+        [cite_start]window.shareToFacebook = function() { // [cite: 278]
+            const url = encodeURIComponent(window.location.href); [cite_start]// [cite: 279]
+            const title = encodeURIComponent(document.title); [cite_start]// [cite: 279]
             const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`;
             openShareWindow(shareUrl);
             trackSocialShare('facebook');
         };
-        
         // LINE 分享
-        window.shareToLine = function() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
+        [cite_start]window.shareToLine = function() { // [cite: 280]
+            const url = encodeURIComponent(window.location.href); [cite_start]// [cite: 280]
+            const title = encodeURIComponent(document.title); [cite_start]// [cite: 280]
             const shareUrl = `https://social-plugins.line.me/lineit/share?url=${url}&text=${title}`;
             openShareWindow(shareUrl);
             trackSocialShare('line');
         };
-        
         // 複製連結
-        window.copyLink = function() {
+        [cite_start]window.copyLink = function() { // [cite: 280]
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(window.location.href).then(() => {
                     showToast('連結已複製到剪貼簿');
@@ -531,53 +525,50 @@
                     fallbackCopyTextToClipboard(window.location.href);
                 });
             } else {
-                fallbackCopyTextToClipboard(window.location.href);
+                fallbackCopyTextToClipboard(window.location.href); [cite_start]// [cite: 285]
             }
             trackSocialShare('copy');
         };
-        
         function openShareWindow(url) {
-            const width = 600;
-            const height = 400;
-            const left = (window.innerWidth - width) / 2;
-            const top = (window.innerHeight - height) / 2;
-            
-            window.open(url, '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
+            const width = 600; [cite_start]// [cite: 718]
+            const height = 400; [cite_start]// [cite: 718]
+            const left = (window.innerWidth - width) / 2; [cite_start]// [cite: 718]
+            const top = (window.innerHeight - height) / 2; [cite_start]// [cite: 718]
+            window.open(url, '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`); [cite_start]// [cite: 719]
         }
         
         function fallbackCopyTextToClipboard(text) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.top = '0';
-            textArea.style.left = '0';
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            textArea.style.padding = '0';
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            textArea.style.background = 'transparent';
+            const textArea = document.createElement('textarea'); [cite_start]// [cite: 720]
+            textArea.value = text; [cite_start]// [cite: 720]
+            textArea.style.position = 'fixed'; [cite_start]// [cite: 720]
+            textArea.style.top = '0'; [cite_start]// [cite: 720]
+            textArea.style.left = '0'; [cite_start]// [cite: 720]
+            textArea.style.width = '2em'; [cite_start]// [cite: 720]
+            textArea.style.height = '2em'; [cite_start]// [cite: 721]
+            textArea.style.padding = '0'; [cite_start]// [cite: 721]
+            textArea.style.border = 'none'; [cite_start]// [cite: 721]
+            textArea.style.outline = 'none'; [cite_start]// [cite: 721]
+            textArea.style.boxShadow = 'none'; [cite_start]// [cite: 721]
+            textArea.style.background = 'transparent'; [cite_start]// [cite: 721]
             
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
+            document.body.appendChild(textArea); [cite_start]// [cite: 722]
+            textArea.focus(); [cite_start]// [cite: 722]
+            textArea.select(); [cite_start]// [cite: 722]
             try {
-                document.execCommand('copy');
-                showToast('連結已複製到剪貼簿');
+                document.execCommand('copy'); [cite_start]// [cite: 722]
+                showToast('連結已複製到剪貼簿'); [cite_start]// [cite: 723]
             } catch (err) {
-                showToast('複製失敗，請手動複製連結');
+                showToast('複製失敗，請手動複製連結'); [cite_start]// [cite: 724]
             }
             
-            document.body.removeChild(textArea);
+            document.body.removeChild(textArea); [cite_start]// [cite: 725]
         }
         
-        function trackSocialShare(platform) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'social_share', {
-                    'event_category': 'social',
-                    'event_label': platform
+        [cite_start]function trackSocialShare(platform) { // [cite: 725]
+            [cite_start]if (typeof gtag !== 'undefined') { // [cite: 725]
+                [cite_start]gtag('event', 'social_share', { // [cite: 726]
+                    [cite_start]'event_category': 'social', // [cite: 726]
+                    [cite_start]'event_label': platform // [cite: 726]
                 });
             }
         }
@@ -599,7 +590,6 @@
         const lineSection = document.querySelector('.line-contact-section');
         
         if (!lineSection || lineCards.length === 0) return;
-        
         const lineObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -618,7 +608,6 @@
     
     function setupMapInteractions() {
         const mapIframe = document.querySelector('.map-container iframe');
-        
         if (mapIframe) {
             mapIframe.addEventListener('load', function() {
                 console.log('地圖載入完成');
@@ -683,7 +672,6 @@
                 trackLineClick(isLandlord ? 'landlord' : 'tenant');
             });
         });
-        
         // Facebook 點擊追蹤
         document.querySelectorAll('a[href*="facebook.com"]').forEach(link => {
             link.addEventListener('click', function() {
@@ -695,7 +683,6 @@
                 }
             });
         });
-        
         // 小版 LINE 按鈕追蹤
         document.querySelectorAll('.line-btn-small').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -711,7 +698,6 @@
     
     function setupResponsiveHandling() {
         let resizeTimeout;
-        
         function handleResize() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
@@ -726,7 +712,6 @@
         }
         
         window.addEventListener('resize', handleResize);
-        
         // 初始執行
         handleResize();
     }
@@ -743,18 +728,18 @@
             pageTitle.style.fontSize = isMobile ? '2.5rem' : '3rem';
         }
         
-        // 新聞頁面 footer 調整
+        [cite_start]// 新聞頁面 footer 調整 [cite: 288, 289, 290, 291, 292]
         if (isMobile) {
-            document.querySelectorAll('.news-footer').forEach(footer => {
-                footer.style.flexDirection = 'column';
-                footer.style.alignItems = 'flex-start';
-                footer.style.gap = '1rem';
+            [cite_start]document.querySelectorAll('.news-footer').forEach(footer => { // [cite: 289]
+                footer.style.flexDirection = 'column'; [cite_start]// [cite: 289]
+                footer.style.alignItems = 'flex-start'; [cite_start]// [cite: 289]
+                footer.style.gap = '1rem'; [cite_start]// [cite: 290]
             });
         } else {
-            document.querySelectorAll('.news-footer').forEach(footer => {
-                footer.style.flexDirection = 'row';
-                footer.style.alignItems = 'center';
-                footer.style.justifyContent = 'space-between';
+            [cite_start]document.querySelectorAll('.news-footer').forEach(footer => { // [cite: 291]
+                footer.style.flexDirection = 'row'; [cite_start]// [cite: 291]
+                footer.style.alignItems = 'center'; [cite_start]// [cite: 291]
+                footer.style.justifyContent = 'space-between'; [cite_start]// [cite: 292]
                 footer.style.gap = '0';
             });
         }
@@ -786,48 +771,46 @@
         toast.className = 'custom-toast';
         toast.textContent = message;
         
-        // Toast 樣式
+        // Toast 樣式 (已移至 style.css，這裡保留以防萬一或作為動態調整後備)
         Object.assign(toast.style, {
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: 'var(--primary-blue, #1E3A8A)',
-            color: 'white',
-            padding: '1rem 2rem',
-            borderRadius: '8px',
-            zIndex: '9999',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            fontSize: '1rem',
-            fontWeight: '500',
-            maxWidth: '300px',
-            textAlign: 'center',
-            opacity: '0',
-            transition: 'opacity 0.3s ease'
+            [cite_start]// 從 news.html.txt 的 copyLink 函數中整合過來的樣式 [cite: 281, 282, 283]
+            [cite_start]position: 'fixed', // [cite: 281]
+            [cite_start]top: '50%', // [cite: 281]
+            [cite_start]left: '50%', // [cite: 281]
+            [cite_start]transform: 'translate(-50%, -50%)', // [cite: 281]
+            [cite_start]background: 'var(--primary-blue, #1E3A8A)', // [cite: 282]
+            [cite_start]color: 'white', // [cite: 282]
+            [cite_start]padding: '1rem 2rem', // [cite: 282]
+            [cite_start]borderRadius: '8px', // [cite: 282]
+            [cite_start]zIndex: '9999', // [cite: 283]
+            [cite_start]boxShadow: '0 4px 12px rgba(0,0,0,0.3)', // [cite: 283]
+            [cite_start]fontSize: '1rem', // 從 style.css.txt 定義 [cite: 764]
+            [cite_start]fontWeight: '500', // 從 style.css.txt 定義 [cite: 765]
+            [cite_start]maxWidth: '300px', // 從 style.css.txt 定義 [cite: 765]
+            [cite_start]textAlign: 'center', // 從 style.css.txt 定義 [cite: 765]
+            [cite_start]opacity: '0', // [cite: 765]
+            [cite_start]transition: 'opacity 0.3s ease' // [cite: 765]
         });
-        
         // Safari 兼容
-        if (isSafari) {
-            toast.style.webkitTransform = 'translate(-50%, -50%)';
-            toast.style.webkitTransition = 'opacity 0.3s ease';
+        [cite_start]if (isSafari) { // [cite: 766]
+            toast.style.webkitTransform = 'translate(-50%, -50%)'; [cite_start]// [cite: 766]
+            toast.style.webkitTransition = 'opacity 0.3s ease'; [cite_start]// [cite: 767]
         }
         
-        document.body.appendChild(toast);
-        
+        document.body.appendChild(toast); [cite_start]// [cite: 768]
         // 淡入
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
+        [cite_start]requestAnimationFrame(() => { // [cite: 768]
+            toast.style.opacity = '1'; [cite_start]// [cite: 768]
         });
-        
         // 自動移除
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
+        [cite_start]setTimeout(() => { // [cite: 769]
+            toast.style.opacity = '0'; [cite_start]// [cite: 769]
+            [cite_start]setTimeout(() => { // [cite: 769]
+                [cite_start]if (toast.parentNode) { // [cite: 769]
+                    toast.parentNode.removeChild(toast); [cite_start]// [cite: 770]
                 }
-            }, 300);
-        }, duration);
+            }, 300); [cite_start]// [cite: 770]
+        }, duration); [cite_start]// [cite: 771]
     }
     
     function debounce(func, wait, immediate) {
@@ -871,41 +854,39 @@
         window.addEventListener('load', function() {
             setTimeout(() => {
                 if (performance && performance.timing) {
-                    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                    [cite_start]const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart; // [cite: 780]
                     console.log(`頁面載入時間: ${loadTime}ms`);
                     
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'page_load_time', {
-                            'event_category': 'performance',
-                            'value': Math.round(loadTime)
+                    [cite_start]if (typeof gtag !== 'undefined') { // [cite: 781]
+                        [cite_start]gtag('event', 'page_load_time', { // [cite: 781]
+                            [cite_start]'event_category': 'performance', // [cite: 781]
+                            [cite_start]'value': Math.round(loadTime) // [cite: 782]
                         });
                     }
                 }
             }, 0);
         });
-        
         // 錯誤監控
         window.addEventListener('error', function(e) {
             console.error('JavaScript 錯誤:', e.error);
             
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'js_error', {
-                    'event_category': 'error',
-                    'event_label': e.message,
-                    'value': 1
+            [cite_start]if (typeof gtag !== 'undefined') { // [cite: 783]
+                [cite_start]gtag('event', 'js_error', { // [cite: 784]
+                    [cite_start]'event_category': 'error', // [cite: 784]
+                    [cite_start]'event_label': e.message, // [cite: 784]
+                    [cite_start]'value': 1 // [cite: 784]
                 });
             }
         });
-        
         // Promise 錯誤監控
         window.addEventListener('unhandledrejection', function(e) {
             console.error('未處理的 Promise 錯誤:', e.reason);
             
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'promise_error', {
-                    'event_category': 'error',
-                    'event_label': e.reason?.toString() || 'Unknown promise error',
-                    'value': 1
+            [cite_start]if (typeof gtag !== 'undefined') { // [cite: 785]
+                [cite_start]gtag('event', 'promise_error', { // [cite: 786]
+                    [cite_start]'event_category': 'error', // [cite: 786]
+                    'event_label': e.reason?.toString() || [cite_start]'Unknown promise error', // [cite: 786]
+                    [cite_start]'value': 1 // [cite: 786]
                 });
             }
         });
@@ -917,7 +898,6 @@
     
     function applySafariSpecificFixes() {
         if (!isSafari) return;
-        
         // Safari 中的 backdrop-filter 後備處理
         const elementsWithBackdrop = document.querySelectorAll('.navbar, .map-overlay, .hours-item');
         elementsWithBackdrop.forEach(el => {
@@ -925,7 +905,6 @@
                 el.style.background = 'rgba(255, 255, 255, 0.98)';
             }
         });
-        
         // Safari 中的 CSS Grid 後備處理
         const gridElements = document.querySelectorAll('.hours-grid, .benefits-grid');
         gridElements.forEach(el => {
@@ -934,7 +913,6 @@
                 el.style.flexWrap = 'wrap';
             }
         });
-        
         // Safari 滾動性能優化
         document.body.style.webkitOverflowScrolling = 'touch';
         
@@ -967,7 +945,6 @@
                 // 可以在此處添加更多的焦點管理邏輯
             }
         });
-        
         // 為動態內容添加適當的 ARIA 標籤
         const newsItems = document.querySelectorAll('.news-item');
         newsItems.forEach((item, index) => {
@@ -981,7 +958,6 @@
                 }
             }
         });
-        
         // 為分享按鈕添加更好的標籤
         const shareButtons = document.querySelectorAll('.share-btn');
         shareButtons.forEach(btn => {
@@ -999,7 +975,6 @@
     
     // 立即執行初始化
     initializeApp();
-    
     // 設定性能監控
     setupPerformanceMonitoring();
     
@@ -1008,7 +983,6 @@
     
     // 設定輔助功能
     setupAccessibilityFeatures();
-    
     // 對外公開的 API
     window.JixiangApp = {
         showToast: showToast,
@@ -1019,11 +993,9 @@
         copyLink: window.copyLink,
         version: '1.0.0'
     };
-    
     console.log('吉翔不動產網站腳本載入完成', {
         isSafari: isSafari,
         version: '1.0.0',
         timestamp: new Date().toISOString()
     });
-    
 })();
