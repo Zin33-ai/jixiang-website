@@ -1,0 +1,495 @@
+/* ==========================================================================
+   動畫效果
+   ========================================================================== */
+
+/* 基礎淡入動畫 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    -webkit-transform: translateY(30px);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+}
+
+/* 左側滑入 */
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    -webkit-transform: translateX(-50px);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+}
+
+/* 右側滑入 */
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-transform: translateX(50px);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+}
+
+/* 縮放進入 */
+.scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
+/* 上方滑入 */
+.slide-in-up {
+    opacity: 0;
+    transform: translateY(50px);
+    -webkit-transform: translateY(50px);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.slide-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+}
+
+/* 下方滑入 */
+.slide-in-down {
+    opacity: 0;
+    transform: translateY(-50px);
+    -webkit-transform: translateY(-50px);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.slide-in-down.visible {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+}
+
+/* 旋轉進入 */
+.rotate-in {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+    -webkit-transform: rotate(180deg) scale(0.5);
+    transition: all var(--transition-slow);
+    -webkit-transition: all var(--transition-slow);
+}
+
+.rotate-in.visible {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+}
+
+/* 脈衝動畫 */
+.pulse-animation {
+    animation: pulse 2s infinite;
+    -webkit-animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+    }
+    50% {
+        -webkit-transform: scale(1.05);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+
+/* 彈跳動畫 */
+.bounce-animation {
+    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+        -webkit-transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+        -webkit-transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+        -webkit-transform: translate3d(0, -4px, 0);
+    }
+}
+
+@-webkit-keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        -webkit-transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        -webkit-transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        -webkit-transform: translate3d(0, -4px, 0);
+    }
+}
+
+/* 搖擺動畫 */
+.shake-animation {
+    animation: shake 0.5s;
+    -webkit-animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+        -webkit-transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+        -webkit-transform: translateX(10px);
+    }
+}
+
+@-webkit-keyframes shake {
+    0%, 100% {
+        -webkit-transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        -webkit-transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        -webkit-transform: translateX(10px);
+    }
+}
+
+/* 旋轉載入動畫 */
+.loading {
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--text-light);
+}
+
+.loading i {
+    font-size: var(--font-4xl);
+    animation: spin 2s linear infinite;
+    -webkit-animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% { 
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+/* 打字機效果 */
+.typewriter {
+    border-right: 2px solid var(--accent-orange);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typewriter 3s steps(30) 1s both, blink 1s infinite;
+    -webkit-animation: typewriter 3s steps(30) 1s both, blink 1s infinite;
+}
+
+@keyframes typewriter {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@-webkit-keyframes typewriter {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@-webkit-keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* 漸變背景動畫 */
+.gradient-animation {
+    background: linear-gradient(-45deg, var(--primary-blue), var(--secondary-blue), var(--accent-orange), var(--green));
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    -webkit-animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-webkit-keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 浮動動畫 */
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+    -webkit-animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+    }
+}
+
+@-webkit-keyframes float {
+    0%, 100% {
+        -webkit-transform: translateY(0px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+    }
+}
+
+/* 數字計數動畫 */
+.counter {
+    display: inline-block;
+}
+
+.counter.counting {
+    animation: count-up 2s ease-out;
+    -webkit-animation: count-up 2s ease-out;
+}
+
+@keyframes count-up {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+@-webkit-keyframes count-up {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+
+/* 進度條動畫 */
+.progress-bar {
+    width: 0;
+    height: 4px;
+    background: var(--accent-orange);
+    transition: width 2s ease-out;
+    -webkit-transition: width 2s ease-out;
+}
+
+.progress-bar.loaded {
+    width: 100%;
+}
+
+/* 波浪動畫 */
+.wave-animation {
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: wave 2s infinite;
+    -webkit-animation: wave 2s infinite;
+}
+
+@keyframes wave {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@-webkit-keyframes wave {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* 視差滾動效果 */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* 延遲動畫類 */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Hover 效果 */
+.hover-lift {
+    transition: transform var(--transition-normal);
+    -webkit-transition: -webkit-transform var(--transition-normal);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+}
+
+.hover-scale {
+    transition: transform var(--transition-normal);
+    -webkit-transition: -webkit-transform var(--transition-normal);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+}
+
+.hover-rotate {
+    transition: transform var(--transition-normal);
+    -webkit-transition: -webkit-transform var(--transition-normal);
+}
+
+.hover-rotate:hover {
+    transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+}
+
+/* 減少動畫模式支援 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .pulse-animation,
+    .bounce-animation,
+    .shake-animation,
+    .loading i,
+    .gradient-animation,
+    .float-animation,
+    .wave-animation::before {
+        animation: none !important;
+    }
+    
+    .parallax {
+        background-attachment: scroll;
+    }
+}
