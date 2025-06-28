@@ -6,797 +6,104 @@
     <title>最新消息 - 吉翔不動產有限公司</title>
     <meta name="description" content="掌握最新房市動態、政策法規、租房新知與專業建議。吉翔不動產為您提供第一手房地產資訊。">
     <meta name="keywords" content="房市動態,政策法規,租房新知,不動產新聞,吉翔不動產">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS - 引入外部 CSS 檔案 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Google Analytics (如果需要) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
 </head>
 <body class="news-page">
-    <!-- 浮動功能按鈕 -->
     <button class="floating-btn" onclick="scrollToTop()" title="回到頂部" aria-label="回到頂部">
         <i class="bi bi-arrow-up"></i>
     </button>
-
-    <!-- 導航欄 -->
-    <nav class="navbar navbar-expand-lg" role="navigation">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="bi bi-house-heart-fill me-2"></i>
-                吉翔不動產有限公司
+                <i class="bi bi-house-heart-fill me-2"></i>吉翔不動產有限公司
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="切換導航">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">首頁</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">關於我們</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="services.html">服務項目</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="news.html">最新消息</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">聯絡我們</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">關於我們</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">服務項目</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="news.html">最新消息</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">聯絡我們</a></li>
                 </ul>
-                
                 <a href="tel:02-2998-9596" class="navbar-phone">
-                    <i class="bi bi-telephone-fill me-1"></i>
-                    02-2998-9596
+                    <i class="bi bi-telephone-fill me-1"></i>02-2998-9596
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- 頁面標題區 -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
                 <div class="page-highlight fade-in">
-                    <i class="bi bi-newspaper me-2"></i>
-                    最新房市資訊
+                    <i class="bi bi-newspaper me-2"></i>最新房市資訊
                 </div>
                 <h1 class="page-title fade-in">最新消息</h1>
-                <p class="page-subtitle fade-in">
-                    掌握房市脈動，獲取第一手資訊
-                </p>
+                <p class="page-subtitle fade-in">掌握房市脈動，獲取第一手資訊</p>
             </div>
         </div>
     </section>
 
-    <!-- 訂閱通知區 -->
-    <section class="subscribe-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3 class="mb-2">
-                        <i class="bi bi-bell-fill me-2"></i>
-                        即時掌握房市動態
-                    </h3>
-                    <p class="mb-0">加入我們的 LINE 官方帳號，第一時間接收最新房市資訊與專業建議</p>
-                </div>
-                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                    <div class="d-flex gap-2 justify-content-lg-end justify-content-center">
-                        <a href="https://lin.ee/izjYq9H" class="line-contact-btn">
-                            <i class="bi bi-line me-2"></i>
-                            房客專線
-                            <span class="line-subtitle">租屋需求諮詢</span>
-                        </a>
-                        <a href="https://lin.ee/elZYPEn" class="line-contact-btn">
-                            <i class="bi bi-building me-2"></i>
-                            房東專線
-                            <span class="line-subtitle">包租代管服務</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section class="filter-section fade-in container">
+        <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="搜尋新聞標題或關鍵字..." aria-label="搜尋新聞">
+        </div>
+        <div class="filter-row">
+            <label for="dateFilter">時間篩選：</label>
+            <select id="dateFilter" class="filter-select" onchange="handleDateFilter(this.value)">
+                <option value="all">全部時間</option>
+                <option value="month">最近一個月</option>
+                <option value="quarter">最近三個月</option>
+                <option value="year">最近一年</option>
+            </select>
+            <label for="sortFilter">排序方式：</label>
+            <select id="sortFilter" class="filter-select" onchange="handleSort(this.value)">
+                <option value="date-desc">最新優先</option>
+                <option value="date-asc">最舊優先</option>
+                <option value="popular">熱門優先</option>
+            </select>
+        </div>
+        <div class="category-tabs">
+            <a href="#" class="category-tab active" data-category="all"><i class="bi bi-grid"></i> 全部</a>
+            <a href="#" class="category-tab" data-category="policy"><i class="bi bi-building"></i> 政策法規</a>
+            <a href="#" class="category-tab" data-category="market"><i class="bi bi-graph-up-arrow"></i> 房市動態</a>
+            <a href="#" class="category-tab" data-category="company"><i class="bi bi-award"></i> 公司消息</a>
+            <a href="#" class="category-tab" data-category="knowledge"><i class="bi bi-lightbulb"></i> 租房新知</a>
         </div>
     </section>
 
-    <div class="container">
-        <!-- 分類導航 -->
-        <section class="category-nav fade-in">
-            <div class="category-tabs">
-                <a href="#" class="category-tab active" data-category="all">
-                    <i class="bi bi-grid"></i>全部消息
-                </a>
-                <a href="#" class="category-tab" data-category="policy">
-                    <i class="bi bi-building"></i>政策法規
-                </a>
-                <a href="#" class="category-tab" data-category="market">
-                    <i class="bi bi-graph-up-arrow"></i>房市動態
-                </a>
-                <a href="#" class="category-tab" data-category="company">
-                    <i class="bi bi-award"></i>公司消息
-                </a>
-                <a href="#" class="category-tab" data-category="knowledge">
-                    <i class="bi bi-lightbulb"></i>租房新知
-                </a>
-            </div>
-        </section>
-
-        <!-- 搜尋與篩選 -->
-        <section class="filter-section fade-in">
-            <div class="search-box">
-                <i class="bi bi-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="搜尋新聞標題或關鍵字..." aria-label="搜尋新聞">
-            </div>
-            <div class="filter-row">
-                <label for="dateFilter">時間篩選：</label>
-                <select id="dateFilter" class="filter-select" onchange="handleDateFilter(this.value)">
-                    <option value="all">全部時間</option>
-                    <option value="month">最近一個月</option>
-                    <option value="quarter">最近三個月</option>
-                    <option value="year">最近一年</option>
-                </select>
-                
-                <label for="sortFilter">排序方式：</label>
-                <select id="sortFilter" class="filter-select" onchange="handleSort(this.value)">
-                    <option value="date-desc">最新優先</option>
-                    <option value="date-asc">最舊優先</option>
-                    <option value="popular">熱門優先</option>
-                </select>
-            </div>
-        </section>
-
-        <!-- 主要內容區 -->
-        <div class="main-content">
-            <!-- 新聞列表 -->
-            <section class="news-list">
-                <!-- 新聞項目 1 -->
-                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20" role="article">
-                    <div class="news-header">
-                        <div class="news-meta">
-                            <div class="news-date">
-                                <i class="bi bi-calendar3"></i>
-                                2024年12月20日
-                            </div>
-                            <span class="news-badge knowledge">租房新知</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h2 class="news-title">2025年租屋新制上路：房東房客必知的權益保障</h2>
-                        <p class="news-excerpt">
-                            新年度租屋新制即將實施，包含押金上限規定、修繕責任歸屬、提前解約條件等重要變更。本文為您詳細解析房東與房客的權利義務，確保雙方權益獲得充分保障。特別針對社會住宅包租代管業務，政府提供更多優惠措施，讓房東安心出租，房客放心居住...
-                        </p>
-                        <div class="news-footer">
-                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
-                                    <i class="bi bi-line"></i>
-                                </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
-                                    <i class="bi bi-link-45deg"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 新聞項目 2 -->
-                <article class="news-item fade-in" data-category="policy" data-date="2024-12-15" role="article">
-                    <div class="news-header">
-                        <div class="news-meta">
-                            <div class="news-date">
-                                <i class="bi bi-calendar3"></i>
-                                2024年12月15日
-                            </div>
-                            <span class="news-badge policy">政策法規</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h2 class="news-title">2025年社會住宅包租代管計畫擴大辦理</h2>
-                        <p class="news-excerpt">
-                            內政部宣布2025年社會住宅包租代管計畫將擴大辦理，目標新增2萬戶社會住宅。房東加入包租代管可享有租金收入免稅、修繕補助、居家安全險等多項優惠。同時強化租客居住品質保障，提供更穩定的租屋環境，共同實現居住正義目標...
-                        </p>
-                        <div class="news-footer">
-                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
-                                    <i class="bi bi-line"></i>
-                                </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
-                                    <i class="bi bi-link-45deg"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 新聞項目 3 -->
-                <article class="news-item fade-in" data-category="market" data-date="2024-12-12" role="article">
-                    <div class="news-header">
-                        <div class="news-meta">
-                            <div class="news-date">
-                                <i class="bi bi-calendar3"></i>
-                                2024年12月12日
-                            </div>
-                            <span class="news-badge market">房市動態</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h2 class="news-title">新莊副都心房價走勢分析：捷運環狀線效應持續發酵</h2>
-                        <p class="news-excerpt">
-                            隨著捷運環狀線全線通車，新莊副都心地區房價穩步上揚。根據最新實價登錄資料，區域內新成屋均價已突破每坪55萬元。分析師指出，交通便利性提升加上重大建設陸續完工，預期未來房價仍有支撐，建議有購屋需求的民眾可持續關注該區域發展...
-                        </p>
-                        <div class="news-footer">
-                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
-                                    <i class="bi bi-line"></i>
-                                </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
-                                    <i class="bi bi-link-45deg"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 新聞項目 4 -->
-                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-08" role="article">
-                    <div class="news-header">
-                        <div class="news-meta">
-                            <div class="news-date">
-                                <i class="bi bi-calendar3"></i>
-                                2024年12月8日
-                            </div>
-                            <span class="news-badge knowledge">租房新知</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h2 class="news-title">租屋族必看：如何辨識優質房東與避開租屋陷阱</h2>
-                        <p class="news-excerpt">
-                            租屋市場資訊不對稱，租客常面臨各種風險。本文教您如何識別良心房東、檢查房屋狀況、確認合約條款，以及遇到糾紛時的處理方式。特別提醒年輕租客注意的重點事項，包含看房技巧、議價策略、簽約注意事項等，讓您租屋更安心、更順利...
-                        </p>
-                        <div class="news-footer">
-                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
-                                    <i class="bi bi-line"></i>
-                                </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
-                                    <i class="bi bi-link-45deg"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 新聞項目 5 -->
-                <article class="news-item fade-in" data-category="company" data-date="2024-12-05" role="article">
-                    <div class="news-header">
-                        <div class="news-meta">
-                            <div class="news-date">
-                                <i class="bi bi-calendar3"></i>
-                                2024年12月5日
-                            </div>
-                            <span class="news-badge company">公司消息</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h2 class="news-title">吉翔不動產入選第四期公會版社會住宅包租代管業者</h2>
-                        <p class="news-excerpt">
-                            本公司正式通過審核，成為內政部營建署第四期公會版社會住宅包租代管計畫的合格業者。憑藉15年不動產專業經驗與優質服務品質，我們將持續為房東提供專業包租代管服務，為房客創造優質居住環境，共同落實居住正義政策，打造雙贏的租屋市場...
-                        </p>
-                        <div class="news-footer">
-                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
-                                    <i class="bi bi-line"></i>
-                                </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
-                                    <i class="bi bi-link-45deg"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 新聞項目 6 -->
-                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-01" role="article">
-                    <div class="news-header">
-                        <div class="news-meta">
-                            <div class="news-date">
-                                <i class="bi bi-calendar3"></i>
-                                2024年12月1日
-                            </div>
-                            <span class="news-badge knowledge">租房新知</span>
-                        </div>
-                    </div>
-                    <div class="news-content">
-                        <h2 class="news-title">小資族租屋指南：預算分配與看房重點大公開</h2>
-                        <p class="news-excerpt">
-                            對於初入社會的小資族來說，租屋是人生重要的一步。本文分享實用的租屋預算分配原則、看房時的檢查重點、以及如何選擇適合的居住區域。從交通便利性、生活機能、安全考量到未來發展性，教您用有限的預算找到理想的租屋處，開啟獨立生活新篇章...
-                        </p>
-                        <div class="news-footer">
-                            <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
-                            <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
-                                    <i class="bi bi-line"></i>
-                                </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
-                                    <i class="bi bi-link-45deg"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- 分頁 -->
-                <div class="pagination-section">
-                    <nav aria-label="新聞分頁導航">
-                        <div class="pagination-custom">
-                            <a href="#" class="page-link-custom" aria-label="上一頁">
-                                <i class="bi bi-chevron-left"></i>
-                            </a>
-                            <a href="#" class="page-link-custom active" aria-label="第1頁" aria-current="page">1</a>
-                            <a href="#" class="page-link-custom" aria-label="第2頁">2</a>
-                            <a href="#" class="page-link-custom" aria-label="第3頁">3</a>
-                            <a href="#" class="page-link-custom" aria-label="第4頁">4</a>
-                            <a href="#" class="page-link-custom" aria-label="第5頁">5</a>
-                            <a href="#" class="page-link-custom" aria-label="下一頁">
-                                <i class="bi bi-chevron-right"></i>
-                            </a>
-                        </div>
-                    </nav>
-                </div>
-            </section>
-
-            <!-- 側邊欄 -->
-            <aside class="sidebar">
-                <!-- 熱門消息 -->
-                <div class="sidebar-section fade-in">
-                    <h3 class="sidebar-title">
-                        <i class="bi bi-fire me-2"></i>
-                        熱門消息
-                    </h3>
-                    <div class="popular-news-item">
-                        <div class="popular-news-number">1</div>
-                        <div class="popular-news-content">
-                            <div class="popular-news-title">2025年租屋新制上路：房東房客必知的權益保障</div>
-                            <div class="popular-news-date">2024-12-20</div>
-                        </div>
-                    </div>
-                    <div class="popular-news-item">
-                        <div class="popular-news-number">2</div>
-                        <div class="popular-news-content">
-                            <div class="popular-news-title">社會住宅包租代管計畫擴大辦理</div>
-                            <div class="popular-news-date">2024-12-15</div>
-                        </div>
-                    </div>
-                    <div class="popular-news-item">
-                        <div class="popular-news-number">3</div>
-                        <div class="popular-news-content">
-                            <div class="popular-news-title">新莊副都心房價走勢分析</div>
-                            <div class="popular-news-date">2024-12-12</div>
-                        </div>
-                    </div>
-                    <div class="popular-news-item">
-                        <div class="popular-news-number">4</div>
-                        <div class="popular-news-content">
-                            <div class="popular-news-title">如何辨識優質房東與避開租屋陷阱</div>
-                            <div class="popular-news-date">2024-12-08</div>
-                        </div>
-                    </div>
-                    <div class="popular-news-item">
-                        <div class="popular-news-number">5</div>
-                        <div class="popular-news-content">
-                            <div class="popular-news-title">小資族租屋指南：預算分配與看房重點</div>
-                            <div class="popular-news-date">2024-12-01</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 分類統計 -->
-                <div class="sidebar-section fade-in">
-                    <h3 class="sidebar-title">
-                        <i class="bi bi-pie-chart me-2"></i>
-                        消息分類
-                    </h3>
-                    <div class="category-stats">
-                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
-                            <span><i class="bi bi-lightbulb text-warning me-2"></i>租房新知</span>
-                            <span class="badge" style="background: var(--accent-orange); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">15</span>
-                        </div>
-                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
-                            <span><i class="bi bi-building text-primary me-2"></i>政策法規</span>
-                            <span class="badge" style="background: var(--secondary-blue); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">8</span>
-                        </div>
-                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
-                            <span><i class="bi bi-graph-up-arrow text-danger me-2"></i>房市動態</span>
-                            <span class="badge" style="background: var(--red); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">12</span>
-                        </div>
-                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0;">
-                            <span><i class="bi bi-award text-success me-2"></i>公司消息</span>
-                            <span class="badge" style="background: var(--green); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">6</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 需要協助 -->
-                <div class="sidebar-section fade-in">
-                    <h3 class="sidebar-title">
-                        <i class="bi bi-headset me-2"></i>
-                        需要協助？
-                    </h3>
-                    <div class="text-center">
-                        <p class="mb-3" style="color: var(--text-light); font-size: 0.9rem;">
-                            有任何房屋相關問題，歡迎隨時與我們聯繫
-                        </p>
-                        <a href="tel:02-2998-9596" class="contact-btn phone-btn w-100 mb-3">
-                            <i class="bi bi-telephone-fill me-2"></i>
-                            電話諮詢
-                        </a>
-                        <a href="https://www.facebook.com/jixianghouse2023" class="contact-btn facebook-btn w-100 mb-3">
-                            <i class="bi bi-facebook me-2"></i>
-                            Facebook 粉絲團
-                        </a>
-                        
-                        <!-- LINE 加入區 -->
-                        <div class="line-section">
-                            <h6 style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">
-                                <i class="bi bi-line me-2"></i>加入 LINE 獲取最新消息
-                            </h6>
-                            <div class="d-flex flex-column gap-2">
-                                <a href="https://lin.ee/izjYq9H" class="line-btn-small">
-                                    <i class="bi bi-person-fill me-2"></i>
-                                    房客專線
-                                    <small class="d-block">租屋需求、居住諮詢</small>
-                                </a>
-                                <a href="https://lin.ee/elZYPEn" class="line-btn-small">
-                                    <i class="bi bi-building-fill me-2"></i>
-                                    房東專線
-                                    <small class="d-block">出租委託、包租代管</small>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <!-- 頁尾 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <h5>吉翔不動產有限公司</h5>
-                <div class="footer-links">
-                    <a href="index.html">首頁</a>
-                    <a href="about.html">關於我們</a>
-                    <a href="services.html">服務項目</a>
-                    <a href="news.html" class="active">最新消息</a>
-                    <a href="contact.html">聯絡我們</a>
-                </div>
-                <div class="footer-info">
-                    <p>統一編號：24400364 | 不動產經紀人證書字號：(105)新北經字第003276號</p>
-                    <p>&copy; 2024 吉翔不動產有限公司 版權所有</p>
+    <section class="news-list container">
+        <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20">
+            <div class="news-header">
+                <div class="news-meta">
+                    <div class="news-date"><i class="bi bi-calendar3"></i>2024年12月20日</div>
+                    <span class="news-badge knowledge">租房新知</span>
                 </div>
             </div>
-        </div>
-    </footer>
+            <div class="news-content">
+                <h2 class="news-title">2025年租屋新制上路：房東房客必知的權益保障</h2>
+                <p class="news-excerpt">新年度租屋新制即將實施，包含押金上限規定、修繕責任歸屬、提前解約條件等重要變更。本文為您詳細解析...</p>
+                <div class="news-footer">
+                    <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn facebook" onclick="shareToFacebook()"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="share-btn line" onclick="shareToLine()"><i class="bi bi-line"></i></a>
+                        <a href="#" class="share-btn copy" onclick="copyLink()"><i class="bi bi-link-45deg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JavaScript - 引入外部 JS 檔案 -->
     <script src="script.js"></script>
-    
-    <!-- 頁面特定的額外腳本 -->
-    <script>
-        // 確保 DOM 載入完成後執行
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('新聞頁面載入完成');
-            
-            // 如果外部 JS 檔案還沒載入完成，提供後備功能
-            if (typeof window.JixiangApp === 'undefined') {
-                console.log('等待主要腳本載入...');
-                
-                // 簡單的後備滾動功能
-                window.scrollToTop = function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                };
-                
-                // 簡單的後備搜尋功能
-                window.handleSearch = function(query) {
-                    const newsItems = document.querySelectorAll('.news-item');
-                    const searchQuery = query.toLowerCase().trim();
-                    
-                    newsItems.forEach(item => {
-                        const title = item.querySelector('.news-title')?.textContent.toLowerCase() || '';
-                        const excerpt = item.querySelector('.news-excerpt')?.textContent.toLowerCase() || '';
-                        
-                        const matches = searchQuery === '' || 
-                                       title.includes(searchQuery) || 
-                                       excerpt.includes(searchQuery);
-                        
-                        item.style.display = matches ? 'block' : 'none';
-                    });
-                };
-                
-                // 簡單的後備分享功能
-                window.shareToFacebook = function() {
-                    const url = encodeURIComponent(window.location.href);
-                    const title = encodeURIComponent(document.title);
-                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank', 'width=600,height=400');
-                };
-                
-                window.shareToLine = function() {
-                    const url = encodeURIComponent(window.location.href);
-                    const title = encodeURIComponent(document.title);
-                    window.open(`https://social-plugins.line.me/lineit/share?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
-                };
-                
-                window.copyLink = function() {
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(window.location.href).then(() => {
-                            alert('連結已複製到剪貼簿');
-                        }).catch(() => {
-                            prompt('請手動複製以下連結：', window.location.href);
-                        });
-                    } else {
-                        prompt('請手動複製以下連結：', window.location.href);
-                    }
-                };
-                
-                // 簡單的後備篩選功能
-                window.handleDateFilter = function(period) {
-                    const newsItems = document.querySelectorAll('.news-item');
-                    const now = new Date();
-                    
-                    newsItems.forEach(item => {
-                        const itemDateStr = item.getAttribute('data-date');
-                        if (!itemDateStr) return;
-                        
-                        const itemDate = new Date(itemDateStr);
-                        let shouldShow = true;
-                        
-                        switch (period) {
-                            case 'month':
-                                const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-                                shouldShow = itemDate >= oneMonthAgo;
-                                break;
-                            case 'quarter':
-                                const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
-                                shouldShow = itemDate >= threeMonthsAgo;
-                                break;
-                            case 'year':
-                                const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
-                                shouldShow = itemDate >= oneYearAgo;
-                                break;
-                            default:
-                                shouldShow = true;
-                        }
-                        
-                        item.style.display = shouldShow ? 'block' : 'none';
-                    });
-                };
-                
-                window.handleSort = function(sortType) {
-                    const newsList = document.querySelector('.news-list');
-                    const newsItems = Array.from(document.querySelectorAll('.news-item'));
-                    const paginationSection = document.querySelector('.pagination-section');
-                    
-                    newsItems.sort((a, b) => {
-                        const dateA = new Date(a.getAttribute('data-date'));
-                        const dateB = new Date(b.getAttribute('data-date'));
-                        
-                        switch (sortType) {
-                            case 'date-desc':
-                                return dateB - dateA;
-                            case 'date-asc':
-                                return dateA - dateB;
-                            case 'popular':
-                                return Math.random() - 0.5;
-                            default:
-                                return 0;
-                        }
-                    });
-                    
-                    newsItems.forEach(item => {
-                        newsList.insertBefore(item, paginationSection);
-                    });
-                };
-            }
-            
-            // 設定搜尋輸入框事件
-            const searchInput = document.querySelector('.search-input');
-            if (searchInput) {
-                let searchTimeout;
-                searchInput.addEventListener('input', function() {
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(() => {
-                        if (typeof window.handleSearch === 'function') {
-                            window.handleSearch(this.value);
-                        }
-                    }, 300);
-                });
-                
-                searchInput.addEventListener('keyup', function(e) {
-                    if (e.key === 'Enter') {
-                        clearTimeout(searchTimeout);
-                        if (typeof window.handleSearch === 'function') {
-                            window.handleSearch(this.value);
-                        }
-                    }
-                });
-            }
-            
-            // 設定分類標籤事件
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // 更新活動狀態
-                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const category = this.getAttribute('data-category');
-                    filterNewsByCategory(category);
-                });
-            });
-            
-            // 分類篩選功能
-            function filterNewsByCategory(category) {
-                const newsItems = document.querySelectorAll('.news-item');
-                
-                newsItems.forEach(item => {
-                    const itemCategory = item.getAttribute('data-category');
-                    const shouldShow = category === 'all' || itemCategory === category;
-                    
-                    if (shouldShow) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            }
-            
-            // 簡單的滾動動畫
-            if (typeof IntersectionObserver !== 'undefined') {
-                const observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                        }
-                    });
-                }, {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -50px 0px'
-                });
-                
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    observer.observe(el);
-                });
-            } else {
-                // 舊瀏覽器後備方案
-                document.querySelectorAll('.fade-in').forEach(el => {
-                    el.classList.add('visible');
-                });
-            }
-            
-            // 初始動畫觸發
-            setTimeout(() => {
-                document.querySelectorAll('.page-header .fade-in').forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('visible');
-                    }, index * 200);
-                });
-            }, 300);
-            
-            // 熱門新聞點擊事件
-            document.querySelectorAll('.popular-news-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const title = this.querySelector('.popular-news-title').textContent;
-                    console.log('點擊熱門新聞:', title);
-                    // 這裡可以加入跳轉邏輯
-                });
-            });
-            
-            // 分頁點擊事件
-            document.querySelectorAll('.page-link-custom').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (!this.classList.contains('active')) {
-                        e.preventDefault();
-                        
-                        // 移除所有活動狀態
-                        document.querySelectorAll('.page-link-custom').forEach(l => l.classList.remove('active'));
-                        
-                        // 如果不是箭頭按鈕，則添加活動狀態
-                        if (!this.querySelector('i')) {
-                            this.classList.add('active');
-                        }
-                        
-                        // 滾動到頂部
-                        document.querySelector('.news-list').scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        console.log('切換到頁面:', this.textContent.trim());
-                    }
-                });
-            });
-            
-            // 響應式處理
-            function handleResize() {
-                const isMobile = window.innerWidth < 768;
-                
-                if (isMobile) {
-                    // 手機版特殊處理
-                    document.querySelectorAll('.news-footer').forEach(footer => {
-                        footer.style.flexDirection = 'column';
-                        footer.style.alignItems = 'flex-start';
-                        footer.style.gap = '1rem';
-                    });
-                } else {
-                    // 桌面版
-                    document.querySelectorAll('.news-footer').forEach(footer => {
-                        footer.style.flexDirection = 'row';
-                        footer.style.alignItems = 'center';
-                        footer.style.justifyContent = 'space-between';
-                        footer.style.gap = '0';
-                    });
-                }
-            }
-            
-            window.addEventListener('resize', handleResize);
-            handleResize(); // 初始執行
-        });
-    </script>
 </body>
 </html>
