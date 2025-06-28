@@ -43,15 +43,14 @@ body {
     color: #1F2937; /* Safari 後備 */
     color: var(--text-dark);
     overflow-x: hidden;
-    padding-top: 80px; [cite_start]/* 從 news.html.txt 整合過來 [cite: 6] */
     /* Safari 平滑滾動 */
     -webkit-overflow-scrolling: touch;
 }
 
-/* news.html 頁面需要的 padding-top (現在已整合至 body 基礎樣式，此區塊可依專案需求決定是否保留或刪除) */
-/* body.news-page {
+/* news.html 頁面需要的 padding-top */
+body.news-page {
     padding-top: 80px;
-} */
+}
 
 /* ==========================================================================
    浮動功能按鈕 - Safari 優化
@@ -1511,37 +1510,6 @@ body {
     color: var(--text-light);
 }
 
-/* 從 news.html.txt 整合過來的 分類統計樣式 */
-.category-stats {
-    /* 如果有額外的通用樣式，可以在這裡定義 */
-}
-
-[cite_start].category-stat-item { /* [cite: 225, 227, 229, 231] */
-    display: flex; [cite_start]/* [cite: 225, 227, 229, 231] */
-    justify-content: space-between; [cite_start]/* [cite: 225, 227, 229, 231] */
-    align-items: center; [cite_start]/* [cite: 225, 227, 229, 231] */
-    padding: 0.75rem 0; [cite_start]/* [cite: 225, 227, 229, 231] */
-    border-bottom: 1px solid #E5E7EB; [cite_start]/* [cite: 225, 227, 229] */
-}
-
-.category-stat-item:last-child {
-    border-bottom: none; [cite_start]/* [cite: 231] */
-}
-
-[cite_start].category-stat-item span.badge { /* [cite: 226, 228, 230, 232] */
-    padding: 0.25rem 0.5rem; [cite_start]/* [cite: 226, 228, 230, 232] */
-    border-radius: 12px; [cite_start]/* [cite: 226, 228, 230, 232] */
-    color: white; [cite_start]/* [cite: 226, 228, 230, 232] */
-}
-/* 建議使用更明確的類別來定義徽章顏色，而非依賴內聯樣式 */
-/* 例如：
-.category-stat-item span.badge.knowledge-color { background: var(--accent-orange); }
-.category-stat-item span.badge.policy-color { background: var(--secondary-blue); }
-.category-stat-item span.badge.market-color { background: var(--red); }
-.category-stat-item span.badge.company-color { background: var(--green); }
-*/
-
-
 /* 分頁樣式 */
 .pagination-section {
     margin-top: 3rem;
@@ -2026,9 +1994,9 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* body.news-page { 請根據專案需求決定是否保留此類別或完全移除，因為 padding-top 已移至 body 基礎樣式 */
-    /* padding-top: 70px;
-    } */
+    body.news-page {
+        padding-top: 70px;
+    }
     
     .page-title, .hero-title {
         font-size: 2.5rem;
@@ -2148,15 +2116,6 @@ body {
     
     .benefits-grid {
         grid-template-columns: 1fr;
-    }
-
-    [cite_start]/* 從 news.html.txt 整合過來的浮動按鈕響應式樣式 [cite: 131, 132] */
-    .floating-btn {
-        width: 50px; [cite_start]/* [cite: 132] */
-        height: 50px; [cite_start]/* [cite: 132] */
-        right: 15px; [cite_start]/* [cite: 132] */
-        bottom: 15px; [cite_start]/* [cite: 132] */
-        font-size: 1.2rem; [cite_start]/* [cite: 132] */
     }
 }
 
