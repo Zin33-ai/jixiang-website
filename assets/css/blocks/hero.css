@@ -1,13 +1,21 @@
 /* ==========================================================================
-   首頁大圖區塊模組 - Safari 優化
+   首頁大圖區塊模組 - Safari 兼容性完全修復版本
    ========================================================================== */
 
 .page-header, 
 .hero-section {
-    /* Safari 漸變後備 */
-    background: var(--light-blue);
-    background: -webkit-linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
-    background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
+    /* 🔥 Safari 漸變完全修復 - 提供所有後備值 */
+    background: #DBEAFE !important; /* 第一層後備 */
+    background: -webkit-gradient(linear, left top, right bottom, from(#DBEAFE), to(#3B82F6)) !important; /* Safari 舊版 */
+    background: -webkit-linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* Safari 新版 */
+    background: -moz-linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* Firefox */
+    background: -o-linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* Opera */
+    background: linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* 標準語法 */
+    
+    /* 🎯 使用變數作為額外後備（支援的瀏覽器會使用） */
+    background: -webkit-linear-gradient(135deg, var(--light-blue, #DBEAFE) 0%, var(--secondary-blue, #3B82F6) 100%);
+    background: linear-gradient(135deg, var(--light-blue, #DBEAFE) 0%, var(--secondary-blue, #3B82F6) 100%);
+    
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -44,7 +52,8 @@
 .hero-title {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--white);
+    color: #FFFFFF !important; /* 強制白色文字 */
+    color: var(--white, #FFFFFF) !important;
     margin-bottom: 1rem;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -52,7 +61,8 @@
 .page-subtitle, 
 .hero-subtitle {
     font-size: 1.3rem;
-    color: var(--white);
+    color: #FFFFFF !important; /* 強制白色文字 */
+    color: var(--white, #FFFFFF) !important;
     opacity: 0.9;
     margin-bottom: 1rem;
 }
@@ -70,12 +80,16 @@
 .hero-badge, 
 .page-badge, 
 .page-highlight {
-    background: var(--accent-orange);
-    color: var(--white);
+    background: #FF9800 !important; /* 強制橙色背景 */
+    background: var(--accent-orange, #FF9800) !important;
+    color: #FFFFFF !important; /* 強制白色文字 */
+    color: var(--white, #FFFFFF) !important;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-full);
+    border-radius: 50px !important; /* 強制圓角 */
+    border-radius: var(--radius-full, 50px) !important;
     /* Safari 圓角前綴 */
-    -webkit-border-radius: var(--radius-full);
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
     font-weight: 600;
     font-size: 1.1rem;
     display: inline-block;
@@ -85,7 +99,8 @@
 
 .hero-buttons {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: 1rem; /* 後備值 */
+    gap: var(--spacing-sm, 1rem);
     justify-content: center;
     flex-wrap: wrap;
     /* Safari 彈性佈局修復 */
@@ -94,47 +109,78 @@
     -webkit-justify-content: center;
 }
 
+/* 🎯 主要按鈕 - Safari 完全修復 */
 .btn-primary-custom {
-    background: var(--accent-orange);
-    border: none;
+    background: #FF9800 !important; /* 強制橙色背景 */
+    background: var(--accent-orange, #FF9800) !important;
+    border: none !important;
     padding: 0.875rem 2rem;
     font-weight: 600;
-    border-radius: var(--radius-full);
-    -webkit-border-radius: var(--radius-full);
-    transition: all var(--transition-normal);
-    -webkit-transition: all var(--transition-normal);
-    color: var(--white);
+    border-radius: 50px !important; /* 強制圓角 */
+    border-radius: var(--radius-full, 50px) !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
+    color: #FFFFFF !important; /* 強制白色文字 */
+    color: var(--white, #FFFFFF) !important;
     text-decoration: none;
     display: inline-block;
+    
+    /* 🔧 Safari 專用修復 */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
 .btn-primary-custom:hover {
-    background: #F57C00;
+    background: #F57C00 !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
+/* 🎯 外框按鈕 - Safari 完全修復（重點修復白色邊框）*/
 .btn-outline-custom {
-    border: 2px solid var(--white);
-    color: var(--white);
+    border: 2px solid #FFFFFF !important; /* 🔥 強制白色邊框 */
+    border: 2px solid var(--white, #FFFFFF) !important;
+    color: #FFFFFF !important; /* 強制白色文字 */
+    color: var(--white, #FFFFFF) !important;
     padding: 0.875rem 2rem;
     font-weight: 600;
-    border-radius: var(--radius-full);
-    -webkit-border-radius: var(--radius-full);
-    transition: all var(--transition-normal);
-    -webkit-transition: all var(--transition-normal);
-    background: transparent;
+    border-radius: 50px !important; /* 強制圓角 */
+    border-radius: var(--radius-full, 50px) !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
+    background: transparent !important;
     text-decoration: none;
     display: inline-block;
+    
+    /* 🔧 Safari 專用修復 */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    
+    /* 🎯 增強邊框可見性 */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+    -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
 }
 
 .btn-outline-custom:hover {
-    background: var(--white);
-    color: var(--primary-blue);
+    background: #FFFFFF !important; /* 強制白色背景 */
+    background: var(--white, #FFFFFF) !important;
+    color: #1E3A8A !important; /* 強制深藍文字 */
+    color: var(--primary-blue, #1E3A8A) !important;
+    border-color: #FFFFFF !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* 響應式設計 */
@@ -160,13 +206,16 @@
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        -webkit-flex-direction: column;
+        -webkit-align-items: center;
     }
     
     .btn-primary-custom,
     .btn-outline-custom {
         width: 100%;
         max-width: 300px;
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: 1rem; /* 後備值 */
+        margin-bottom: var(--spacing-sm, 1rem);
         text-align: center;
     }
 }
@@ -174,13 +223,16 @@
 @media (max-width: 576px) {
     .hero-title,
     .page-title {
-        font-size: var(--font-4xl);
-        line-height: var(--leading-tight);
+        font-size: 2rem; /* 後備值 */
+        font-size: var(--font-4xl, 2rem);
+        line-height: 1.25; /* 後備值 */
+        line-height: var(--leading-tight, 1.25);
     }
     
     .hero-section,
     .page-header {
-        padding: 100px 0 var(--spacing-2xl);
+        padding: 100px 0 4rem; /* 後備值 */
+        padding: 100px 0 var(--spacing-2xl, 4rem);
     }
 }
 
@@ -189,34 +241,48 @@
     .hero-section,
     .page-header {
         min-height: auto;
-        padding: var(--spacing-2xl) 0;
+        padding: 4rem 0; /* 後備值 */
+        padding: var(--spacing-2xl, 4rem) 0;
     }
     
     .hero-title,
     .page-title {
-        font-size: var(--font-3xl);
-        margin-bottom: var(--spacing-sm);
+        font-size: 2rem; /* 後備值 */
+        font-size: var(--font-3xl, 2rem);
+        margin-bottom: 1rem; /* 後備值 */
+        margin-bottom: var(--spacing-sm, 1rem);
     }
     
     .hero-subtitle,
     .page-subtitle {
-        font-size: var(--font-base);
-        margin-bottom: var(--spacing-sm);
+        font-size: 1rem; /* 後備值 */
+        font-size: var(--font-base, 1rem);
+        margin-bottom: 1rem; /* 後備值 */
+        margin-bottom: var(--spacing-sm, 1rem);
     }
     
     .hero-badge,
     .page-badge {
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: 1rem; /* 後備值 */
+        margin-bottom: var(--spacing-sm, 1rem);
     }
 }
 
-/* Safari 瀏覽器特定樣式 */
+/* 🍎 Safari 瀏覽器特定樣式 - 完全修復版本 */
 @media not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
         .hero-section,
         .page-header {
             background-attachment: scroll !important;
-            background: var(--secondary-blue) !important;
+            /* 確保 Safari 顯示漸變 */
+            background: #3B82F6 !important; /* 最終後備 */
+            background: -webkit-linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important;
+        }
+        
+        .btn-outline-custom {
+            /* Safari 專用邊框增強 */
+            border: 3px solid #FFFFFF !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5) !important;
         }
     }
 }
