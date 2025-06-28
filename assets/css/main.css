@@ -1,70 +1,26 @@
 /* ==========================================================================
-   吉翔不動產有限公司 - 主樣式檔案 (模組化版本)
+   吉翔不動產 - 模組化主檔案
    ========================================================================== */
 
 /* 核心基礎模組 */
-@import 'variables.css';
-@import 'reset.css';
-@import 'typography.css';
-@import 'utilities.css';
+@import 'core/variables.css';
+@import 'core/reset.css';
 
 /* 佈局模組 */
-@import 'layout.css';
-@import 'navbar.css';
-@import 'footer.css';
-@import 'grid.css';
+@import 'layout/navbar.css';
+@import 'layout/footer.css';          /* ← 新增 */
 
 /* 元件模組 */
-@import 'buttons.css';
-@import 'cards.css';
-@import 'forms.css';
-@import 'floating-elements.css';
-@import 'badges.css';
-@import 'icons.css';
+@import 'components/buttons.css';
+@import 'components/cards.css';
+@import 'components/floating-elements.css';  /* ← 新增 */
 
-/* 區塊模組 */
-@import 'hero.css';
-@import 'sections.css';
-@import 'stats.css';
-@import 'line-contact.css';
+/* 功能區塊 */
+@import 'blocks/hero.css';            /* ← 新增 */
 
-/* 頁面模組 */
-@import 'homepage.css';
-@import 'news.css';
-@import 'services.css';
-@import 'about.css';
-@import 'contact.css';
+/* 功能增強 */
+@import 'features/animations.css';
+@import 'features/responsive.css';
 
-/* 功能模組 */
-@import 'animations.css';
-@import 'responsive.css';
-@import 'safari-fixes.css';
-@import 'accessibility.css';
-@import 'print.css';
-
-/* ==========================================================================
-   模組化說明
-   ========================================================================== */
-
-/*
-這個 main.css 檔案是模組化後的主要入口點，它引入了所有必要的 CSS 模組。
-
-模組結構：
-1. 核心基礎 - 變數、重置、字體、工具
-2. 佈局 - 頁面結構、導航、頁尾
-3. 元件 - 可重用的 UI 組件
-4. 區塊 - 特定功能區塊
-5. 頁面 - 頁面特定樣式
-6. 功能 - 動畫、響應式、修復
-
-使用方式：
-- 在 HTML 中只需引入這個 main.css
-- 或者根據需要選擇性引入特定模組
-- 建議按照這裡的順序載入，確保樣式優先級正確
-
-維護建議：
-- 每個模組職責單一，便於維護
-- 新增功能時優先考慮現有模組
-- 避免在不同模組間產生樣式衝突
-- 使用 CSS 變數保持設計一致性
-*/
+/* 暫時保留原始檔案作為後備 */
+@import 'style.css';
