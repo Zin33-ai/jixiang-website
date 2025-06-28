@@ -1,27 +1,81 @@
 /* ==========================================================================
-   按鈕元件樣式
+   按鈕元件樣式 - Safari 兼容性修復版本
    ========================================================================== */
 
-/* 基礎按鈕樣式 */
+/* 🔧 Safari 兼容性：強制重設按鈕外觀與圓角 */
+.btn,
+.btn-primary,
+.btn-primary-custom,
+.btn-secondary,
+.btn-outline,
+.btn-outline-custom,
+.contact-btn,
+.line-contact-btn,
+.line-btn-small,
+.btn-cta-primary,
+.btn-cta-secondary,
+button {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    /* 🎯 強制圓角 - 解決 Safari 長方形問題 */
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+}
+
+/* 🔴 浮動按鈕：強制完美圓形 */
+.floating-btn {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    /* 🎯 強制圓形 - 寬高相等 + 50% 圓角 */
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    /* 確保內容居中 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 基礎按鈕樣式 - 🎯 強制圓角 */
 .btn {
     display: inline-block;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 1rem 2rem; /* 後備值 */
+    padding: var(--spacing-sm, 1rem) var(--spacing-lg, 2rem);
     border: none;
-    border-radius: var(--radius-full);
-    font-weight: var(--font-semibold);
+    /* 🎯 強制圓角按鈕 - 解決 Safari 長方形問題 */
+    border-radius: 50px !important;
+    border-radius: var(--radius-full, 50px) !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+    font-weight: 600; /* 後備值 */
+    font-weight: var(--font-semibold, 600);
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: all var(--transition-normal);
-    -webkit-transition: all var(--transition-normal);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
     user-select: none;
     vertical-align: middle;
-    font-size: var(--font-base);
-    line-height: var(--leading-normal);
+    font-size: 1rem; /* 後備值 */
+    font-size: var(--font-base, 1rem);
+    line-height: 1.5; /* 後備值 */
+    line-height: var(--leading-normal, 1.5);
+    
+    /* 🔧 Safari 專用修復 */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
 .btn:focus {
-    outline: 2px solid var(--accent-orange);
+    outline: 2px solid #FF9800 !important; /* 後備值 */
+    outline: 2px solid var(--accent-orange, #FF9800) !important;
     outline-offset: 2px;
 }
 
@@ -34,104 +88,148 @@
 /* 主要按鈕 */
 .btn-primary,
 .btn-primary-custom {
-    background: var(--accent-orange);
-    color: var(--white);
-    border: 2px solid var(--accent-orange);
+    background: #FF9800 !important; /* 後備值 */
+    background: var(--accent-orange, #FF9800) !important;
+    color: #FFFFFF !important; /* 後備值 */
+    color: var(--white, #FFFFFF) !important;
+    border: 2px solid #FF9800 !important; /* 後備值 */
+    border: 2px solid var(--accent-orange, #FF9800) !important;
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
 }
 
 .btn-primary:hover,
 .btn-primary-custom:hover {
-    background: #F57C00;
-    border-color: #F57C00;
+    background: #F57C00 !important;
+    border-color: #F57C00 !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
 /* 次要按鈕 */
 .btn-secondary {
-    background: var(--secondary-blue);
-    color: var(--white);
-    border: 2px solid var(--secondary-blue);
+    background: #3B82F6 !important; /* 後備值 */
+    background: var(--secondary-blue, #3B82F6) !important;
+    color: #FFFFFF !important; /* 後備值 */
+    color: var(--white, #FFFFFF) !important;
+    border: 2px solid #3B82F6 !important; /* 後備值 */
+    border: 2px solid var(--secondary-blue, #3B82F6) !important;
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
 }
 
 .btn-secondary:hover {
-    background: var(--primary-blue);
-    border-color: var(--primary-blue);
+    background: #1E3A8A !important; /* 後備值 */
+    background: var(--primary-blue, #1E3A8A) !important;
+    border-color: #1E3A8A !important; /* 後備值 */
+    border-color: var(--primary-blue, #1E3A8A) !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
-/* 外框按鈕 */
+/* 🎯 外框按鈕 - 重點修復白色邊框 */
 .btn-outline,
 .btn-outline-custom {
-    background: transparent;
-    color: var(--white);
-    border: 2px solid var(--white);
+    background: transparent !important;
+    color: #FFFFFF !important; /* 強制白色文字 */
+    color: var(--white, #FFFFFF) !important;
+    border: 2px solid #FFFFFF !important; /* 🔥 強制白色邊框 */
+    border: 2px solid var(--white, #FFFFFF) !important;
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    /* 確保邊框可見性 */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+    /* Safari 專用邊框增強 */
+    -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
 }
 
 .btn-outline:hover,
 .btn-outline-custom:hover {
-    background: var(--white);
-    color: var(--primary-blue);
+    background: #FFFFFF !important; /* 強制白色背景 */
+    background: var(--white, #FFFFFF) !important;
+    color: #1E3A8A !important; /* 強制深藍文字 */
+    color: var(--primary-blue, #1E3A8A) !important;
+    border-color: #FFFFFF !important;
+    border-color: var(--white, #FFFFFF) !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* 聯絡按鈕 */
 .contact-btn {
-    background: var(--secondary-blue);
-    color: var(--white);
+    background: #3B82F6 !important; /* 後備值 */
+    background: var(--secondary-blue, #3B82F6) !important;
+    color: #FFFFFF !important; /* 後備值 */
+    color: var(--white, #FFFFFF) !important;
     padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-full);
-    font-weight: var(--font-semibold);
-    transition: all var(--transition-normal);
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    font-weight: 600; /* 後備值 */
+    font-weight: var(--font-semibold, 600);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
     text-decoration: none;
     display: inline-block;
     border: none;
 }
 
 .contact-btn:hover {
-    background: var(--primary-blue);
+    background: #1E3A8A !important; /* 後備值 */
+    background: var(--primary-blue, #1E3A8A) !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
     box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
 }
 
 /* 電話按鈕 */
 .contact-btn.phone-btn {
-    background: var(--accent-orange);
+    background: #FF9800 !important; /* 後備值 */
+    background: var(--accent-orange, #FF9800) !important;
 }
 
 .contact-btn.phone-btn:hover {
-    background: #F57C00;
+    background: #F57C00 !important;
     box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
 }
 
 /* Facebook 按鈕 */
 .contact-btn.facebook-btn {
-    background: var(--facebook-blue);
+    background: #1877F2 !important; /* 後備值 */
+    background: var(--facebook-blue, #1877F2) !important;
 }
 
 .contact-btn.facebook-btn:hover {
-    background: #166FE5;
+    background: #166FE5 !important;
     box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
 }
 
 /* LINE 按鈕系列 */
 .line-contact-btn {
-    background: #00C300;
-    color: var(--white);
+    background: #00C300 !important;
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
     padding: 1.2rem 2rem;
-    border-radius: var(--radius-md);
+    border-radius: 15px !important;
+    border-radius: var(--radius-md, 15px) !important;
+    -webkit-border-radius: 15px !important;
     text-decoration: none;
-    font-weight: var(--font-semibold);
-    font-size: var(--font-lg);
-    transition: all var(--transition-normal);
+    font-weight: 600; /* 後備值 */
+    font-weight: var(--font-semibold, 600);
+    font-size: 1.125rem; /* 後備值 */
+    font-size: var(--font-lg, 1.125rem);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,30 +239,40 @@
 }
 
 .line-contact-btn:hover {
-    background: #00A300;
+    background: #00A300 !important;
     transform: translateY(-3px);
     -webkit-transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0, 195, 0, 0.4);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
 .line-subtitle {
-    font-size: var(--font-sm);
-    font-weight: var(--font-normal);
+    font-size: 0.875rem; /* 後備值 */
+    font-size: var(--font-sm, 0.875rem);
+    font-weight: 400; /* 後備值 */
+    font-weight: var(--font-normal, 400);
     opacity: 0.9;
     margin-top: 0.25rem;
 }
 
 /* 小型 LINE 按鈕 */
 .line-btn-small {
-    background: #00C300;
-    color: var(--white);
+    background: #00C300 !important;
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
     padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
+    border-radius: 8px !important;
+    border-radius: var(--radius-sm, 8px) !important;
+    -webkit-border-radius: 8px !important;
     text-decoration: none;
-    font-weight: var(--font-medium);
-    font-size: var(--font-sm);
-    transition: all var(--transition-normal);
+    font-weight: 500; /* 後備值 */
+    font-weight: var(--font-medium, 500);
+    font-size: 0.875rem; /* 後備值 */
+    font-size: var(--font-sm, 0.875rem);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,57 +281,79 @@
 }
 
 .line-btn-small:hover {
-    background: #00A300;
+    background: #00A300 !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 195, 0, 0.3);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
 .line-btn-small small {
-    font-size: var(--font-xs);
+    font-size: 0.75rem; /* 後備值 */
+    font-size: var(--font-xs, 0.75rem);
     opacity: 0.9;
     margin-top: 0.25rem;
 }
 
 /* CTA 按鈕 */
 .btn-cta-primary {
-    background: var(--accent-orange);
+    background: #FF9800 !important; /* 後備值 */
+    background: var(--accent-orange, #FF9800) !important;
     border: none;
-    color: var(--white);
+    color: #FFFFFF !important; /* 後備值 */
+    color: var(--white, #FFFFFF) !important;
     padding: 1rem 2rem;
-    border-radius: var(--radius-full);
-    font-weight: var(--font-semibold);
-    font-size: var(--font-lg);
-    transition: all var(--transition-normal);
+    border-radius: 50px !important;
+    border-radius: var(--radius-full, 50px) !important;
+    -webkit-border-radius: 50px !important;
+    font-weight: 600; /* 後備值 */
+    font-weight: var(--font-semibold, 600);
+    font-size: 1.125rem; /* 後備值 */
+    font-size: var(--font-lg, 1.125rem);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
     text-decoration: none;
     display: inline-block;
 }
 
 .btn-cta-primary:hover {
-    background: #F57C00;
+    background: #F57C00 !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
 .btn-cta-secondary {
-    border: 2px solid var(--white);
-    color: var(--white);
+    border: 2px solid #FFFFFF !important; /* 強制白色邊框 */
+    border: 2px solid var(--white, #FFFFFF) !important;
+    color: #FFFFFF !important; /* 後備值 */
+    color: var(--white, #FFFFFF) !important;
     padding: 1rem 2rem;
-    border-radius: var(--radius-full);
-    font-weight: var(--font-semibold);
-    font-size: var(--font-lg);
-    transition: all var(--transition-normal);
-    background: transparent;
+    border-radius: 50px !important;
+    border-radius: var(--radius-full, 50px) !important;
+    -webkit-border-radius: 50px !important;
+    font-weight: 600; /* 後備值 */
+    font-weight: var(--font-semibold, 600);
+    font-size: 1.125rem; /* 後備值 */
+    font-size: var(--font-lg, 1.125rem);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
+    background: transparent !important;
     text-decoration: none;
     display: inline-block;
 }
 
 .btn-cta-secondary:hover {
-    background: var(--white);
-    color: var(--primary-blue);
+    background: #FFFFFF !important; /* 後備值 */
+    background: var(--white, #FFFFFF) !important;
+    color: #1E3A8A !important; /* 後備值 */
+    color: var(--primary-blue, #1E3A8A) !important;
+    border-color: #FFFFFF !important;
     transform: translateY(-2px);
     -webkit-transform: translateY(-2px);
 }
@@ -231,23 +361,27 @@
 /* 按鈕尺寸變化 */
 .btn-sm {
     padding: 0.5rem 1rem;
-    font-size: var(--font-sm);
+    font-size: 0.875rem; /* 後備值 */
+    font-size: var(--font-sm, 0.875rem);
 }
 
 .btn-lg {
     padding: 1rem 2rem;
-    font-size: var(--font-lg);
+    font-size: 1.125rem; /* 後備值 */
+    font-size: var(--font-lg, 1.125rem);
 }
 
 .btn-xl {
     padding: 1.25rem 2.5rem;
-    font-size: var(--font-xl);
+    font-size: 1.25rem; /* 後備值 */
+    font-size: var(--font-xl, 1.25rem);
 }
 
 /* 按鈕群組 */
 .btn-group {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: 1rem; /* 後備值 */
+    gap: var(--spacing-sm, 1rem);
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -257,35 +391,65 @@
     min-width: 120px;
 }
 
-/* 浮動按鈕 */
+/* 浮動按鈕 - 🔴 強制完美圓形 */
 .floating-btn {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    width: 60px;
-    height: 60px;
-    background: var(--primary-blue);
-    background: -webkit-linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
+    /* 🎯 關鍵：寬高必須相等才能形成完美圓形 */
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+    
+    /* 🔥 Safari 漸變修復 */
+    background: #1E3A8A !important; /* 後備純色 */
+    background: -webkit-linear-gradient(135deg, #1E3A8A, #3B82F6) !important; /* Safari */
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6) !important; /* 標準 */
+    
+    /* 🎯 強制完美圓形 */
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    
+    /* 確保內容完美居中 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    color: #FFFFFF !important; /* 後備值 */
+    color: var(--white, #FFFFFF) !important;
     text-decoration: none;
-    font-size: var(--font-2xl);
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-normal);
-    z-index: var(--z-fixed);
+    font-size: 1.5rem; /* 後備值 */
+    font-size: var(--font-2xl, 1.5rem);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* 後備值 */
+    box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,0.1));
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
+    z-index: 1030; /* 後備值 */
+    z-index: var(--z-fixed, 1030);
     cursor: pointer;
-    border: none;
+    border: none !important;
+    
+    /* 🔧 Safari 專用修復 */
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    
+    /* 防止變形 */
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .floating-btn:hover {
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     box-shadow: 0 8px 30px rgba(30, 58, 138, 0.4);
-    color: var(--white);
+    color: #FFFFFF !important;
+    color: var(--white, #FFFFFF) !important;
 }
 
 /* 響應式設計 */
@@ -298,7 +462,8 @@
     .btn-group .btn {
         width: 100%;
         max-width: 300px;
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: 1rem; /* 後備值 */
+        margin-bottom: var(--spacing-sm, 1rem);
     }
     
     .line-contact-btn {
@@ -316,12 +481,17 @@
 /* 高對比度模式 */
 @media (prefers-contrast: high) {
     .btn {
-        border: 2px solid;
+        border: 2px solid !important;
     }
     
     .contact-btn,
     .btn-primary-custom {
-        border: 2px solid #000000;
+        border: 2px solid #000000 !important;
+    }
+    
+    .btn-outline-custom {
+        border: 3px solid #FFFFFF !important;
+        box-shadow: 0 0 0 2px #000000 !important;
     }
 }
 
