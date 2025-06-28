@@ -1,0 +1,210 @@
+/* ==========================================================================
+   服務頁面樣式模組
+   ========================================================================== */
+
+/* 服務區塊樣式 */
+.services-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--white);
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    -webkit-border-radius: var(--radius-lg);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    border: 1px solid #E5E7EB;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+    /* Safari 硬體加速 */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: -webkit-linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+    transition: transform var(--transition-normal);
+    -webkit-transition: -webkit-transform var(--transition-normal);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+}
+
+.service-card.featured {
+    border: 2px solid var(--accent-orange);
+    position: relative;
+}
+
+.service-card.featured::after {
+    content: '推薦';
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: var(--accent-orange);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md);
+    -webkit-border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: var(--font-semibold);
+}
+
+.service-icon {
+    font-size: var(--font-5xl);
+    color: var(--secondary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.service-card.featured .service-icon {
+    color: var(--accent-orange);
+}
+
+.service-title {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.service-description {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+    line-height: var(--leading-relaxed);
+}
+
+.service-features {
+    text-align: left;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+.service-features li {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.service-features li::before {
+    content: '✓';
+    color: var(--accent-orange);
+    font-weight: var(--font-semibold);
+    margin-right: 0.5rem;
+}
+
+.service-highlights {
+    background: var(--light-blue);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    -webkit-border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--secondary-blue);
+}
+
+.service-highlights h5 {
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+}
+
+.service-highlights p {
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: var(--leading-tight);
+}
+
+/* 服務卡片中的按鈕 */
+.service-card .contact-btn {
+    margin-top: auto;
+    align-self: center;
+    width: auto;
+    min-width: 120px;
+}
+
+.service-card.featured .contact-btn {
+    background: var(--accent-orange);
+}
+
+.service-card.featured .contact-btn:hover {
+    background: #F57C00;
+}
+
+/* 優勢區塊 */
+.why-choose-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--light-gray);
+}
+
+.advantage-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    -webkit-border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    height: 100%;
+    border: 1px solid #E5E7EB;
+    /* Safari 硬體加速 */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.advantage-card:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.advantage-icon {
+    font-size: 2.5rem;
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-sm);
+}
+
+.advantage-title {
+    font-size: 1.2rem;
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: 0.8rem;
+}
+
+.advantage-description {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: var(--leading-relaxed);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .service-card {
+        min-height: auto;
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+}
