@@ -7,6 +7,9 @@
     <meta name="description" content="掌握最新房市動態、政策法規、租房新知與專業建議。吉翔不動產為您提供第一手房地產資訊。">
     <meta name="keywords" content="房市動態,政策法規,租房新知,不動產新聞,吉翔不動產">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -18,744 +21,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary-blue: #1E3A8A;
-            --secondary-blue: #3B82F6;
-            --light-blue: #DBEAFE;
-            --accent-orange: #FF9800;
-            --text-dark: #1F2937;
-            --text-light: #6B7280;
-            --white: #FFFFFF;
-            --light-gray: #F9FAFB;
-            --green: #10B981;
-            --red: #EF4444;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            padding-top: 80px;
-        }
-        
-        /* 浮動功能按鈕 */
-        .floating-btn {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .floating-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(30, 58, 138, 0.4);
-            color: var(--white);
-        }
-        
-        /* 導航欄 */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-blue) !important;
-        }
-        
-        .nav-link {
-            color: var(--text-dark) !important;
-            font-weight: 500;
-            margin: 0 0.5rem;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--secondary-blue) !important;
-        }
-        
-        .nav-link.active {
-            color: var(--accent-orange) !important;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--accent-orange);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 80%;
-            left: 10%;
-        }
-        
-        .navbar-phone {
-            color: var(--primary-blue);
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .navbar-phone:hover {
-            color: var(--accent-orange);
-        }
-        
-        /* 頁面標題區 */
-        .page-header {
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%);
-            padding: 6rem 0 4rem;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-        
-        .page-header-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        
-        .page-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .page-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-        
-        /* 訂閱通知區 */
-        .subscribe-section {
-            background: var(--accent-orange);
-            color: var(--white);
-            padding: 2rem 0;
-            margin-bottom: 3rem;
-        }
-        
-        .line-contact-btn {
-            background: #00C300;
-            color: var(--white);
-            padding: 1.2rem 2rem;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 200px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 195, 0, 0.3);
-        }
-        
-        .line-contact-btn:hover {
-            background: #00A300;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 195, 0, 0.4);
-            color: var(--white);
-        }
-        
-        .line-subtitle {
-            font-size: 0.9rem;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-top: 0.25rem;
-        }
-        
-        /* 分類導航 */
-        .category-nav {
-            background: var(--white);
-            padding: 1.5rem 0;
-            margin-bottom: 3rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 15px;
-        }
-        
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .category-tab {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--light-blue);
-            border-radius: 25px;
-            background: var(--white);
-            color: var(--secondary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .category-tab:hover,
-        .category-tab.active {
-            background: var(--secondary-blue);
-            color: var(--white);
-            border-color: var(--secondary-blue);
-            transform: translateY(-2px);
-        }
-        
-        .category-tab i {
-            margin-right: 0.5rem;
-        }
-        
-        /* 搜尋與篩選 */
-        .filter-section {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-        }
-        
-        .search-box {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 3rem;
-            border: 2px solid var(--light-blue);
-            border-radius: 25px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--secondary-blue);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
-        }
-        
-        .filter-row {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .filter-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--light-blue);
-            border-radius: 8px;
-            background: var(--white);
-            color: var(--text-dark);
-        }
-        
-        /* 主要內容區 */
-        .main-content {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .news-list {
-            flex: 1;
-        }
-        
-        .sidebar {
-            width: 300px;
-        }
-        
-        /* 新聞卡片 */
-        .news-item {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        
-        .news-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        
-        .news-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .news-item:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .news-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 1.5rem 1.5rem 0;
-        }
-        
-        .news-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .news-date {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .news-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-        
-        .news-badge.policy {
-            background: var(--secondary-blue);
-        }
-        
-        .news-badge.market {
-            background: var(--red);
-        }
-        
-        .news-badge.company {
-            background: var(--green);
-        }
-        
-        .news-badge.knowledge {
-            background: var(--accent-orange);
-        }
-        
-        .news-content {
-            padding: 0 1.5rem 1.5rem;
-        }
-        
-        .news-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        
-        .news-excerpt {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .news-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid #E5E7EB;
-        }
-        
-        .read-more {
-            color: var(--secondary-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .read-more:hover {
-            color: var(--accent-orange);
-        }
-        
-        .share-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .share-btn {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            color: var(--white);
-        }
-        
-        .share-btn.facebook {
-            background: #1877F2;
-        }
-        
-        .share-btn.line {
-            background: #00C300;
-        }
-        
-        .share-btn.copy {
-            background: var(--text-light);
-        }
-        
-        .share-btn:hover {
-            transform: scale(1.1);
-            color: var(--white);
-        }
-        
-        /* 側邊欄 */
-        .sidebar-section {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .sidebar-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-orange);
-        }
-        
-        .popular-news-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid #E5E7EB;
-            transition: all 0.3s ease;
-        }
-        
-        .popular-news-item:hover {
-            background: var(--light-gray);
-            margin: 0 -1rem;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-        
-        .popular-news-item:last-child {
-            border-bottom: none;
-        }
-        
-        .popular-news-number {
-            width: 24px;
-            height: 24px;
-            background: var(--accent-orange);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-        
-        .popular-news-content {
-            flex: 1;
-        }
-        
-        .popular-news-title {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-        
-        .popular-news-date {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-        
-        /* LINE 按鈕樣式 - 側邊欄版本 */
-        .line-btn-small {
-            background: #00C300;
-            color: var(--white);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 195, 0, 0.2);
-        }
-        
-        .line-btn-small:hover {
-            background: #00A300;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 195, 0, 0.3);
-            color: var(--white);
-        }
-        
-        .line-btn-small small {
-            font-size: 0.75rem;
-            opacity: 0.9;
-            margin-top: 0.25rem;
-        }
-        
-        /* 分頁 */
-        .pagination-section {
-            margin-top: 3rem;
-            text-align: center;
-        }
-        
-        .pagination-custom {
-            display: inline-flex;
-            gap: 0.5rem;
-        }
-        
-        .page-link-custom {
-            padding: 0.75rem 1rem;
-            border: 2px solid var(--light-blue);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--secondary-blue);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .page-link-custom:hover,
-        .page-link-custom.active {
-            background: var(--secondary-blue);
-            color: var(--white);
-            border-color: var(--secondary-blue);
-        }
-        
-        /* 頁尾 */
-        .footer {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 2rem 0 1rem;
-            margin-top: 5rem;
-        }
-        
-        .footer-content {
-            text-align: center;
-        }
-        
-        .footer-links {
-            margin: 1rem 0;
-        }
-        
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            margin: 0 1rem;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--accent-orange);
-        }
-        
-        .footer-info {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 1rem;
-        }
-        
-        /* 響應式設計 */
-        @media (max-width: 1200px) {
-            .sidebar {
-                width: 250px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-            }
-            
-            .category-tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            
-            .page-title {
-                font-size: 2rem;
-            }
-            
-            .page-subtitle {
-                font-size: 1rem;
-            }
-            
-            .subscribe-form {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .subscribe-input,
-            .subscribe-btn {
-                width: 100%;
-            }
-            
-            .line-contact-btn {
-                min-width: 150px;
-                padding: 1rem 1.5rem;
-            }
-            
-            .line-btn-small {
-                padding: 0.6rem 0.8rem;
-                font-size: 0.85rem;
-            }
-            
-            .filter-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .filter-select {
-                width: 100%;
-            }
-            
-            .news-footer {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            
-            .floating-btn {
-                width: 50px;
-                height: 50px;
-                right: 15px;
-                bottom: 15px;
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* 動畫效果 */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* 載入動畫 */
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-light);
-        }
-        
-        .loading i {
-            font-size: 2rem;
-            animation: spin 2s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <!-- Custom CSS - 引入外部 CSS 檔案 -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Analytics (如果需要) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
 </head>
-<body>
+<body class="news-page">
     <!-- 浮動功能按鈕 -->
-    <div class="floating-btn" onclick="scrollToTop()" title="回到頂部">
+    <button class="floating-btn" onclick="scrollToTop()" title="回到頂部" aria-label="回到頂部">
         <i class="bi bi-arrow-up"></i>
-    </div>
+    </button>
 
     <!-- 導航欄 -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" role="navigation">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <i class="bi bi-house-heart-fill me-2"></i>
                 吉翔不動產有限公司
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="切換導航">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -790,13 +76,43 @@
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
-                <h1 class="page-title fade-in">
-                    <i class="bi bi-newspaper me-3"></i>
-                    最新消息
-                </h1>
+                <div class="page-highlight fade-in">
+                    <i class="bi bi-newspaper me-2"></i>
+                    最新房市資訊
+                </div>
+                <h1 class="page-title fade-in">最新消息</h1>
                 <p class="page-subtitle fade-in">
                     掌握房市脈動，獲取第一手資訊
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 訂閱通知區 -->
+    <section class="subscribe-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="mb-2">
+                        <i class="bi bi-bell-fill me-2"></i>
+                        即時掌握房市動態
+                    </h3>
+                    <p class="mb-0">加入我們的 LINE 官方帳號，第一時間接收最新房市資訊與專業建議</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <div class="d-flex gap-2 justify-content-lg-end justify-content-center">
+                        <a href="https://lin.ee/izjYq9H" class="line-contact-btn">
+                            <i class="bi bi-line me-2"></i>
+                            房客專線
+                            <span class="line-subtitle">租屋需求諮詢</span>
+                        </a>
+                        <a href="https://lin.ee/elZYPEn" class="line-contact-btn">
+                            <i class="bi bi-building me-2"></i>
+                            房東專線
+                            <span class="line-subtitle">包租代管服務</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -827,19 +143,19 @@
         <section class="filter-section fade-in">
             <div class="search-box">
                 <i class="bi bi-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="搜尋新聞標題或關鍵字..." onkeyup="handleSearch(this.value)">
+                <input type="text" class="search-input" placeholder="搜尋新聞標題或關鍵字..." aria-label="搜尋新聞">
             </div>
             <div class="filter-row">
-                <label>時間篩選：</label>
-                <select class="filter-select" onchange="handleDateFilter(this.value)">
+                <label for="dateFilter">時間篩選：</label>
+                <select id="dateFilter" class="filter-select" onchange="handleDateFilter(this.value)">
                     <option value="all">全部時間</option>
                     <option value="month">最近一個月</option>
                     <option value="quarter">最近三個月</option>
                     <option value="year">最近一年</option>
                 </select>
                 
-                <label>排序方式：</label>
-                <select class="filter-select" onchange="handleSort(this.value)">
+                <label for="sortFilter">排序方式：</label>
+                <select id="sortFilter" class="filter-select" onchange="handleSort(this.value)">
                     <option value="date-desc">最新優先</option>
                     <option value="date-asc">最舊優先</option>
                     <option value="popular">熱門優先</option>
@@ -852,7 +168,7 @@
             <!-- 新聞列表 -->
             <section class="news-list">
                 <!-- 新聞項目 1 -->
-                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20">
+                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20" role="article">
                     <div class="news-header">
                         <div class="news-meta">
                             <div class="news-date">
@@ -865,18 +181,18 @@
                     <div class="news-content">
                         <h2 class="news-title">2025年租屋新制上路：房東房客必知的權益保障</h2>
                         <p class="news-excerpt">
-                            新年度租屋新制即將實施，包含押金上限規定、修繕責任歸屬、提前解約條件等重要變更。本文為您詳細解析房東與房客的權利義務，確保雙方權益獲得充分保障。特別針對社會住宅包租代管業務，政府提供更多優惠措施...
+                            新年度租屋新制即將實施，包含押金上限規定、修繕責任歸屬、提前解約條件等重要變更。本文為您詳細解析房東與房客的權利義務，確保雙方權益獲得充分保障。特別針對社會住宅包租代管業務，政府提供更多優惠措施，讓房東安心出租，房客放心居住...
                         </p>
                         <div class="news-footer">
                             <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
                             <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
                                     <i class="bi bi-line"></i>
                                 </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
                                     <i class="bi bi-link-45deg"></i>
                                 </a>
                             </div>
@@ -885,7 +201,7 @@
                 </article>
 
                 <!-- 新聞項目 2 -->
-                <article class="news-item fade-in" data-category="policy" data-date="2024-12-15">
+                <article class="news-item fade-in" data-category="policy" data-date="2024-12-15" role="article">
                     <div class="news-header">
                         <div class="news-meta">
                             <div class="news-date">
@@ -898,18 +214,18 @@
                     <div class="news-content">
                         <h2 class="news-title">2025年社會住宅包租代管計畫擴大辦理</h2>
                         <p class="news-excerpt">
-                            內政部宣布2025年社會住宅包租代管計畫將擴大辦理，目標新增2萬戶社會住宅。房東加入包租代管可享有租金收入免稅、修繕補助、居家安全險等多項優惠。同時強化租客居住品質保障，提供更穩定的租屋環境...
+                            內政部宣布2025年社會住宅包租代管計畫將擴大辦理，目標新增2萬戶社會住宅。房東加入包租代管可享有租金收入免稅、修繕補助、居家安全險等多項優惠。同時強化租客居住品質保障，提供更穩定的租屋環境，共同實現居住正義目標...
                         </p>
                         <div class="news-footer">
                             <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
                             <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
                                     <i class="bi bi-line"></i>
                                 </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
                                     <i class="bi bi-link-45deg"></i>
                                 </a>
                             </div>
@@ -918,7 +234,7 @@
                 </article>
 
                 <!-- 新聞項目 3 -->
-                <article class="news-item fade-in" data-category="market" data-date="2024-12-12">
+                <article class="news-item fade-in" data-category="market" data-date="2024-12-12" role="article">
                     <div class="news-header">
                         <div class="news-meta">
                             <div class="news-date">
@@ -931,18 +247,18 @@
                     <div class="news-content">
                         <h2 class="news-title">新莊副都心房價走勢分析：捷運環狀線效應持續發酵</h2>
                         <p class="news-excerpt">
-                            隨著捷運環狀線全線通車，新莊副都心地區房價穩步上揚。根據最新實價登錄資料，區域內新成屋均價已突破每坪55萬元。分析師指出，交通便利性提升加上重大建設陸續完工，預期未來房價仍有支撐...
+                            隨著捷運環狀線全線通車，新莊副都心地區房價穩步上揚。根據最新實價登錄資料，區域內新成屋均價已突破每坪55萬元。分析師指出，交通便利性提升加上重大建設陸續完工，預期未來房價仍有支撐，建議有購屋需求的民眾可持續關注該區域發展...
                         </p>
                         <div class="news-footer">
                             <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
                             <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
                                     <i class="bi bi-line"></i>
                                 </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
                                     <i class="bi bi-link-45deg"></i>
                                 </a>
                             </div>
@@ -951,7 +267,7 @@
                 </article>
 
                 <!-- 新聞項目 4 -->
-                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-08">
+                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-08" role="article">
                     <div class="news-header">
                         <div class="news-meta">
                             <div class="news-date">
@@ -964,18 +280,18 @@
                     <div class="news-content">
                         <h2 class="news-title">租屋族必看：如何辨識優質房東與避開租屋陷阱</h2>
                         <p class="news-excerpt">
-                            租屋市場資訊不對稱，租客常面臨各種風險。本文教您如何識別良心房東、檢查房屋狀況、確認合約條款，以及遇到糾紛時的處理方式。特別提醒年輕租客注意的重點事項，讓您租屋更安心...
+                            租屋市場資訊不對稱，租客常面臨各種風險。本文教您如何識別良心房東、檢查房屋狀況、確認合約條款，以及遇到糾紛時的處理方式。特別提醒年輕租客注意的重點事項，包含看房技巧、議價策略、簽約注意事項等，讓您租屋更安心、更順利...
                         </p>
                         <div class="news-footer">
                             <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
                             <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
                                     <i class="bi bi-line"></i>
                                 </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
                                     <i class="bi bi-link-45deg"></i>
                                 </a>
                             </div>
@@ -984,7 +300,7 @@
                 </article>
 
                 <!-- 新聞項目 5 -->
-                <article class="news-item fade-in" data-category="company" data-date="2024-12-05">
+                <article class="news-item fade-in" data-category="company" data-date="2024-12-05" role="article">
                     <div class="news-header">
                         <div class="news-meta">
                             <div class="news-date">
@@ -997,18 +313,18 @@
                     <div class="news-content">
                         <h2 class="news-title">吉翔不動產入選第四期公會版社會住宅包租代管業者</h2>
                         <p class="news-excerpt">
-                            本公司正式通過審核，成為內政部營建署第四期公會版社會住宅包租代管計畫的合格業者。憑藉15年不動產專業經驗與優質服務品質，我們將持續為房東提供專業包租代管服務，為房客創造優質居住環境，共同落實居住正義政策...
+                            本公司正式通過審核，成為內政部營建署第四期公會版社會住宅包租代管計畫的合格業者。憑藉15年不動產專業經驗與優質服務品質，我們將持續為房東提供專業包租代管服務，為房客創造優質居住環境，共同落實居住正義政策，打造雙贏的租屋市場...
                         </p>
                         <div class="news-footer">
                             <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
                             <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
                                     <i class="bi bi-line"></i>
                                 </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
                                     <i class="bi bi-link-45deg"></i>
                                 </a>
                             </div>
@@ -1017,7 +333,7 @@
                 </article>
 
                 <!-- 新聞項目 6 -->
-                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-01">
+                <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-01" role="article">
                     <div class="news-header">
                         <div class="news-meta">
                             <div class="news-date">
@@ -1030,18 +346,18 @@
                     <div class="news-content">
                         <h2 class="news-title">小資族租屋指南：預算分配與看房重點大公開</h2>
                         <p class="news-excerpt">
-                            對於初入社會的小資族來說，租屋是人生重要的一步。本文分享實用的租屋預算分配原則、看房時的檢查重點、以及如何選擇適合的居住區域。讓您用有限的預算找到理想的租屋處...
+                            對於初入社會的小資族來說，租屋是人生重要的一步。本文分享實用的租屋預算分配原則、看房時的檢查重點、以及如何選擇適合的居住區域。從交通便利性、生活機能、安全考量到未來發展性，教您用有限的預算找到理想的租屋處，開啟獨立生活新篇章...
                         </p>
                         <div class="news-footer">
                             <a href="#" class="read-more">閱讀完整內容 <i class="bi bi-arrow-right"></i></a>
                             <div class="share-buttons">
-                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook">
+                                <a href="#" class="share-btn facebook" onclick="shareToFacebook()" title="分享到 Facebook" aria-label="分享到 Facebook">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE">
+                                <a href="#" class="share-btn line" onclick="shareToLine()" title="分享到 LINE" aria-label="分享到 LINE">
                                     <i class="bi bi-line"></i>
                                 </a>
-                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結">
+                                <a href="#" class="share-btn copy" onclick="copyLink()" title="複製連結" aria-label="複製連結">
                                     <i class="bi bi-link-45deg"></i>
                                 </a>
                             </div>
@@ -1051,19 +367,21 @@
 
                 <!-- 分頁 -->
                 <div class="pagination-section">
-                    <div class="pagination-custom">
-                        <a href="#" class="page-link-custom">
-                            <i class="bi bi-chevron-left"></i>
-                        </a>
-                        <a href="#" class="page-link-custom active">1</a>
-                        <a href="#" class="page-link-custom">2</a>
-                        <a href="#" class="page-link-custom">3</a>
-                        <a href="#" class="page-link-custom">4</a>
-                        <a href="#" class="page-link-custom">5</a>
-                        <a href="#" class="page-link-custom">
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                    </div>
+                    <nav aria-label="新聞分頁導航">
+                        <div class="pagination-custom">
+                            <a href="#" class="page-link-custom" aria-label="上一頁">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                            <a href="#" class="page-link-custom active" aria-label="第1頁" aria-current="page">1</a>
+                            <a href="#" class="page-link-custom" aria-label="第2頁">2</a>
+                            <a href="#" class="page-link-custom" aria-label="第3頁">3</a>
+                            <a href="#" class="page-link-custom" aria-label="第4頁">4</a>
+                            <a href="#" class="page-link-custom" aria-label="第5頁">5</a>
+                            <a href="#" class="page-link-custom" aria-label="下一頁">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </div>
+                    </nav>
                 </div>
             </section>
 
@@ -1148,13 +466,17 @@
                         <p class="mb-3" style="color: var(--text-light); font-size: 0.9rem;">
                             有任何房屋相關問題，歡迎隨時與我們聯繫
                         </p>
-                        <a href="tel:02-2998-9596" class="contact-btn w-100 mb-3">
+                        <a href="tel:02-2998-9596" class="contact-btn phone-btn w-100 mb-3">
                             <i class="bi bi-telephone-fill me-2"></i>
                             電話諮詢
                         </a>
+                        <a href="https://www.facebook.com/jixianghouse2023" class="contact-btn facebook-btn w-100 mb-3">
+                            <i class="bi bi-facebook me-2"></i>
+                            Facebook 粉絲團
+                        </a>
                         
                         <!-- LINE 加入區 -->
-                        <div class="line-section mb-3">
+                        <div class="line-section">
                             <h6 style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">
                                 <i class="bi bi-line me-2"></i>加入 LINE 獲取最新消息
                             </h6>
@@ -1184,13 +506,9 @@
                 <h5>吉翔不動產有限公司</h5>
                 <div class="footer-links">
                     <a href="index.html">首頁</a>
-                    <span>|</span>
                     <a href="about.html">關於我們</a>
-                    <span>|</span>
                     <a href="services.html">服務項目</a>
-                    <span>|</span>
-                    <a href="news.html" style="color: var(--accent-orange);">最新消息</a>
-                    <span>|</span>
+                    <a href="news.html" class="active">最新消息</a>
                     <a href="contact.html">聯絡我們</a>
                 </div>
                 <div class="footer-info">
@@ -1204,29 +522,214 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
+    <!-- Custom JavaScript - 引入外部 JS 檔案 -->
+    <script src="script.js"></script>
+    
+    <!-- 頁面特定的額外腳本 -->
     <script>
-        // 頁面載入動畫
+        // 確保 DOM 載入完成後執行
         document.addEventListener('DOMContentLoaded', function() {
-            // 淡入動畫
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            console.log('新聞頁面載入完成');
             
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+            // 如果外部 JS 檔案還沒載入完成，提供後備功能
+            if (typeof window.JixiangApp === 'undefined') {
+                console.log('等待主要腳本載入...');
+                
+                // 簡單的後備滾動功能
+                window.scrollToTop = function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                };
+                
+                // 簡單的後備搜尋功能
+                window.handleSearch = function(query) {
+                    const newsItems = document.querySelectorAll('.news-item');
+                    const searchQuery = query.toLowerCase().trim();
+                    
+                    newsItems.forEach(item => {
+                        const title = item.querySelector('.news-title')?.textContent.toLowerCase() || '';
+                        const excerpt = item.querySelector('.news-excerpt')?.textContent.toLowerCase() || '';
+                        
+                        const matches = searchQuery === '' || 
+                                       title.includes(searchQuery) || 
+                                       excerpt.includes(searchQuery);
+                        
+                        item.style.display = matches ? 'block' : 'none';
+                    });
+                };
+                
+                // 簡單的後備分享功能
+                window.shareToFacebook = function() {
+                    const url = encodeURIComponent(window.location.href);
+                    const title = encodeURIComponent(document.title);
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank', 'width=600,height=400');
+                };
+                
+                window.shareToLine = function() {
+                    const url = encodeURIComponent(window.location.href);
+                    const title = encodeURIComponent(document.title);
+                    window.open(`https://social-plugins.line.me/lineit/share?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
+                };
+                
+                window.copyLink = function() {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(window.location.href).then(() => {
+                            alert('連結已複製到剪貼簿');
+                        }).catch(() => {
+                            prompt('請手動複製以下連結：', window.location.href);
+                        });
+                    } else {
+                        prompt('請手動複製以下連結：', window.location.href);
+                    }
+                };
+                
+                // 簡單的後備篩選功能
+                window.handleDateFilter = function(period) {
+                    const newsItems = document.querySelectorAll('.news-item');
+                    const now = new Date();
+                    
+                    newsItems.forEach(item => {
+                        const itemDateStr = item.getAttribute('data-date');
+                        if (!itemDateStr) return;
+                        
+                        const itemDate = new Date(itemDateStr);
+                        let shouldShow = true;
+                        
+                        switch (period) {
+                            case 'month':
+                                const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+                                shouldShow = itemDate >= oneMonthAgo;
+                                break;
+                            case 'quarter':
+                                const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
+                                shouldShow = itemDate >= threeMonthsAgo;
+                                break;
+                            case 'year':
+                                const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
+                                shouldShow = itemDate >= oneYearAgo;
+                                break;
+                            default:
+                                shouldShow = true;
+                        }
+                        
+                        item.style.display = shouldShow ? 'block' : 'none';
+                    });
+                };
+                
+                window.handleSort = function(sortType) {
+                    const newsList = document.querySelector('.news-list');
+                    const newsItems = Array.from(document.querySelectorAll('.news-item'));
+                    const paginationSection = document.querySelector('.pagination-section');
+                    
+                    newsItems.sort((a, b) => {
+                        const dateA = new Date(a.getAttribute('data-date'));
+                        const dateB = new Date(b.getAttribute('data-date'));
+                        
+                        switch (sortType) {
+                            case 'date-desc':
+                                return dateB - dateA;
+                            case 'date-asc':
+                                return dateA - dateB;
+                            case 'popular':
+                                return Math.random() - 0.5;
+                            default:
+                                return 0;
+                        }
+                    });
+                    
+                    newsItems.forEach(item => {
+                        newsList.insertBefore(item, paginationSection);
+                    });
+                };
+            }
+            
+            // 設定搜尋輸入框事件
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                let searchTimeout;
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        if (typeof window.handleSearch === 'function') {
+                            window.handleSearch(this.value);
+                        }
+                    }, 300);
+                });
+                
+                searchInput.addEventListener('keyup', function(e) {
+                    if (e.key === 'Enter') {
+                        clearTimeout(searchTimeout);
+                        if (typeof window.handleSearch === 'function') {
+                            window.handleSearch(this.value);
+                        }
                     }
                 });
-            }, observerOptions);
+            }
             
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
+            // 設定分類標籤事件
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 更新活動狀態
+                    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    filterNewsByCategory(category);
+                });
             });
             
-            // 初始動畫
+            // 分類篩選功能
+            function filterNewsByCategory(category) {
+                const newsItems = document.querySelectorAll('.news-item');
+                
+                newsItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    const shouldShow = category === 'all' || itemCategory === category;
+                    
+                    if (shouldShow) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+            
+            // 簡單的滾動動畫
+            if (typeof IntersectionObserver !== 'undefined') {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // 舊瀏覽器後備方案
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }
+            
+            // 初始動畫觸發
             setTimeout(() => {
                 document.querySelectorAll('.page-header .fade-in').forEach((el, index) => {
                     setTimeout(() => {
@@ -1234,224 +737,66 @@
                     }, index * 200);
                 });
             }, 300);
-        });
-
-        // 浮動按鈕功能
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // 分類篩選功能
-        document.querySelectorAll('.category-tab').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // 更新活動狀態
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                const category = this.getAttribute('data-category');
-                filterNewsByCategory(category);
-            });
-        });
-
-        function filterNewsByCategory(category) {
-            const newsItems = document.querySelectorAll('.news-item');
             
-            newsItems.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category') === category) {
-                    item.style.display = 'block';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 100);
+            // 熱門新聞點擊事件
+            document.querySelectorAll('.popular-news-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.popular-news-title').textContent;
+                    console.log('點擊熱門新聞:', title);
+                    // 這裡可以加入跳轉邏輯
+                });
+            });
+            
+            // 分頁點擊事件
+            document.querySelectorAll('.page-link-custom').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!this.classList.contains('active')) {
+                        e.preventDefault();
+                        
+                        // 移除所有活動狀態
+                        document.querySelectorAll('.page-link-custom').forEach(l => l.classList.remove('active'));
+                        
+                        // 如果不是箭頭按鈕，則添加活動狀態
+                        if (!this.querySelector('i')) {
+                            this.classList.add('active');
+                        }
+                        
+                        // 滾動到頂部
+                        document.querySelector('.news-list').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        console.log('切換到頁面:', this.textContent.trim());
+                    }
+                });
+            });
+            
+            // 響應式處理
+            function handleResize() {
+                const isMobile = window.innerWidth < 768;
+                
+                if (isMobile) {
+                    // 手機版特殊處理
+                    document.querySelectorAll('.news-footer').forEach(footer => {
+                        footer.style.flexDirection = 'column';
+                        footer.style.alignItems = 'flex-start';
+                        footer.style.gap = '1rem';
+                    });
                 } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
+                    // 桌面版
+                    document.querySelectorAll('.news-footer').forEach(footer => {
+                        footer.style.flexDirection = 'row';
+                        footer.style.alignItems = 'center';
+                        footer.style.justifyContent = 'space-between';
+                        footer.style.gap = '0';
+                    });
                 }
-            });
-        }
-
-        // 搜尋功能
-        function handleSearch(query) {
-            const newsItems = document.querySelectorAll('.news-item');
-            
-            newsItems.forEach(item => {
-                const title = item.querySelector('.news-title').textContent.toLowerCase();
-                const excerpt = item.querySelector('.news-excerpt').textContent.toLowerCase();
-                const searchQuery = query.toLowerCase();
-                
-                if (searchQuery === '' || title.includes(searchQuery) || excerpt.includes(searchQuery)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // 日期篩選功能
-        function handleDateFilter(period) {
-            const newsItems = document.querySelectorAll('.news-item');
-            const now = new Date();
-            
-            newsItems.forEach(item => {
-                const itemDate = new Date(item.getAttribute('data-date'));
-                let shouldShow = true;
-                
-                switch (period) {
-                    case 'month':
-                        const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-                        shouldShow = itemDate >= oneMonthAgo;
-                        break;
-                    case 'quarter':
-                        const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
-                        shouldShow = itemDate >= threeMonthsAgo;
-                        break;
-                    case 'year':
-                        const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
-                        shouldShow = itemDate >= oneYearAgo;
-                        break;
-                    default:
-                        shouldShow = true;
-                }
-                
-                item.style.display = shouldShow ? 'block' : 'none';
-            });
-        }
-
-        // 排序功能
-        function handleSort(sortType) {
-            const newsList = document.querySelector('.news-list');
-            const newsItems = Array.from(document.querySelectorAll('.news-item'));
-            
-            newsItems.sort((a, b) => {
-                switch (sortType) {
-                    case 'date-desc':
-                        return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
-                    case 'date-asc':
-                        return new Date(a.getAttribute('data-date')) - new Date(b.getAttribute('data-date'));
-                    case 'popular':
-                        // 這裡可以根據實際的熱門度數據排序
-                        return Math.random() - 0.5; // 暫時隨機排序作為示例
-                    default:
-                        return 0;
-                }
-            });
-            
-            // 重新排列 DOM 元素
-            const paginationSection = document.querySelector('.pagination-section');
-            newsItems.forEach(item => {
-                newsList.insertBefore(item, paginationSection);
-            });
-        }
-
-        // 訂閱功能改為 LINE 加入追蹤
-        function handleLineJoin(type) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'line_join', {
-                    'event_category': 'contact',
-                    'event_label': type
-                });
             }
-        }
-
-        // 為 LINE 按鈕添加點擊追蹤
-        document.querySelectorAll('.line-btn-small').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const isLandlord = this.href.includes('elZYPEn');
-                handleLineJoin(isLandlord ? 'landlord' : 'tenant');
-            });
-        });
-
-        // 分享功能
-        function shareToFacebook() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank', 'width=600,height=400');
-        }
-
-        function shareToLine() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            window.open(`https://social-plugins.line.me/lineit/share?url=${url}&text=${title}`, '_blank', 'width=600,height=400');
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(function() {
-                // 創建提示訊息
-                const toast = document.createElement('div');
-                toast.textContent = '連結已複製到剪貼簿';
-                toast.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: var(--primary-blue);
-                    color: white;
-                    padding: 1rem 2rem;
-                    border-radius: 8px;
-                    z-index: 9999;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                `;
-                document.body.appendChild(toast);
-                
-                setTimeout(() => {
-                    document.body.removeChild(toast);
-                }, 2000);
-            });
-        }
-
-        // 導航欄滾動效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            if (scrollTop > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
+            window.addEventListener('resize', handleResize);
+            handleResize(); // 初始執行
         });
-
-        // 熱門新聞點擊事件
-        document.querySelectorAll('.popular-news-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // 這裡可以加入跳轉到對應新聞的邏輯
-                console.log('點擊熱門新聞:', this.querySelector('.popular-news-title').textContent);
-            });
-        });
-
-        // 響應式處理
-        function handleResize() {
-            const isMobile = window.innerWidth < 768;
-            
-            if (isMobile) {
-                // 手機版特殊處理
-                document.querySelectorAll('.news-footer').forEach(footer => {
-                    footer.style.flexDirection = 'column';
-                    footer.style.alignItems = 'flex-start';
-                    footer.style.gap = '1rem';
-                });
-            } else {
-                // 桌面版
-                document.querySelectorAll('.news-footer').forEach(footer => {
-                    footer.style.flexDirection = 'row';
-                    footer.style.alignItems = 'center';
-                    footer.style.justifyContent = 'space-between';
-                });
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // 初始執行
     </script>
 </body>
 </html>
