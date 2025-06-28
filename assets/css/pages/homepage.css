@@ -1,0 +1,198 @@
+/* ==========================================================================
+   首頁專用樣式模組
+   ========================================================================== */
+
+/* 區塊標題樣式 */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: var(--font-bold);
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--accent-orange);
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+.section-subtitle, 
+.section-description {
+    text-align: center;
+    color: var(--text-light);
+    font-size: var(--font-lg);
+    margin-bottom: 4rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-section {
+    padding: var(--spacing-3xl) 0;
+}
+
+.content-section:nth-child(even) {
+    background: var(--light-gray);
+}
+
+/* 服務區塊樣式 */
+.services-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--white);
+}
+
+/* 新聞區塊樣式 */
+.news-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--light-gray);
+}
+
+/* 聯絡區塊樣式 */
+.contact-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--light-gray);
+}
+
+/* CTA 區域樣式 */
+.cta-section {
+    background: -webkit-linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    padding: 4rem 0;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-title {
+    font-size: 2.2rem;
+    font-weight: var(--font-bold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cta-description {
+    font-size: var(--font-lg);
+    opacity: 0.9;
+    margin-bottom: var(--spacing-lg);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Safari 彈性佈局修復 */
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    -webkit-justify-content: center;
+}
+
+.btn-cta-primary {
+    background: var(--accent-orange);
+    border: none;
+    color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    -webkit-border-radius: var(--radius-full);
+    font-weight: var(--font-semibold);
+    font-size: var(--font-lg);
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cta-primary:hover {
+    background: #F57C00;
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+    color: var(--white);
+}
+
+.btn-cta-secondary {
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    -webkit-border-radius: var(--radius-full);
+    font-weight: var(--font-semibold);
+    font-size: var(--font-lg);
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    background: transparent;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cta-secondary:hover {
+    background: var(--white);
+    color: var(--primary-blue);
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: var(--font-3xl);
+    }
+    
+    .cta-title {
+        font-size: 1.8rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-cta-primary,
+    .btn-cta-secondary {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-section {
+        padding: var(--spacing-xl) 0;
+    }
+}
+
+/* Safari 瀏覽器特定樣式 */
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+        .cta-section {
+            background: var(--primary-blue) !important;
+        }
+    }
+}
