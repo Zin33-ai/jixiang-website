@@ -7,21 +7,37 @@
     <meta name="description" content="掌握最新房市動態、政策法規、租房新知與專業建議。吉翔不動產為您提供第一手房地產資訊。">
     <meta name="keywords" content="房市動態,政策法規,租房新知,不動產新聞,吉翔不動產">
     
+    <!-- Open Graph -->
+    <meta property="og:title" content="最新消息 - 吉翔不動產有限公司">
+    <meta property="og:description" content="掌握房市脈動，獲取第一手資訊">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.jixianghelp.com/news.html">
+    <meta property="og:image" content="https://www.jixianghelp.com/assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css.txt">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="news-page">
+    <!-- 浮動功能按鈕 -->
     <div class="floating-btn" onclick="scrollToTop()" title="回到頂部">
         <i class="bi bi-arrow-up"></i>
     </div>
 
+    <!-- 導航欄 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -29,7 +45,7 @@
                 吉翔不動產有限公司
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -60,6 +76,7 @@
         </div>
     </nav>
 
+    <!-- 頁面標題區 -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
@@ -75,6 +92,7 @@
     </section>
 
     <div class="container">
+        <!-- 分類導航 -->
         <section class="category-nav fade-in">
             <div class="category-tabs">
                 <a href="#" class="category-tab active" data-category="all">
@@ -95,6 +113,7 @@
             </div>
         </section>
 
+        <!-- 搜尋與篩選 -->
         <section class="filter-section fade-in">
             <div class="search-box">
                 <i class="bi bi-search search-icon"></i>
@@ -118,8 +137,11 @@
             </div>
         </section>
 
+        <!-- 主要內容區 -->
         <div class="main-content">
+            <!-- 新聞列表 -->
             <section class="news-list">
+                <!-- 新聞項目 1 -->
                 <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-20">
                     <div class="news-header">
                         <div class="news-meta">
@@ -152,6 +174,7 @@
                     </div>
                 </article>
 
+                <!-- 新聞項目 2 -->
                 <article class="news-item fade-in" data-category="policy" data-date="2024-12-15">
                     <div class="news-header">
                         <div class="news-meta">
@@ -184,6 +207,7 @@
                     </div>
                 </article>
 
+                <!-- 新聞項目 3 -->
                 <article class="news-item fade-in" data-category="market" data-date="2024-12-12">
                     <div class="news-header">
                         <div class="news-meta">
@@ -216,6 +240,7 @@
                     </div>
                 </article>
 
+                <!-- 新聞項目 4 -->
                 <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-08">
                     <div class="news-header">
                         <div class="news-meta">
@@ -248,6 +273,7 @@
                     </div>
                 </article>
 
+                <!-- 新聞項目 5 -->
                 <article class="news-item fade-in" data-category="company" data-date="2024-12-05">
                     <div class="news-header">
                         <div class="news-meta">
@@ -280,6 +306,7 @@
                     </div>
                 </article>
 
+                <!-- 新聞項目 6 -->
                 <article class="news-item fade-in" data-category="knowledge" data-date="2024-12-01">
                     <div class="news-header">
                         <div class="news-meta">
@@ -312,6 +339,7 @@
                     </div>
                 </article>
 
+                <!-- 分頁 -->
                 <div class="pagination-section">
                     <div class="pagination-custom">
                         <a href="#" class="page-link-custom">
@@ -329,7 +357,9 @@
                 </div>
             </section>
 
+            <!-- 側邊欄 -->
             <aside class="sidebar">
+                <!-- 熱門消息 -->
                 <div class="sidebar-section fade-in">
                     <h3 class="sidebar-title">
                         <i class="bi bi-fire me-2"></i>
@@ -372,31 +402,33 @@
                     </div>
                 </div>
 
+                <!-- 分類統計 -->
                 <div class="sidebar-section fade-in">
                     <h3 class="sidebar-title">
                         <i class="bi bi-pie-chart me-2"></i>
                         消息分類
                     </h3>
                     <div class="category-stats">
-                        <div class="category-stat-item">
+                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
                             <span><i class="bi bi-lightbulb text-warning me-2"></i>租房新知</span>
-                            <span class="badge" style="background: var(--accent-orange);">15</span>
+                            <span class="badge" style="background: var(--accent-orange); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">15</span>
                         </div>
-                        <div class="category-stat-item">
+                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
                             <span><i class="bi bi-building text-primary me-2"></i>政策法規</span>
-                            <span class="badge" style="background: var(--secondary-blue);">8</span>
+                            <span class="badge" style="background: var(--secondary-blue); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">8</span>
                         </div>
-                        <div class="category-stat-item">
+                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #E5E7EB;">
                             <span><i class="bi bi-graph-up-arrow text-danger me-2"></i>房市動態</span>
-                            <span class="badge" style="background: var(--red);">12</span>
+                            <span class="badge" style="background: var(--red); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">12</span>
                         </div>
-                        <div class="category-stat-item">
+                        <div class="category-stat-item" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0;">
                             <span><i class="bi bi-award text-success me-2"></i>公司消息</span>
-                            <span class="badge" style="background: var(--green);">6</span>
+                            <span class="badge" style="background: var(--green); color: white; padding: 0.25rem 0.5rem; border-radius: 12px;">6</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- 需要協助 -->
                 <div class="sidebar-section fade-in">
                     <h3 class="sidebar-title">
                         <i class="bi bi-headset me-2"></i>
@@ -411,6 +443,7 @@
                             電話諮詢
                         </a>
                         
+                        <!-- LINE 加入區 -->
                         <div class="line-section mb-3">
                             <h6 style="color: var(--primary-blue); font-weight: 600; margin-bottom: 1rem;">
                                 <i class="bi bi-line me-2"></i>加入 LINE 獲取最新消息
@@ -434,6 +467,7 @@
         </div>
     </div>
 
+    <!-- 頁尾 -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -445,7 +479,7 @@
                     <span>|</span>
                     <a href="services.html">服務項目</a>
                     <span>|</span>
-                    <a href="news.html" style="color: var(--accent-orange);">最新消息</a>
+                    <a href="news.html" class="active" aria-current="page">最新消息</a>
                     <span>|</span>
                     <a href="contact.html">聯絡我們</a>
                 </div>
@@ -457,8 +491,10 @@
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script src="main.js.txt"></script>
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
