@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Safari 瀏覽器兼容性修復模組
+   Safari 瀏覽器兼容性修復模組 - 完全修復版本
    ========================================================================== */
 
 /* Safari 中的平滑滾動 */
@@ -14,41 +14,67 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Safari 按鈕樣式重設 */
+/* 🔥 Safari 按鈕樣式強制重設 - 最高優先級 */
 button,
 .btn,
 .contact-btn,
 .btn-primary-custom,
 .btn-outline-custom,
 .btn-cta-primary,
-.btn-cta-secondary {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+.btn-cta-secondary,
+.line-contact-btn,
+.line-btn-small,
+.floating-btn {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
     border: none;
     outline: none;
+    
+    /* 🎯 強制圓角 */
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+}
+
+/* 🔴 浮動按鈕特殊處理 - 強制圓形 */
+.floating-btn {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    
+    /* 確保完美圓形 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
 }
 
 /* Safari 輸入框樣式重設 */
 input,
 select,
 textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
     border-radius: 0;
     -webkit-border-radius: 0;
 }
 
 .search-input,
 .filter-select {
-    -webkit-appearance: none;
+    -webkit-appearance: none !important;
     background-image: none;
 }
 
 /* Safari 選擇框箭頭 */
 .filter-select {
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>') !important;
     background-repeat: no-repeat;
     background-position: right 0.7rem top 50%;
     background-size: 0.65rem auto;
@@ -58,12 +84,12 @@ textarea {
 /* Safari 中的彈性佈局修復 */
 .hero-buttons,
 .cta-buttons {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: center;
-    justify-content: center;
+    display: -webkit-flex !important;
+    display: flex !important;
+    -webkit-flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
+    -webkit-justify-content: center !important;
+    justify-content: center !important;
 }
 
 /* Safari 中的 Grid 佈局修復 */
@@ -90,6 +116,56 @@ textarea {
     will-change: transform;
 }
 
+/* 🔥 Safari 漸變完全修復 */
+.floating-btn {
+    background: #1E3A8A !important; /* 後備純色 */
+    background: -webkit-gradient(linear, left top, right bottom, from(#1E3A8A), to(#3B82F6)) !important; /* Safari 舊版 */
+    background: -webkit-linear-gradient(135deg, #1E3A8A, #3B82F6) !important; /* Safari 新版 */
+    background: -moz-linear-gradient(135deg, #1E3A8A, #3B82F6) !important; /* Firefox */
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6) !important; /* 標準語法 */
+}
+
+.hero-section,
+.page-header {
+    background: #DBEAFE !important; /* 後備純色 */
+    background: -webkit-gradient(linear, left top, right bottom, from(#DBEAFE), to(#3B82F6)) !important; /* Safari 舊版 */
+    background: -webkit-linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* Safari 新版 */
+    background: -moz-linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* Firefox */
+    background: linear-gradient(135deg, #DBEAFE 0%, #3B82F6 100%) !important; /* 標準語法 */
+}
+
+.stats-section,
+.cta-section,
+.business-hours {
+    background: #1E3A8A !important; /* 後備純色 */
+    background: -webkit-gradient(linear, left top, right bottom, from(#1E3A8A), to(#3B82F6)) !important; /* Safari 舊版 */
+    background: -webkit-linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%) !important; /* Safari 新版 */
+    background: -moz-linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%) !important; /* Firefox */
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%) !important; /* 標準語法 */
+}
+
+/* 🎯 Safari 按鈕顏色強制修復 */
+.btn-primary-custom {
+    background: #FF9800 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FF9800 !important;
+}
+
+.btn-outline-custom {
+    background: transparent !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    /* 增強邊框可見性 */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+    -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+.contact-btn {
+    background: #3B82F6 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
 /* Safari 瀏覽器特定樣式檢測 */
 @media not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
@@ -103,20 +179,17 @@ textarea {
             background-attachment: scroll !important;
         }
         
-        /* Safari 漸變後備 */
+        /* 🎯 Safari 按鈕邊框特殊增強 */
+        .btn-outline-custom {
+            border: 3px solid #FFFFFF !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5) !important;
+        }
+        
+        /* Safari 浮動按鈕完美圓形 */
         .floating-btn {
-            background: var(--primary-blue) !important;
-        }
-        
-        .stats-section,
-        .cta-section,
-        .business-hours {
-            background: var(--primary-blue) !important;
-        }
-        
-        .hero-section,
-        .page-header {
-            background: var(--secondary-blue) !important;
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 50% !important;
         }
     }
 }
@@ -127,47 +200,37 @@ textarea {
 }
 
 .category-tabs::-webkit-scrollbar-track {
-    background: var(--light-gray);
+    background: #F9FAFB; /* 後備值 */
+    background: var(--light-gray, #F9FAFB);
     border-radius: 2px;
 }
 
 .category-tabs::-webkit-scrollbar-thumb {
-    background: var(--secondary-blue);
+    background: #3B82F6; /* 後備值 */
+    background: var(--secondary-blue, #3B82F6);
     border-radius: 2px;
-}
-
-/* Safari 圓角前綴支援 */
-.floating-btn,
-.hero-badge,
-.page-badge,
-.page-highlight,
-.btn-primary-custom,
-.btn-outline-custom,
-.contact-btn,
-.line-contact-btn,
-.line-btn-small,
-.btn-cta-primary,
-.btn-cta-secondary {
-    -webkit-border-radius: inherit;
 }
 
 /* Safari backdrop-filter 後備 */
 .navbar {
+    background: rgba(255, 255, 255, 0.95) !important; /* 後備 */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
 .map-overlay {
+    background: rgba(255, 255, 255, 0.95); /* 後備 */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
 .hours-item {
+    background: rgba(255, 255, 255, 0.1); /* 後備 */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
-/* Safari 轉場動畫前綴 */
+/* 🔧 Safari 轉場動畫前綴 - 具體值而非繼承 */
 .floating-btn,
 .navbar,
 .nav-link,
@@ -186,46 +249,66 @@ textarea {
 .line-btn-small,
 .btn-cta-primary,
 .btn-cta-secondary {
-    -webkit-transition: all var(--transition-normal);
+    transition: all 0.3s ease; /* 後備值 */
+    transition: all var(--transition-normal, 0.3s ease);
+    -webkit-transition: all var(--transition-normal, 0.3s ease);
 }
 
-/* Safari transform 前綴 */
-.floating-btn:hover,
+/* 🔧 Safari transform 前綴 - 具體值而非繼承 */
+.floating-btn:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+
 .news-card:hover,
 .service-card:hover,
 .contact-card:hover,
 .line-card:hover,
 .about-card:hover,
-.team-card:hover,
+.team-card:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+}
+
 .btn-primary-custom:hover,
 .btn-outline-custom:hover,
 .contact-btn:hover,
-.line-btn:hover,
 .line-contact-btn:hover,
-.line-btn-small:hover,
 .btn-cta-primary:hover,
 .btn-cta-secondary:hover {
-    -webkit-transform: inherit;
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
 }
 
-/* Safari 線性漸變前綴 */
-.floating-btn,
-.hero-section,
-.page-header,
-.stats-section,
-.line-contact-section,
-.cta-section,
-.business-hours {
-    background: -webkit-linear-gradient(inherit);
+.line-btn-small:hover {
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
 }
 
 /* Safari 動畫前綴 */
 .pulse-animation {
+    animation: pulse 2s infinite;
     -webkit-animation: pulse 2s infinite;
 }
 
 .loading i {
+    animation: spin 2s linear infinite;
     -webkit-animation: spin 2s linear infinite;
+}
+
+@keyframes pulse {
+    0% { 
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    50% { 
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+    }
+    100% { 
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
 }
 
 @-webkit-keyframes pulse {
@@ -234,7 +317,107 @@ textarea {
     100% { -webkit-transform: scale(1); }
 }
 
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+    100% { 
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
 @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
+}
+
+/* 🎨 Safari 色彩強制修復 */
+.navbar-brand,
+.section-title,
+.news-title,
+.service-title,
+.contact-title,
+.page-title,
+.hero-title {
+    color: #1E3A8A !important; /* 強制深藍色 */
+    color: var(--primary-blue, #1E3A8A) !important;
+}
+
+.page-title,
+.hero-title,
+.page-subtitle,
+.hero-subtitle {
+    color: #FFFFFF !important; /* 主視覺區域強制白色 */
+    color: var(--white, #FFFFFF) !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #3B82F6 !important; /* 強制藍色 */
+    color: var(--secondary-blue, #3B82F6) !important;
+}
+
+/* 🔧 Safari 圓角統一修復 */
+.btn,
+.btn-primary-custom,
+.btn-outline-custom,
+.contact-btn,
+.line-contact-btn,
+.line-btn-small,
+.btn-cta-primary,
+.btn-cta-secondary,
+.hero-badge,
+.page-badge,
+.page-highlight {
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+}
+
+/* 🔴 特殊圓形元素 */
+.floating-btn {
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+}
+
+/* 🎯 Safari 文字顏色完全修復 */
+.hero-section *,
+.page-header * {
+    color: #FFFFFF !important;
+}
+
+.hero-title,
+.page-title,
+.hero-subtitle,
+.page-subtitle {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 🔧 Safari 最終修復策略 */
+@supports (-webkit-appearance: none) {
+    /* 確保所有按鈕在 Safari 中正確顯示 */
+    button,
+    input[type="button"],
+    input[type="submit"],
+    .btn,
+    .btn-primary-custom,
+    .btn-outline-custom,
+    .contact-btn {
+        -webkit-appearance: none !important;
+        background-clip: padding-box !important;
+        -webkit-background-clip: padding-box !important;
+    }
+    
+    /* Safari 特定的邊框修復 */
+    .btn-outline-custom {
+        border: 2px solid #FFFFFF !important;
+        background: transparent !important;
+        color: #FFFFFF !important;
+        /* 雙重邊框確保可見性 */
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+    }
 }
