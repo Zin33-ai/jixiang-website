@@ -1,0 +1,172 @@
+/* ==========================================================================
+   關於我們頁面樣式模組
+   ========================================================================== */
+
+.about-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    -webkit-border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    height: 100%;
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    /* Safari 硬體加速 */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.about-icon {
+    font-size: var(--font-5xl);
+    color: var(--secondary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.about-title {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-text {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* 價值觀項目 */
+.value-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--light-gray);
+    border-radius: var(--radius-sm);
+    -webkit-border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+}
+
+.value-item:hover {
+    background: var(--light-blue);
+    transform: translateX(10px);
+    -webkit-transform: translateX(10px);
+}
+
+.value-icon {
+    font-size: var(--font-3xl);
+    color: var(--accent-orange);
+    margin-right: var(--spacing-sm);
+    min-width: 60px;
+}
+
+.value-content h4 {
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
+
+.value-content p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* 團隊卡片 */
+.team-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    -webkit-border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    -webkit-transition: all var(--transition-normal);
+    height: 100%;
+    /* Safari 硬體加速 */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background: -webkit-linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+    background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+    margin: 0 auto var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-5xl);
+    color: var(--white);
+}
+
+.team-name {
+    font-size: var(--font-xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
+
+.team-position {
+    color: var(--accent-orange);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--spacing-sm);
+}
+
+.team-description {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* 預留位置的團隊卡片 */
+.team-placeholder {
+    border: 2px dashed var(--secondary-blue);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.team-placeholder .team-avatar {
+    background: transparent;
+    border: 2px dashed var(--secondary-blue);
+    color: var(--secondary-blue);
+}
+
+/* 團隊網格 */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* 響應式設計 */
+@media (max-width: 992px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .about-card {
+        margin-bottom: var(--spacing-lg);
+    }
+}
