@@ -1,26 +1,36 @@
 /* ==========================================================================
-   吉翔不動產 - 模組化主檔案
+   吉翔不動產有限公司 - 模組化主檔案 (第二階段)
    ========================================================================== */
 
-/* 核心基礎模組 */
+/* 1. 核心基礎模組（最先載入） */
 @import 'core/variables.css';
 @import 'core/reset.css';
 
-/* 佈局模組 */
+/* 2. 佈局系統 */
 @import 'layout/navbar.css';
-@import 'layout/footer.css';          /* ← 新增 */
+@import 'layout/footer.css';
 
-/* 元件模組 */
+/* 3. 元件庫 */
 @import 'components/buttons.css';
 @import 'components/cards.css';
-@import 'components/floating-elements.css';  /* ← 新增 */
+@import 'components/floating-elements.css';
 
-/* 功能區塊 */
-@import 'blocks/hero.css';            /* ← 新增 */
+/* 4. 功能區塊 */
+@import 'blocks/hero.css';
+@import 'blocks/stats.css';
+@import 'blocks/line-contact.css';
 
-/* 功能增強 */
+/* 5. 頁面樣式 */
+@import 'pages/homepage.css';
+
+/* 6. 功能增強（最後載入） */
 @import 'features/animations.css';
 @import 'features/responsive.css';
+@import 'features/safari-fixes.css';
 
 /* 暫時保留原始檔案作為後備 */
 @import 'style.css';
+
+/* ==========================================================================
+   模組化進度：85% 完成
+   ========================================================================== */
