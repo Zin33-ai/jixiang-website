@@ -1,0 +1,88 @@
+/* ==========================================================================
+   統計數據區塊模組
+   ========================================================================== */
+
+.stats-section {
+    background: -webkit-linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    padding: var(--spacing-3xl) 0;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+}
+
+.stats-content {
+    position: relative;
+    z-index: 2;
+}
+
+.stat-item {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-number {
+    font-size: var(--font-5xl);
+    font-weight: var(--font-bold);
+    color: var(--accent-orange);
+    display: block;
+}
+
+.stat-label {
+    font-size: var(--font-lg);
+    opacity: 0.9;
+    margin-top: var(--spacing-xs);
+}
+
+.features-list {
+    margin-top: var(--spacing-3xl);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-lg);
+}
+
+.feature-item i {
+    color: var(--accent-orange);
+    margin-right: var(--spacing-sm);
+    font-size: 1.2rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 992px) {
+    .stats-section .row {
+        text-align: center;
+    }
+    
+    .features-list {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-number {
+        font-size: 2.5rem;
+    }
+}
+
+/* Safari 瀏覽器特定樣式 */
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+        .stats-section {
+            background: var(--primary-blue) !important;
+        }
+    }
+}
