@@ -1,0 +1,205 @@
+/* ==========================================================================
+   重置樣式 - 基礎設定
+   ========================================================================== */
+
+/* 通用重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML 和 Body 基礎設定 */
+html {
+    -webkit-scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: var(--leading-normal);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    /* Safari 平滑滾動 */
+    -webkit-overflow-scrolling: touch;
+    /* Safari 字體平滑 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 針對特定頁面的 padding-top */
+body.news-page {
+    padding-top: 80px;
+}
+
+/* 連結重置 */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* 列表重置 */
+ul, ol {
+    list-style: none;
+}
+
+/* 圖片重置 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 表單元素重置 */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
+/* Safari 表單元素重置 */
+button,
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+/* 按鈕重置 */
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* 表格重置 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 標題重置 */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: inherit;
+    font-size: inherit;
+    margin: 0;
+}
+
+/* 段落重置 */
+p {
+    margin: 0;
+}
+
+/* 引用重置 */
+blockquote {
+    margin: 0;
+}
+
+/* 代碼重置 */
+code,
+pre {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* 水平線重置 */
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--light-gray);
+    margin: var(--spacing-md) 0;
+}
+
+/* 選擇文字樣式 */
+::selection {
+    background-color: var(--accent-orange);
+    color: var(--white);
+}
+
+::-moz-selection {
+    background-color: var(--accent-orange);
+    color: var(--white);
+}
+
+/* 滾動條樣式 (Webkit) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-light);
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-dark);
+}
+
+/* Safari 硬體加速 */
+.hw-accelerate {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 可訪問性 - 隱藏但保留螢幕閱讀器可讀 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 響應式媒體查詢基礎 */
+@media (max-width: 768px) {
+    body.news-page {
+        padding-top: 70px;
+    }
+    
+    html {
+        font-size: 14px;
+    }
+}
+
+/* 列印樣式基礎 */
+@media print {
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
