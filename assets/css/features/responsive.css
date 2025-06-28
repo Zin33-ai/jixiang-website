@@ -1,0 +1,501 @@
+/* ==========================================================================
+   響應式設計
+   ========================================================================== */
+
+/* 基本響應式斷點 */
+:root {
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+}
+
+/* 大螢幕 (1200px 以下) */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 250px;
+    }
+    
+    .container {
+        max-width: 1140px;
+    }
+    
+    .section-title {
+        font-size: var(--font-4xl);
+    }
+}
+
+/* 平板 (992px 以下) */
+@media (max-width: 992px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .category-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: var(--spacing-xs);
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .category-tabs::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .category-tabs::-webkit-scrollbar-track {
+        background: var(--light-gray);
+        border-radius: 2px;
+    }
+    
+    .category-tabs::-webkit-scrollbar-thumb {
+        background: var(--secondary-blue);
+        border-radius: 2px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .stats-section .row {
+        text-align: center;
+    }
+    
+    .features-list {
+        text-align: center;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+/* 小平板/大手機 (768px 以下) */
+@media (max-width: 768px) {
+    body.news-page {
+        padding-top: 70px;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    /* 標題縮放 */
+    .page-title,
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .page-subtitle,
+    .hero-subtitle {
+        font-size: var(--font-base);
+    }
+    
+    .section-title {
+        font-size: var(--font-3xl);
+    }
+    
+    .line-highlight-title {
+        font-size: 2.2rem;
+    }
+    
+    .cta-title {
+        font-size: 1.8rem;
+    }
+    
+    /* 按鈕調整 */
+    .btn-primary-custom,
+    .btn-outline-custom {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: var(--spacing-sm);
+        text-align: center;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-cta-primary,
+    .btn-cta-secondary {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* 地圖調整 */
+    .map-container {
+        height: 300px;
+    }
+    
+    .map-overlay {
+        position: static;
+        margin-bottom: var(--spacing-sm);
+        background: var(--white);
+    }
+    
+    /* 網格調整 */
+    .hours-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    /* 表單調整 */
+    .subscribe-form {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .subscribe-input,
+    .subscribe-btn {
+        width: 100%;
+    }
+    
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-select {
+        width: 100%;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* LINE 按鈕調整 */
+    .line-contact-btn {
+        min-width: 150px;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .line-btn-small {
+        padding: 0.6rem 0.8rem;
+        font-size: var(--font-xs);
+    }
+    
+    /* 新聞區塊調整 */
+    .news-footer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: flex-start;
+    }
+    
+    .news-image {
+        height: 150px;
+    }
+    
+    /* 統計數字調整 */
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    /* 內容區塊調整 */
+    .content-section {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    /* 卡片調整 */
+    .service-card {
+        min-height: auto;
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+}
+
+/* 手機 (576px 以下) */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    /* 更小的標題 */
+    .hero-title,
+    .page-title {
+        font-size: var(--font-4xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-3xl);
+    }
+    
+    .line-highlight-title {
+        font-size: var(--font-4xl);
+    }
+    
+    /* 更緊湊的間距 */
+    .content-section {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .hero-section,
+    .page-header {
+        padding: 100px 0 var(--spacing-2xl);
+    }
+    
+    /* 按鈕調整 */
+    .floating-btn {
+        right: var(--spacing-sm);
+        bottom: var(--spacing-sm);
+        width: 50px;
+        height: 50px;
+        font-size: var(--font-xl);
+    }
+    
+    /* 導航調整 */
+    .navbar-container {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .navbar-brand {
+        font-size: var(--font-xl);
+    }
+    
+    /* 卡片間距調整 */
+    .news-card,
+    .service-card,
+    .contact-card {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* 表格響應式 */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table-responsive table {
+        min-width: 600px;
+    }
+}
+
+/* 超小螢幕 (480px 以下) */
+@media (max-width: 480px) {
+    /* 極小間距 */
+    .container {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    /* 標題進一步縮小 */
+    .hero-title,
+    .page-title {
+        font-size: var(--font-3xl);
+        line-height: var(--leading-tight);
+    }
+    
+    .section-title {
+        font-size: var(--font-2xl);
+    }
+    
+    /* 內容區塊更緊湊 */
+    .content-section {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    /* 卡片內邊距調整 */
+    .service-card,
+    .contact-card,
+    .about-card {
+        padding: var(--spacing-md);
+    }
+    
+    /* 按鈕尺寸調整 */
+    .btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-sm);
+    }
+    
+    .btn-lg {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-base);
+    }
+}
+
+/* 橫向手機 (高度小於 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section,
+    .page-header {
+        min-height: auto;
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .hero-title,
+    .page-title {
+        font-size: var(--font-3xl);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .hero-subtitle,
+    .page-subtitle {
+        font-size: var(--font-base);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .hero-badge,
+    .page-badge {
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+/* 容器最大寬度 */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* 響應式工具類 */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+
+@media (max-width: 767px) {
+    .d-md-none { display: none !important; }
+    .d-md-block { display: block !important; }
+    .d-md-flex { display: flex !important; }
+}
+
+@media (min-width: 768px) {
+    .d-md-up-none { display: none !important; }
+    .d-md-up-block { display: block !important; }
+    .d-md-up-flex { display: flex !important; }
+}
+
+@media (max-width: 991px) {
+    .d-lg-none { display: none !important; }
+    .d-lg-block { display: block !important; }
+    .d-lg-flex { display: flex !important; }
+}
+
+@media (min-width: 992px) {
+    .d-lg-up-none { display: none !important; }
+    .d-lg-up-block { display: block !important; }
+    .d-lg-up-flex { display: flex !important; }
+}
+
+/* 響應式文字對齊 */
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+@media (max-width: 767px) {
+    .text-md-center { text-align: center !important; }
+    .text-md-left { text-align: left !important; }
+    .text-md-right { text-align: right !important; }
+}
+
+/* 響應式間距 */
+@media (max-width: 767px) {
+    .mb-md-0 { margin-bottom: 0 !important; }
+    .mb-md-1 { margin-bottom: var(--spacing-xs) !important; }
+    .mb-md-2 { margin-bottom: var(--spacing-sm) !important; }
+    .mb-md-3 { margin-bottom: var(--spacing-md) !important; }
+    
+    .mt-md-0 { margin-top: 0 !important; }
+    .mt-md-1 { margin-top: var(--spacing-xs) !important; }
+    .mt-md-2 { margin-top: var(--spacing-sm) !important; }
+    .mt-md-3 { margin-top: var(--spacing-md) !important; }
+}
+
+/* 響應式圖片 */
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 響應式嵌入內容 */
+.embed-responsive {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+.embed-responsive::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 比例 */
+}
+
+.embed-responsive iframe,
+.embed-responsive object,
+.embed-responsive embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* 高解析度螢幕優化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* 高解析度圖片和圖標 */
+    .icon-high-res {
+        background-image: url('icons@2x.png');
+        background-size: contain;
+    }
+}
+
+/* 打摺的內容 */
+.collapse-md {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .collapse-md {
+        display: none;
+    }
+    
+    .collapse-md.show {
+        display: block;
+    }
+}
