@@ -37,6 +37,7 @@
     
     function runInitialization() {
         try {
+            createNavbar();
             setupIntersectionObserver();
             setupNavbarEffects();
             setupFloatingButton();
@@ -1040,3 +1041,70 @@
     });
     
 })();
+
+// ==========================================================================
+// 導航欄動態建立
+// ==========================================================================
+
+function createNavbar() {
+    // 檢查是否已有導航欄
+    if (document.querySelector('.navbar')) {
+        return; // 如果已存在就不建立
+    }
+    
+    const navbar = document.createElement('nav');
+    navbar.className = 'navbar navbar-expand-lg';
+    
+    const currentPage = getCurrentPage();
+    
+    navbar.innerHTML = `
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-house-heart-fill me-2"></i>
+                吉翔不動產有限公司
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="選單">
+                <span class="custom-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link ${currentPage === 'about' ? 'active' : ''}" href="about.html">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${currentPage === 'services' ? 'active' : ''}" href="services.html">服務項目</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${currentPage === 'news' ? 'active' : ''}" href="news.html">最新消息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${currentPage === 'contact' ? 'active' : ''}" href="contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+                
+                <a href="tel:02-2998-9596" class="navbar-phone">
+                    <i class="bi bi-telephone-fill me-1"></i>
+                    02-2998-9596
+                </a>
+            </div>
+        </div>
+    `;
+    
+    // 插入到 body 開頭
+    document.body.insertBefore(navbar, document.body.firstChild);
+}
+
+    // 對外公開的 API (這段本來就存在)
+    window.JixiangApp = {
+        showToast: showToast,
+        scrollToTop: window.scrollToTop,
+        // ...其他現有內容
+    };
+
+})(); // 這是最後一行
