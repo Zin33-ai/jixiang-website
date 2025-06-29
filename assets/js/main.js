@@ -21,6 +21,80 @@
         animationDelay: 200,
         counterDuration: 2000
     };
+
+    // ==========================================================================
+    // 工具函數
+    // ==========================================================================
+
+    // 獲取當前頁面名稱
+    function getCurrentPage() {
+        const path = window.location.pathname;
+        const page = path.split('/').pop();
+        
+        if (page === 'about.html') return 'about';
+        if (page === 'services.html') return 'services';
+        if (page === 'news.html') return 'news';
+        if (page === 'contact.html') return 'contact';
+        return 'index';
+    }
+
+    // ==========================================================================
+    // 導航欄動態建立
+    // ==========================================================================
+
+    function createNavbar() {
+        // 檢查是否已有導航欄
+        if (document.querySelector('.navbar')) {
+            return; // 如果已存在就不建立
+        }
+        
+        const navbar = document.createElement('nav');
+        navbar.className = 'navbar navbar-expand-lg';
+        
+        const currentPage = getCurrentPage();
+        
+        navbar.innerHTML = `
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-house-heart-fill me-2"></i>
+                    吉翔不動產有限公司
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="選單">
+                    <span class="custom-toggler-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link ${currentPage === 'about' ? 'active' : ''}" href="about.html">關於我們</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${currentPage === 'services' ? 'active' : ''}" href="services.html">服務項目</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${currentPage === 'news' ? 'active' : ''}" href="news.html">最新消息</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ${currentPage === 'contact' ? 'active' : ''}" href="contact.html">聯絡我們</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="tel:02-2998-9596" class="navbar-phone">
+                        <i class="bi bi-telephone-fill me-1"></i>
+                        02-2998-9596
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        // 插入到 body 開頭
+        document.body.insertBefore(navbar, document.body.firstChild);
+    }
     
     // ==========================================================================
     // 核心功能：頁面載入與初始化
@@ -125,21 +199,21 @@
     // ==========================================================================
     
     function setupFloatingButton() {
-         let floatingBtn = document.querySelector('.floating-btn');
-    
-    if (!floatingBtn) {
-        // 動態建立浮動按鈕
-        floatingBtn = document.createElement('div');
-        floatingBtn.className = 'floating-btn';
-        floatingBtn.title = '回到最上層';
-        floatingBtn.innerHTML = '<i class="bi bi-arrow-up-circle-fill"></i>';
-        
-        // 添加點擊事件
-        floatingBtn.addEventListener('click', window.scrollToTop);
-        
-        // 添加到頁面
-        document.body.appendChild(floatingBtn);
-    }
+        let floatingBtn = document.querySelector('.floating-btn');
+
+        if (!floatingBtn) {
+            // 動態建立浮動按鈕
+            floatingBtn = document.createElement('div');
+            floatingBtn.className = 'floating-btn';
+            floatingBtn.title = '回到最上層';
+            floatingBtn.innerHTML = '<i class="bi bi-arrow-up-circle-fill"></i>';
+            
+            // 添加點擊事件
+            floatingBtn.addEventListener('click', window.scrollToTop);
+            
+            // 添加到頁面
+            document.body.appendChild(floatingBtn);
+        }
         
         let ticking = false;
         
@@ -340,15 +414,6 @@
         }
     }
     
-    function getCurrentPage() {
-        const path = window.location.pathname;
-        if (path.includes('news')) return 'news';
-        if (path.includes('contact')) return 'contact';
-        if (path.includes('services')) return 'services';
-        if (path.includes('about')) return 'about';
-        return 'home';
-    }
-    
     // ==========================================================================
     // 首頁特定功能
     // ==========================================================================
@@ -437,7 +502,7 @@
         });
     }
     
-    window.handleSearch = function(query) {
+    function handleSearch(query) {
         const newsItems = document.querySelectorAll('.news-item');
         const searchQuery = query.toLowerCase().trim();
         
@@ -451,7 +516,7 @@
             
             item.style.display = matches ? 'block' : 'none';
         });
-    };
+    }
     
     function setupNewsFiltering() {
         // 日期篩選
@@ -1027,12 +1092,15 @@
     window.JixiangApp = {
         showToast: showToast,
         scrollToTop: window.scrollToTop,
-        handleSearch: window.handleSearch,
+        handleSearch: handleSearch,
         shareToFacebook: window.shareToFacebook,
         shareToLine: window.shareToLine,
         copyLink: window.copyLink,
         version: '1.0.0'
     };
+    
+    // 將全域函數公開
+    window.handleSearch = handleSearch;
     
     console.log('吉翔不動產網站腳本載入完成', {
         isSafari: isSafari,
@@ -1041,70 +1109,3 @@
     });
     
 })();
-
-// ==========================================================================
-// 導航欄動態建立
-// ==========================================================================
-
-function createNavbar() {
-    // 檢查是否已有導航欄
-    if (document.querySelector('.navbar')) {
-        return; // 如果已存在就不建立
-    }
-    
-    const navbar = document.createElement('nav');
-    navbar.className = 'navbar navbar-expand-lg';
-    
-    const currentPage = getCurrentPage();
-    
-    navbar.innerHTML = `
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-house-heart-fill me-2"></i>
-                吉翔不動產有限公司
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="選單">
-                <span class="custom-toggler-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link ${currentPage === 'about' ? 'active' : ''}" href="about.html">關於我們</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link ${currentPage === 'services' ? 'active' : ''}" href="services.html">服務項目</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link ${currentPage === 'news' ? 'active' : ''}" href="news.html">最新消息</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link ${currentPage === 'contact' ? 'active' : ''}" href="contact.html">聯絡我們</a>
-                    </li>
-                </ul>
-                
-                <a href="tel:02-2998-9596" class="navbar-phone">
-                    <i class="bi bi-telephone-fill me-1"></i>
-                    02-2998-9596
-                </a>
-            </div>
-        </div>
-    `;
-    
-    // 插入到 body 開頭
-    document.body.insertBefore(navbar, document.body.firstChild);
-}
-
-    // 對外公開的 API (這段本來就存在)
-    window.JixiangApp = {
-        showToast: showToast,
-        scrollToTop: window.scrollToTop,
-        // ...其他現有內容
-    };
-
-})(); // 這是最後一行
