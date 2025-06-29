@@ -1,10 +1,10 @@
 /* ==========================================================================
-   導航欄樣式
+   導航欄樣式 - 配合 Bootstrap 和模組化重構
    ========================================================================== */
 
 .navbar {
     /* Safari backdrop-filter 後備 */
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95) !important;
     /* Safari 前綴 */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -19,7 +19,7 @@
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.98) !important;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
@@ -41,6 +41,14 @@
 .navbar-brand img {
     height: 40px;
     margin-right: var(--spacing-sm);
+}
+
+/* Bootstrap 容器覆蓋 */
+.navbar .container {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* 導航選單 */
@@ -91,7 +99,139 @@
     left: 10%;
 }
 
-/* 下拉選單 */
+/* 導航欄電話號碼 */
+.navbar-phone {
+    color: var(--primary-blue);
+    font-weight: var(--font-semibold);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--primary-blue);
+    border-radius: var(--radius-full);
+}
+
+.navbar-phone:hover {
+    color: var(--white);
+    background-color: var(--primary-blue);
+}
+
+.navbar-phone i {
+    margin-right: var(--spacing-xs);
+}
+
+/* 🆕 修正漢堡選單按鈕樣式 - 配合 JavaScript 結構 */
+.navbar-toggler {
+    border: none !important;
+    padding: 0.25rem 0.5rem;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+/* 隱藏 Bootstrap 預設圖示 */
+.navbar-toggler-icon {
+    display: none;
+}
+
+/* 🆕 自訂三條線樣式 - 配合 JavaScript */
+.custom-toggler-icon {
+    display: flex;
+    flex-direction: column;
+    width: 24px;
+    height: 18px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.custom-toggler-icon span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--primary-blue);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
+/* 🆕 點擊動畫效果 - 配合 Bootstrap 的 collapsed 類 */
+.navbar-toggler:not(.collapsed) .custom-toggler-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+    -webkit-transform: rotate(45deg) translate(5px, 6px);
+}
+
+.navbar-toggler:not(.collapsed) .custom-toggler-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggler:not(.collapsed) .custom-toggler-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+    -webkit-transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 🆕 Bootstrap 收合式選單樣式 */
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+/* 行動版導航 - 配合 Bootstrap */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-md) 0;
+    }
+    
+    .nav-item {
+        width: 100%;
+        border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .nav-link {
+        padding: var(--spacing-md) var(--spacing-lg);
+        text-align: center;
+    }
+    
+    .nav-link::after {
+        display: none;
+    }
+    
+    .navbar-phone {
+        margin-top: var(--spacing-md);
+        justify-content: center;
+    }
+    
+    /* Bootstrap 收合選單背景 */
+    .navbar-collapse {
+        background: rgba(255, 255, 255, 0.98);
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        margin-top: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-phone {
+        display: none;
+    }
+    
+    .navbar-brand {
+        font-size: var(--font-xl);
+    }
+    
+    .navbar .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* 下拉選單 (保留原有樣式) */
 .dropdown {
     position: relative;
 }
@@ -133,166 +273,6 @@
     color: var(--secondary-blue);
 }
 
-/* 導航欄電話號碼 */
-.navbar-phone {
-    color: var(--primary-blue);
-    font-weight: var(--font-semibold);
-    text-decoration: none;
-    transition: color var(--transition-normal);
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 2px solid var(--primary-blue);
-    border-radius: var(--radius-full);
-}
-
-.navbar-phone:hover {
-    color: var(--white);
-    background-color: var(--primary-blue);
-}
-
-.navbar-phone i {
-    margin-right: var(--spacing-xs);
-}
-
-/* 漢堡選單按鈕 */
-.navbar-toggler {
-    display: none;
-    background: transparent;
-    border: none;
-    padding: var(--spacing-sm);
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-}
-
-.navbar-toggler span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--primary-blue);
-    margin: 3px 0;
-    transition: all var(--transition-normal);
-    transform-origin: center;
-}
-
-.navbar-toggler.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-    -webkit-transform: rotate(45deg) translate(6px, 6px);
-}
-
-.navbar-toggler.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.navbar-toggler.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-    -webkit-transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* 導航欄容器 */
-.navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-    display: flex;
-    justify-content: between;
-    align-items: center;
-}
-
-.navbar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.navbar-menu {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-lg);
-}
-
-/* 行動版導航 */
-@media (max-width: 992px) {
-    .navbar-toggler {
-        display: flex;
-    }
-    
-    .navbar-menu {
-        position: fixed;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        box-shadow: var(--shadow-lg);
-        flex-direction: column;
-        padding: var(--spacing-lg) 0;
-        transform: translateY(-100vh);
-        -webkit-transform: translateY(-100vh);
-        transition: transform var(--transition-normal);
-        z-index: var(--z-modal);
-    }
-    
-    .navbar-menu.active {
-        transform: translateY(0);
-        -webkit-transform: translateY(0);
-    }
-    
-    .navbar-nav {
-        flex-direction: column;
-        gap: 0;
-        width: 100%;
-    }
-    
-    .nav-item {
-        width: 100%;
-        border-bottom: 1px solid var(--light-gray);
-    }
-    
-    .nav-link {
-        padding: var(--spacing-md) var(--spacing-lg);
-        text-align: center;
-    }
-    
-    .nav-link::after {
-        display: none;
-    }
-    
-    .dropdown-menu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        -webkit-transform: none;
-        box-shadow: none;
-        background: var(--light-gray);
-        margin-top: 0;
-    }
-    
-    .navbar-phone {
-        margin-top: var(--spacing-md);
-        justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar-phone {
-        display: none;
-    }
-    
-    .navbar-brand {
-        font-size: var(--font-xl);
-    }
-    
-    .navbar-container {
-        padding: 0 var(--spacing-sm);
-    }
-}
-
 /* 導航欄動畫 */
 .navbar-enter {
     transform: translateY(-100%);
@@ -303,51 +283,6 @@
     transform: translateY(0);
     -webkit-transform: translateY(0);
     transition: transform var(--transition-normal);
-}
-
-/* 搜尋框 (如果需要) */
-.navbar-search {
-    position: relative;
-    margin-left: var(--spacing-md);
-}
-
-.navbar-search input {
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 40px;
-    border: 2px solid var(--light-blue);
-    border-radius: var(--radius-full);
-    background: var(--white);
-    color: var(--text-dark);
-    font-size: var(--font-sm);
-    transition: border-color var(--transition-normal);
-    width: 200px;
-}
-
-.navbar-search input:focus {
-    outline: none;
-    border-color: var(--secondary-blue);
-}
-
-.navbar-search i {
-    position: absolute;
-    left: var(--spacing-sm);
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    color: var(--text-light);
-}
-
-/* 語言切換器 (如果需要) */
-.language-switcher {
-    margin-left: var(--spacing-md);
-}
-
-.language-switcher select {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border: 1px solid var(--light-blue);
-    border-radius: var(--radius-sm);
-    background: var(--white);
-    color: var(--text-dark);
-    font-size: var(--font-sm);
 }
 
 /* Safari 特殊修復 */
@@ -364,7 +299,7 @@
     .navbar,
     .nav-link::after,
     .dropdown-menu,
-    .navbar-toggler span {
+    .custom-toggler-icon span {
         transition: none !important;
     }
 }
