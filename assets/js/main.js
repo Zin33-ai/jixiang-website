@@ -124,8 +124,21 @@
     // ==========================================================================
     
     function setupFloatingButton() {
-        const floatingBtn = document.querySelector('.floating-btn');
-        if (!floatingBtn) return;
+         let floatingBtn = document.querySelector('.floating-btn');
+    
+    if (!floatingBtn) {
+        // 動態建立浮動按鈕
+        floatingBtn = document.createElement('div');
+        floatingBtn.className = 'floating-btn';
+        floatingBtn.title = '回到最上層';
+        floatingBtn.innerHTML = '<i class="bi bi-arrow-up-circle-fill"></i>';
+        
+        // 添加點擊事件
+        floatingBtn.addEventListener('click', window.scrollToTop);
+        
+        // 添加到頁面
+        document.body.appendChild(floatingBtn);
+    }
         
         let ticking = false;
         
