@@ -1,5 +1,5 @@
 /* ==========================================================================
-   卡片元件樣式
+   卡片元件樣式 - 完整版（包含招募相關樣式）
    ========================================================================== */
 
 /* 基礎卡片樣式 */
@@ -38,6 +38,123 @@
 }
 
 .news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: -webkit-linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+    transition: transform var(--transition-normal);
+    -webkit-transition: -webkit-transform var(--transition-normal);
+}
+
+.news-card:hover::before {
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+}
+
+/* 新聞徽章 */
+.news-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: var(--font-xs);
+    font-weight: var(--font-semibold);
+    color: var(--white);
+    z-index: 2;
+}
+
+.news-badge.hot {
+    background: var(--red);
+}
+
+.news-badge.new {
+    background: var(--green);
+}
+
+.news-badge.policy {
+    background: var(--secondary-blue);
+}
+
+.news-badge.market {
+    background: var(--red);
+}
+
+.news-badge.company {
+    background: var(--green);
+}
+
+.news-badge.knowledge {
+    background: var(--accent-orange);
+}
+
+/* 新聞圖片 */
+.news-image {
+    width: 100%;
+    height: 200px;
+    background: -webkit-linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+    background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.news-image i {
+    font-size: var(--font-5xl);
+    color: var(--white);
+    opacity: 0.7;
+}
+
+/* 新聞內容 */
+.news-content {
+    padding: var(--spacing-md);
+}
+
+.news-date {
+    color: var(--text-light);
+    font-size: var(--font-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.news-title {
+    font-size: var(--font-xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: 0.75rem;
+    line-height: var(--leading-tight);
+}
+
+.news-excerpt {
+    color: var(--text-light);
+    font-size: var(--font-sm);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* 服務卡片 */
+.service-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    transition: all var(--transition-normal);
+    border: 1px solid #E5E7EB;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+
+.service-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -334,6 +451,308 @@
     color: var(--secondary-blue);
 }
 
+/* ==========================================================================
+   🆕 招募相關卡片樣式（新增）
+   ========================================================================== */
+
+/* 職缺卡片 */
+.job-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: -webkit-linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+}
+
+/* 職缺預留位置樣式 */
+.job-placeholder {
+    border: 2px dashed var(--secondary-blue);
+    background: rgba(59, 130, 246, 0.05);
+    text-align: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.job-placeholder::before {
+    background: transparent;
+}
+
+.job-placeholder-icon {
+    font-size: var(--font-5xl);
+    color: var(--secondary-blue);
+    margin-bottom: var(--spacing-lg);
+    display: block;
+}
+
+.job-title {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.job-placeholder-text {
+    color: var(--text-light);
+    font-size: var(--font-lg);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+}
+
+/* 福利項目網格 */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+/* 福利項目卡片 */
+.benefit-item {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.benefit-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: -webkit-linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+}
+
+/* 福利預留位置樣式 */
+.benefit-placeholder {
+    border: 2px dashed var(--accent-orange);
+    background: rgba(255, 152, 0, 0.05);
+}
+
+.benefit-placeholder::before {
+    background: transparent;
+}
+
+.benefit-icon {
+    font-size: var(--font-4xl);
+    color: var(--secondary-blue);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.benefit-placeholder .benefit-icon {
+    color: var(--accent-orange);
+}
+
+.benefit-title {
+    font-size: var(--font-xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-sm);
+}
+
+.benefit-description {
+    color: var(--text-light);
+    font-size: var(--font-sm);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+}
+
+/* 申請區塊 */
+.apply-section {
+    background: -webkit-linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.apply-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.apply-section h3 {
+    color: var(--white);
+    font-size: var(--font-3xl);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    z-index: 2;
+}
+
+.apply-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-lg);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+}
+
+/* 申請預留位置樣式 */
+.apply-placeholder {
+    background: -webkit-linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.8));
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.8));
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+/* 申請按鈕 */
+.btn-apply {
+    background: var(--accent-orange);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-lg);
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-apply:hover {
+    background: #F57C00;
+    transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
+    color: var(--white);
+}
+
+.btn-apply i {
+    margin-right: var(--spacing-xs);
+}
+
+/* 申請按鈕預留位置樣式 */
+.btn-placeholder {
+    background: rgba(255, 152, 0, 0.7);
+    cursor: default;
+    pointer-events: none;
+}
+
+.btn-placeholder:hover {
+    transform: none;
+    -webkit-transform: none;
+    box-shadow: none;
+    background: rgba(255, 152, 0, 0.7);
+}
+
+/* CSR 卡片 */
+.csr-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    height: 100%;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.csr-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: -webkit-linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
+}
+
+.csr-card:hover {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+.csr-icon {
+    font-size: var(--font-5xl);
+    color: var(--secondary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.csr-title {
+    font-size: var(--font-2xl);
+    font-weight: var(--font-semibold);
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-md);
+}
+
+.csr-description {
+    color: var(--text-light);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--spacing-md);
+}
+
+.csr-activities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.csr-activities li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    line-height: var(--leading-relaxed);
+}
+
+.csr-activities li::before {
+    content: '✓';
+    color: var(--accent-orange);
+    font-weight: var(--font-semibold);
+    margin-right: var(--spacing-sm);
+    font-size: var(--font-lg);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
 /* 優勢卡片 */
 .advantage-card {
     background: var(--white);
@@ -407,6 +826,13 @@
 }
 
 /* 響應式設計 */
+@media (max-width: 992px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+}
+
 @media (max-width: 768px) {
     .news-image {
         height: 150px;
@@ -419,8 +845,27 @@
     
     .news-card,
     .contact-card,
-    .about-card {
+    .about-card,
+    .job-card {
         margin-bottom: var(--spacing-lg);
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .apply-section {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .apply-section h3 {
+        font-size: var(--font-2xl);
+    }
+    
+    .btn-apply {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: var(--font-base);
     }
 }
 
@@ -432,125 +877,11 @@
 .about-card,
 .team-card,
 .advantage-card,
-.transport-card {
+.transport-card,
+.job-card,
+.benefit-item,
+.csr-card {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     will-change: transform;
-} var(--transition-normal);
-    -webkit-transition: -webkit-transform var(--transition-normal);
 }
-
-.news-card:hover::before {
-    transform: scaleX(1);
-    -webkit-transform: scaleX(1);
-}
-
-/* 新聞徽章 */
-.news-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: var(--radius-md);
-    font-size: var(--font-xs);
-    font-weight: var(--font-semibold);
-    color: var(--white);
-    z-index: 2;
-}
-
-.news-badge.hot {
-    background: var(--red);
-}
-
-.news-badge.new {
-    background: var(--green);
-}
-
-.news-badge.policy {
-    background: var(--secondary-blue);
-}
-
-.news-badge.market {
-    background: var(--red);
-}
-
-.news-badge.company {
-    background: var(--green);
-}
-
-.news-badge.knowledge {
-    background: var(--accent-orange);
-}
-
-/* 新聞圖片 */
-.news-image {
-    width: 100%;
-    height: 200px;
-    background: -webkit-linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
-    background: linear-gradient(135deg, var(--light-blue), var(--secondary-blue));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.news-image i {
-    font-size: var(--font-5xl);
-    color: var(--white);
-    opacity: 0.7;
-}
-
-/* 新聞內容 */
-.news-content {
-    padding: var(--spacing-md);
-}
-
-.news-date {
-    color: var(--text-light);
-    font-size: var(--font-sm);
-    margin-bottom: var(--spacing-xs);
-}
-
-.news-title {
-    font-size: var(--font-xl);
-    font-weight: var(--font-semibold);
-    color: var(--primary-blue);
-    margin-bottom: 0.75rem;
-    line-height: var(--leading-tight);
-}
-
-.news-excerpt {
-    color: var(--text-light);
-    font-size: var(--font-sm);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--spacing-sm);
-}
-
-/* 服務卡片 */
-.service-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    transition: all var(--transition-normal);
-    border: 1px solid #E5E7EB;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 450px;
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: -webkit-linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
-    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-orange));
-    transform: scaleX(0);
-    -webkit-transform: scaleX(0);
-    transition: transform
