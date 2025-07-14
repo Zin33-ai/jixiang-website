@@ -1,1053 +1,390 @@
 /**
- * 吉翔不動產有限公司 - 主要 JavaScript 檔案
- * Safari 兼容優化版本
+ * 吉翔不動產有限公司 - 主要入口檔案
+ * 現代化模組架構版本 v2.1
  */
 
-(function() {
-    'use strict';
-    
-    // Safari 兼容性檢查
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    
-    // ==========================================================================
-    // 全域變數與設定
-    // ==========================================================================
-    
-    const config = {
-        observerOptions: {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        },
-        animationDelay: 200,
-        counterDuration: 2000
-    };
+// 配置文件導入
+import { APP_CONFIG } from './config/app.js';
+import { CONSTANTS } from './constants/index.js';
 
-    // ==========================================================================
-    // 工具函數
-    // ==========================================================================
+// UI 模組導入
+import { Navbar } from './modules/ui/navbar.js';
+import { AnimationManager } from './modules/ui/animations.js';
+import { FloatingButton, scrollToTop } from './modules/ui/floating-button.js';
 
-    // 獲取當前頁面名稱
-    function getCurrentPage() {
-        const path = window.location.pathname;
-        const page = path.split('/').pop();
+// 互動模組導入
+import { ScrollManager } from './modules/interaction/scroll.js';
+import { ResponsiveManager } from './modules/interaction/responsive.js';
+
+// 分析模組導入
+import { TrackingManager } from './modules/analytics/tracking.js';
+
+// 頁面特定模組導入
+import { HomePage } from './modules/pages/home.js';
+import { NewsPage } from './modules/pages/news.js';
+import { ContactPage } from './modules/pages/contact.js';
+import { ServicesPage } from './modules/pages/services.js';
+import { AboutPage } from './modules/pages/about.js';
+
+// CMS 和工具模組導入
+import { ContentLoader } from './cms/content-loader.js';
+import { getCurrentPage } from './utils/dom.js';
+import { showToast } from './utils/ui.js';
+import { isSafari, applySafariSpecificFixes } from './utils/safari.js';
+
+/**
+ * 主應用程式類別
+ */
+class JixiangApp {
+    constructor() {
+        this.modules = new Map();
+        this.config = {
+            // 使用 APP_CONFIG 中的配置
+            observerOptions: {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            },
+            animationDelay: APP_CONFIG.ui.animationDuration,
+            counterDuration: 2000,
+            ui: APP_CONFIG.ui,
+            scroll: APP_CONFIG.scroll
+        };
         
-        if (page === 'about.html') return 'about';
-        if (page === 'services.html') return 'services';
-        if (page === 'news.html') return 'news';
-        if (page === 'contact.html') return 'contact';
-        return 'index';
-    }
-
-    // ==========================================================================
-    // 導航欄動態建立
-    // ==========================================================================
-
-    function createNavbar() {
-        // 檢查是否已有導航欄
-        if (document.querySelector('.navbar')) {
-            return; // 如果已存在就不建立
+        this.currentPage = getCurrentPage();
+        this.contentLoader = new ContentLoader();
+        
+        // 調試模式
+        if (APP_CONFIG.debug) {
+            console.log('🔧 調試模式已啟用', {
+                config: this.config,
+                currentPage: this.currentPage,
+                constants: CONSTANTS
+            });
         }
         
-        const navbar = document.createElement('nav');
-        navbar.className = 'navbar navbar-expand-lg';
-        
-        const currentPage = getCurrentPage();
-        
-        navbar.innerHTML = `
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <i class="bi bi-house-heart-fill me-2"></i>
-                    吉翔不動產有限公司
-                </a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="選單">
-                    <span class="custom-toggler-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link ${currentPage === 'about' ? 'active' : ''}" href="about.html">關於我們</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ${currentPage === 'services' ? 'active' : ''}" href="services.html">服務項目</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ${currentPage === 'news' ? 'active' : ''}" href="news.html">最新消息</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ${currentPage === 'contact' ? 'active' : ''}" href="contact.html">聯絡我們</a>
-                        </li>
-                    </ul>
-                    
-                    <a href="tel:02-2998-9596" class="navbar-phone">
-                        <i class="bi bi-telephone-fill me-1"></i>
-                        02-2998-9596
-                    </a>
-                </div>
-            </div>
-        `;
-        
-        // 插入到 body 開頭
-        document.body.insertBefore(navbar, document.body.firstChild);
+        this.init();
     }
-    
-    // ==========================================================================
-    // 核心功能：頁面載入與初始化
-    // ==========================================================================
-    
-    function initializeApp() {
-        // 等待 DOM 完全載入
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', runInitialization);
-        } else {
-            runInitialization();
-        }
-    }
-    
-    function runInitialization() {
+
+    /**
+     * 初始化應用程式
+     */
+    async init() {
         try {
-            createNavbar();
-            setupIntersectionObserver();
-            setupNavbarEffects();
-            setupFloatingButton();
-            setupSmoothScrolling();
-            initializePageSpecificFeatures();
-            setupPhoneTracking();
-            setupLineTracking();
-            setupResponsiveHandling();
+            // 等待 DOM 完全載入
+            if (document.readyState === 'loading') {
+                document.addEventListener(CONSTANTS.EVENTS.READY, () => this.runInitialization());
+            } else {
+                this.runInitialization();
+            }
+        } catch (error) {
+            console.error('應用程式初始化失敗:', error);
+            this.handleInitializationError(error);
+        }
+    }
+
+    /**
+     * 執行初始化流程
+     */
+    async runInitialization() {
+        try {
+            // 第一階段：核心功能初始化
+            await this.initializeCoreModules();
             
-            // 延遲執行初始動畫
-            setTimeout(triggerInitialAnimations, 300);
+            // 第二階段：頁面特定功能初始化
+            await this.initializePageModules();
             
-            console.log('吉翔不動產網站初始化完成');
+            // 第三階段：內容載入
+            await this.loadPageContent();
+            
+            // 第四階段：最終設定
+            this.finalizeInitialization();
+            
+            if (APP_CONFIG.debug) {
+                console.log('🎉 吉翔不動產網站初始化完成', {
+                    page: this.currentPage,
+                    isSafari: isSafari,
+                    modules: Array.from(this.modules.keys()),
+                    timestamp: new Date().toISOString(),
+                    version: APP_CONFIG.version
+                });
+            }
+            
         } catch (error) {
             console.error('初始化過程中發生錯誤:', error);
+            this.handleInitializationError(error);
         }
     }
-    
-    // ==========================================================================
-    // 滾動動畫觀察器
-    // ==========================================================================
-    
-    function setupIntersectionObserver() {
-        // 檢查瀏覽器支援
-        if (!window.IntersectionObserver) {
-            // 舊版瀏覽器後備方案
-            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-                el.classList.add('visible');
-            });
-            return;
-        }
-        
-        const observer = new IntersectionObserver(handleIntersection, config.observerOptions);
-        
-        // 觀察所有需要動畫的元素
-        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-            observer.observe(el);
-        });
-    }
-    
-    function handleIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }
-    
-    // ==========================================================================
-    // 導航欄效果
-    // ==========================================================================
-    
-    function setupNavbarEffects() {
-        const navbar = document.querySelector('.navbar');
-        if (!navbar) return;
-        
-        let ticking = false;
-        
-        function updateNavbar() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
-            
-            ticking = false;
-        }
-        
-        function onScroll() {
-            if (!ticking) {
-                requestAnimationFrame(updateNavbar);
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', onScroll, { passive: true });
-    }
-    
-    // ==========================================================================
-    // 浮動按鈕功能
-    // ==========================================================================
-    
-    function setupFloatingButton() {
-        let floatingBtn = document.querySelector('.floating-btn');
 
-        if (!floatingBtn) {
-            // 動態建立浮動按鈕
-            floatingBtn = document.createElement('div');
-            floatingBtn.className = 'floating-btn';
-            floatingBtn.title = '回到最上層';
-            floatingBtn.innerHTML = '<i class="bi bi-arrow-up-circle-fill"></i>';
-            
-            // 添加點擊事件
-            floatingBtn.addEventListener('click', window.scrollToTop);
-            
-            // 添加到頁面
-            document.body.appendChild(floatingBtn);
+    /**
+     * 初始化核心模組
+     */
+    async initializeCoreModules() {
+        // 導航欄 - 使用配置
+        this.modules.set('navbar', new Navbar({
+            height: this.config.ui.navbar.height,
+            background: this.config.ui.navbar.background,
+            sticky: this.config.ui.navbar.sticky
+        }));
+        
+        // 動畫管理器
+        this.modules.set('animations', new AnimationManager(this.config.observerOptions));
+        
+        // 浮動按鈕 - 使用配置
+        this.modules.set('floatingButton', new FloatingButton({
+            size: this.config.ui.floatingButton.size,
+            position: this.config.ui.floatingButton.position,
+            offset: this.config.ui.floatingButton.offset
+        }));
+        
+        // 滾動管理器 - 使用配置
+        this.modules.set('scroll', new ScrollManager({
+            smoothScrollDuration: this.config.scroll.smoothScrollDuration,
+            offsetTop: this.config.scroll.offsetTop,
+            threshold: this.config.scroll.threshold
+        }));
+        
+        // 追蹤管理器
+        this.modules.set('tracking', new TrackingManager());
+        
+        // 響應式管理器 - 使用配置
+        this.modules.set('responsive', new ResponsiveManager({
+            breakpoints: this.config.ui.breakpoints
+        }));
+        
+        if (APP_CONFIG.debug) {
+            console.log('✅ 核心模組初始化完成');
         }
-        
-        let ticking = false;
-        
-        function updateFloatingButton() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 200) {
-                floatingBtn.style.opacity = '1';
-                floatingBtn.style.transform = 'scale(1)';
-                if (isSafari) {
-                    floatingBtn.style.webkitTransform = 'scale(1)';
-                }
-            } else {
-                floatingBtn.style.opacity = '0.7';
-                floatingBtn.style.transform = 'scale(0.9)';
-                if (isSafari) {
-                    floatingBtn.style.webkitTransform = 'scale(0.9)';
-                }
-            }
-            
-            ticking = false;
-        }
-        
-        function onScroll() {
-            if (!ticking) {
-                requestAnimationFrame(updateFloatingButton);
-                ticking = true;
-            }
-        }
-        
-        // 滾動事件
-        window.addEventListener('scroll', onScroll, { passive: true });
-        
-        // 點擊效果
-        floatingBtn.addEventListener('click', function() {
-            this.style.transform = 'scale(0.9)';
-            if (isSafari) {
-                this.style.webkitTransform = 'scale(0.9)';
-            }
-            
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-                if (isSafari) {
-                    this.style.webkitTransform = 'scale(1)';
-                }
-            }, 150);
-        });
     }
-    
-    // ==========================================================================
-    // 回到頂部功能
-    // ==========================================================================
-    
-    window.scrollToTop = function() {
-        if ('scrollBehavior' in document.documentElement.style) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        } else {
-            // Safari 舊版後備方案
-            smoothScrollTo(0, 600);
-        }
-    };
-    
-    function smoothScrollTo(targetY, duration) {
-        const startY = window.pageYOffset;
-        const diff = targetY - startY;
-        const startTime = performance.now();
+
+    /**
+     * 初始化頁面特定模組
+     */
+    async initializePageModules() {
+        let pageModule = null;
         
-        function step(timestamp) {
-            const elapsed = timestamp - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeProgress = easeInOutCubic(progress);
-            
-            window.scrollTo(0, startY + diff * easeProgress);
-            
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            }
-        }
-        
-        requestAnimationFrame(step);
-    }
-    
-    function easeInOutCubic(t) {
-        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    }
-    
-    // ==========================================================================
-    // 平滑滾動功能
-    // ==========================================================================
-    
-    function setupSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        switch (this.currentPage) {
+            case 'home':
+            case 'index':
+                pageModule = new HomePage();
+                break;
                 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+            case 'news':
+                pageModule = new NewsPage();
+                break;
                 
-                if (targetElement) {
-                    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
-                    const offsetTop = targetElement.offsetTop - navbarHeight - 20;
+            case 'contact':
+                pageModule = new ContactPage();
+                break;
+                
+            case 'services':
+                pageModule = new ServicesPage();
+                break;
+                
+            case 'about':
+                pageModule = new AboutPage();
+                break;
+                
+            default:
+                if (APP_CONFIG.debug) {
+                    console.warn('未知的頁面類型:', this.currentPage);
+                }
+        }
+        
+        if (pageModule) {
+            this.modules.set('page', pageModule);
+        }
+        
+        if (APP_CONFIG.debug) {
+            console.log(`✅ 頁面模組 (${this.currentPage}) 初始化完成`);
+        }
+    }
+
+    /**
+     * 載入頁面內容
+     */
+    async loadPageContent() {
+        try {
+            // 根據頁面類型載入對應內容
+            switch (this.currentPage) {
+                case 'news':
+                    await this.loadNewsContent();
+                    break;
                     
-                    if ('scrollBehavior' in document.documentElement.style) {
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        smoothScrollTo(offsetTop, 800);
-                    }
-                }
-            });
-        });
-    }
-    
-    // ==========================================================================
-    // 數字計數動畫
-    // ==========================================================================
-    
-    function initializeCounters() {
-        const counters = document.querySelectorAll('.counter[data-count]');
-        
-        const counterObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        });
-        
-        counters.forEach(counter => {
-            counterObserver.observe(counter);
-        });
-    }
-    
-    function animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-count'));
-        const duration = config.counterDuration;
-        const step = target / (duration / 16);
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-                element.textContent = target;
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current);
+                case 'services':
+                    await this.loadServicesContent();
+                    break;
+                    
+                case 'about':
+                    await this.loadAboutContent();
+                    break;
+                    
+                case 'home':
+                case 'index':
+                    await this.loadHomeContent();
+                    break;
             }
-        }, 16);
+            
+            if (APP_CONFIG.debug) {
+                console.log('✅ 頁面內容載入完成');
+            }
+        } catch (error) {
+            console.warn('內容載入失敗:', error);
+            // 內容載入失敗不應阻止其他功能
+        }
     }
-    
-    // ==========================================================================
-    // 初始動畫觸發
-    // ==========================================================================
-    
-    function triggerInitialAnimations() {
+
+    /**
+     * 載入新聞頁面內容
+     */
+    async loadNewsContent() {
+        const newsContainer = document.querySelector(CONSTANTS.SELECTORS.NEWS_CONTAINER || '#dynamic-news-container');
+        if (newsContainer) {
+            const newsData = await this.contentLoader.loadNews();
+            this.contentLoader.renderNews(newsData, newsContainer.id);
+        }
+    }
+
+    /**
+     * 載入服務頁面內容
+     */
+    async loadServicesContent() {
+        const servicesContainer = document.querySelector(CONSTANTS.SELECTORS.SERVICES_CONTAINER || '#dynamic-services-container');
+        if (servicesContainer) {
+            const servicesData = await this.contentLoader.loadServices();
+            this.contentLoader.renderServices(servicesData, servicesContainer.id);
+        }
+    }
+
+    /**
+     * 載入關於我們頁面內容
+     */
+    async loadAboutContent() {
+        // 載入團隊成員
+        const teamData = await this.contentLoader.loadTeamMembers();
+        // 載入見證
+        const testimonialsData = await this.contentLoader.loadTestimonials();
+        // 載入統計資料
+        const statsData = await this.contentLoader.getStatistics();
+        
+        // 更新統計數字
+        this.updateStatistics(statsData);
+    }
+
+    /**
+     * 載入首頁內容
+     */
+    async loadHomeContent() {
+        // 載入最新新聞
+        const latestNews = await this.contentLoader.loadNews({ limit: 3 });
+        
+        // 載入服務概覽
+        const services = await this.contentLoader.loadServices();
+        
+        // 載入統計資料
+        const stats = await this.contentLoader.getStatistics();
+        this.updateStatistics(stats);
+    }
+
+    /**
+     * 更新統計數字
+     */
+    updateStatistics(statsData) {
+        Object.entries(statsData).forEach(([key, value]) => {
+            const element = document.querySelector(`[${CONSTANTS.DATA_ATTRIBUTES.STAT || 'data-stat'}="${key}"]`);
+            if (element && typeof value === 'number') {
+                element.setAttribute('data-count', value);
+                element.textContent = '0'; // 重置為 0，讓動畫從 0 開始
+            }
+        });
+    }
+
+    /**
+     * 最終初始化設定
+     */
+    finalizeInitialization() {
+        // 設定全域函數
+        this.setupGlobalFunctions();
+        
+        // 應用 Safari 特殊修復
+        applySafariSpecificFixes();
+        
+        // 設定輔助功能
+        this.setupAccessibilityFeatures();
+        
+        // 延遲執行初始動畫
+        setTimeout(() => this.triggerInitialAnimations(), 300);
+        
+        // 設定錯誤處理
+        this.setupErrorHandling();
+    }
+
+    /**
+     * 設定全域函數
+     */
+    setupGlobalFunctions() {
+        // 導出到全域範圍供 HTML 調用
+        window.JixiangApp = {
+            showToast,
+            scrollToTop,
+            version: APP_CONFIG.version,
+            app: this,
+            config: APP_CONFIG,
+            constants: CONSTANTS
+        };
+
+        // 設定常用的全域函數
+        window.scrollToTop = scrollToTop;
+        window.showToast = showToast;
+        
+        // 頁面特定的全域函數會由各頁面模組自行設定
+    }
+
+    /**
+     * 觸發初始動畫
+     */
+    triggerInitialAnimations() {
         // 頁面頂部區域的動畫
         const headerElements = document.querySelectorAll('.page-header .fade-in, .hero-section .fade-in');
         headerElements.forEach((el, index) => {
             setTimeout(() => {
-                el.classList.add('visible');
-            }, index * config.animationDelay);
+                el.classList.add(CONSTANTS.CLASSES.VISIBLE);
+            }, index * this.config.animationDelay);
         });
-        
-        // 初始化計數器
-        if (document.querySelector('.counter[data-count]')) {
-            initializeCounters();
+
+        // 如果有計數器，觸發計數動畫
+        const animationManager = this.modules.get('animations');
+        if (animationManager) {
+            animationManager.initializeCounters();
         }
     }
-    
-    // ==========================================================================
-    // 頁面特定功能初始化
-    // ==========================================================================
-    
-    function initializePageSpecificFeatures() {
-        const currentPage = getCurrentPage();
-        
-        switch (currentPage) {
-            case 'news':
-                initializeNewsFeatures();
-                break;
-            case 'contact':
-                initializeContactFeatures();
-                break;
-            case 'services':
-                initializeServicesFeatures();
-                break;
-            case 'about':
-                initializeAboutFeatures();
-                break;
-            default:
-                initializeHomeFeatures();
-        }
-    }
-    
-    // ==========================================================================
-    // 首頁特定功能
-    // ==========================================================================
-    
-    function initializeHomeFeatures() {
-        // 首頁特有功能可在此添加
-        console.log('首頁功能已初始化');
-    }
-    
-    // ==========================================================================
-    // 新聞頁面功能
-    // ==========================================================================
-    
-    function initializeNewsFeatures() {
-        setupCategoryFiltering();
-        setupSearchFunctionality();
-        setupNewsFiltering();
-        setupSocialSharing();
-        
-        console.log('新聞頁面功能已初始化');
-    }
-    
-    function setupCategoryFiltering() {
-        document.querySelectorAll('.category-tab').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // 更新活動狀態
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                const category = this.getAttribute('data-category');
-                filterNewsByCategory(category);
-            });
-        });
-    }
-    
-    function filterNewsByCategory(category) {
-        const newsItems = document.querySelectorAll('.news-item');
-        
-        newsItems.forEach(item => {
-            const itemCategory = item.getAttribute('data-category');
-            const shouldShow = category === 'all' || itemCategory === category;
-            
-            if (shouldShow) {
-                item.style.display = 'block';
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                    if (isSafari) {
-                        item.style.webkitTransform = 'translateY(0)';
-                    }
-                }, 100);
-            } else {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                if (isSafari) {
-                    item.style.webkitTransform = 'translateY(20px)';
-                }
-                setTimeout(() => {
-                    item.style.display = 'none';
-                }, 300);
-            }
-        });
-    }
-    
-    function setupSearchFunctionality() {
-        const searchInput = document.querySelector('.search-input');
-        if (!searchInput) return;
-        
-        let searchTimeout;
-        
-        searchInput.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                handleSearch(this.value);
-            }, 300);
-        });
-        
-        // 支援鍵盤搜尋
-        searchInput.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                clearTimeout(searchTimeout);
-                handleSearch(this.value);
-            }
-        });
-    }
-    
-    function handleSearch(query) {
-        const newsItems = document.querySelectorAll('.news-item');
-        const searchQuery = query.toLowerCase().trim();
-        
-        newsItems.forEach(item => {
-            const title = item.querySelector('.news-title')?.textContent.toLowerCase() || '';
-            const excerpt = item.querySelector('.news-excerpt')?.textContent.toLowerCase() || '';
-            
-            const matches = searchQuery === '' || 
-                           title.includes(searchQuery) || 
-                           excerpt.includes(searchQuery);
-            
-            item.style.display = matches ? 'block' : 'none';
-        });
-    }
-    
-    function setupNewsFiltering() {
-        // 日期篩選
-        window.handleDateFilter = function(period) {
-            const newsItems = document.querySelectorAll('.news-item');
-            const now = new Date();
-            
-            newsItems.forEach(item => {
-                const itemDateStr = item.getAttribute('data-date');
-                if (!itemDateStr) return;
-                
-                const itemDate = new Date(itemDateStr);
-                let shouldShow = true;
-                
-                switch (period) {
-                    case 'month':
-                        const oneMonthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-                        shouldShow = itemDate >= oneMonthAgo;
-                        break;
-                    case 'quarter':
-                        const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
-                        shouldShow = itemDate >= threeMonthsAgo;
-                        break;
-                    case 'year':
-                        const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
-                        shouldShow = itemDate >= oneYearAgo;
-                        break;
-                    default:
-                        shouldShow = true;
-                }
-                
-                item.style.display = shouldShow ? 'block' : 'none';
-            });
-        };
-        
-        // 排序功能
-        window.handleSort = function(sortType) {
-            const newsList = document.querySelector('.news-list');
-            const newsItems = Array.from(document.querySelectorAll('.news-item'));
-            const paginationSection = document.querySelector('.pagination-section');
-            
-            newsItems.sort((a, b) => {
-                const dateA = new Date(a.getAttribute('data-date'));
-                const dateB = new Date(b.getAttribute('data-date'));
-                
-                switch (sortType) {
-                    case 'date-desc':
-                        return dateB - dateA;
-                    case 'date-asc':
-                        return dateA - dateB;
-                    case 'popular':
-                        // 暫時使用隨機排序作為示例
-                        return Math.random() - 0.5;
-                    default:
-                        return 0;
-                }
-            });
-            
-            // 重新排列 DOM 元素
-            newsItems.forEach(item => {
-                newsList.insertBefore(item, paginationSection);
-            });
-        };
-    }
-    
-    function setupSocialSharing() {
-        // Facebook 分享
-        window.shareToFacebook = function() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`;
-            openShareWindow(shareUrl);
-            trackSocialShare('facebook');
-        };
-        
-        // LINE 分享
-        window.shareToLine = function() {
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
-            const shareUrl = `https://social-plugins.line.me/lineit/share?url=${url}&text=${title}`;
-            openShareWindow(shareUrl);
-            trackSocialShare('line');
-        };
-        
-        // 複製連結
-        window.copyLink = function() {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    showToast('連結已複製到剪貼簿');
-                }).catch(() => {
-                    fallbackCopyTextToClipboard(window.location.href);
-                });
-            } else {
-                fallbackCopyTextToClipboard(window.location.href);
-            }
-            trackSocialShare('copy');
-        };
-        
-        function openShareWindow(url) {
-            const width = 600;
-            const height = 400;
-            const left = (window.innerWidth - width) / 2;
-            const top = (window.innerHeight - height) / 2;
-            
-            window.open(url, '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
-        }
-        
-        function fallbackCopyTextToClipboard(text) {
-            const textArea = document.createElement('textarea');
-            textArea.value = text;
-            textArea.style.position = 'fixed';
-            textArea.style.top = '0';
-            textArea.style.left = '0';
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            textArea.style.padding = '0';
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            textArea.style.background = 'transparent';
-            
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                showToast('連結已複製到剪貼簿');
-            } catch (err) {
-                showToast('複製失敗，請手動複製連結');
-            }
-            
-            document.body.removeChild(textArea);
-        }
-        
-        function trackSocialShare(platform) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'social_share', {
-                    'event_category': 'social',
-                    'event_label': platform
-                });
-            }
-        }
-    }
-    
-    // ==========================================================================
-    // 聯絡頁面功能
-    // ==========================================================================
-    
-    function initializeContactFeatures() {
-        setupLineAnimations();
-        setupMapInteractions();
-        
-        console.log('聯絡頁面功能已初始化');
-    }
-    
-    function setupLineAnimations() {
-        const lineCards = document.querySelectorAll('.line-card.pulse-animation');
-        const lineSection = document.querySelector('.line-contact-section');
-        
-        if (!lineSection || lineCards.length === 0) return;
-        
-        const lineObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // 進入視窗後延遲停止脈衝動畫
-                    setTimeout(() => {
-                        lineCards.forEach(card => {
-                            card.classList.remove('pulse-animation');
-                        });
-                    }, 3000);
-                }
-            });
-        });
-        
-        lineObserver.observe(lineSection);
-    }
-    
-    function setupMapInteractions() {
-        const mapIframe = document.querySelector('.map-container iframe');
-        
-        if (mapIframe) {
-            mapIframe.addEventListener('load', function() {
-                console.log('地圖載入完成');
-            });
-        }
-    }
-    
-    // ==========================================================================
-    // 服務頁面功能
-    // ==========================================================================
-    
-    function initializeServicesFeatures() {
-        // 服務頁面特有功能
-        console.log('服務頁面功能已初始化');
-    }
-    
-    // ==========================================================================
-    // 關於我們頁面功能
-    // ==========================================================================
-    
-    function initializeAboutFeatures() {
-        // 關於我們頁面特有功能
-        console.log('關於我們頁面功能已初始化');
-    }
-    
-    // ==========================================================================
-    // 電話點擊追蹤
-    // ==========================================================================
-    
-    function setupPhoneTracking() {
-        function trackPhoneClick() {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'phone_click', {
-                    'event_category': 'contact',
-                    'event_label': '02-2998-9596'
-                });
-            }
-        }
-        
-        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-            link.addEventListener('click', trackPhoneClick);
-        });
-    }
-    
-    // ==========================================================================
-    // LINE 點擊追蹤
-    // ==========================================================================
-    
-    function setupLineTracking() {
-        function trackLineClick(type) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'line_click', {
-                    'event_category': 'contact',
-                    'event_label': type
-                });
-            }
-        }
-        
-        document.querySelectorAll('a[href*="lin.ee"]').forEach(link => {
-            link.addEventListener('click', function() {
-                const isLandlord = this.href.includes('elZYPEn');
-                trackLineClick(isLandlord ? 'landlord' : 'tenant');
-            });
-        });
-        
-        // Facebook 點擊追蹤
-        document.querySelectorAll('a[href*="facebook.com"]').forEach(link => {
-            link.addEventListener('click', function() {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'facebook_click', {
-                        'event_category': 'social',
-                        'event_label': 'facebook_page'
-                    });
-                }
-            });
-        });
-        
-        // 小版 LINE 按鈕追蹤
-        document.querySelectorAll('.line-btn-small').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const isLandlord = this.href.includes('elZYPEn');
-                trackLineClick(isLandlord ? 'landlord_small' : 'tenant_small');
-            });
-        });
-    }
-    
-    // ==========================================================================
-    // 響應式處理
-    // ==========================================================================
-    
-    function setupResponsiveHandling() {
-        let resizeTimeout;
-        
-        function handleResize() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const isMobile = window.innerWidth < 768;
-                const isTablet = window.innerWidth < 992;
-                
-                handleMobileOptimizations(isMobile);
-                handleTabletOptimizations(isTablet);
-                handleMapResize(isMobile);
-                
-            }, 250);
-        }
-        
-        window.addEventListener('resize', handleResize);
-        
-        // 初始執行
-        handleResize();
-    }
-    
-    function handleMobileOptimizations(isMobile) {
-        const heroTitle = document.querySelector('.hero-title');
-        const pageTitle = document.querySelector('.page-title');
-        
-        if (heroTitle) {
-            heroTitle.style.fontSize = isMobile ? '2.5rem' : '3.5rem';
-        }
-        
-        if (pageTitle) {
-            pageTitle.style.fontSize = isMobile ? '2.5rem' : '3rem';
-        }
-        
-        // 新聞頁面 footer 調整
-        if (isMobile) {
-            document.querySelectorAll('.news-footer').forEach(footer => {
-                footer.style.flexDirection = 'column';
-                footer.style.alignItems = 'flex-start';
-                footer.style.gap = '1rem';
-            });
-        } else {
-            document.querySelectorAll('.news-footer').forEach(footer => {
-                footer.style.flexDirection = 'row';
-                footer.style.alignItems = 'center';
-                footer.style.justifyContent = 'space-between';
-                footer.style.gap = '0';
-            });
-        }
-    }
-    
-    function handleTabletOptimizations(isTablet) {
-        // 平板優化邏輯
-    }
-    
-    function handleMapResize(isMobile) {
-        const mapContainer = document.querySelector('.map-container');
-        if (mapContainer) {
-            mapContainer.style.height = isMobile ? '300px' : '450px';
-        }
-    }
-    
-    // ==========================================================================
-    // 工具函數
-    // ==========================================================================
-    
-    function showToast(message, duration = 2000) {
-        // 檢查是否已有 toast
-        const existingToast = document.querySelector('.custom-toast');
-        if (existingToast) {
-            existingToast.remove();
-        }
-        
-        const toast = document.createElement('div');
-        toast.className = 'custom-toast';
-        toast.textContent = message;
-        
-        // Toast 樣式
-        Object.assign(toast.style, {
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: 'var(--primary-blue, #1E3A8A)',
-            color: 'white',
-            padding: '1rem 2rem',
-            borderRadius: '8px',
-            zIndex: '9999',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            fontSize: '1rem',
-            fontWeight: '500',
-            maxWidth: '300px',
-            textAlign: 'center',
-            opacity: '0',
-            transition: 'opacity 0.3s ease'
-        });
-        
-        // Safari 兼容
-        if (isSafari) {
-            toast.style.webkitTransform = 'translate(-50%, -50%)';
-            toast.style.webkitTransition = 'opacity 0.3s ease';
-        }
-        
-        document.body.appendChild(toast);
-        
-        // 淡入
-        requestAnimationFrame(() => {
-            toast.style.opacity = '1';
-        });
-        
-        // 自動移除
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
-                }
-            }, 300);
-        }, duration);
-    }
-    
-    function debounce(func, wait, immediate) {
-        let timeout;
-        return function executedFunction() {
-            const context = this;
-            const args = arguments;
-            
-            const later = function() {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            
-            const callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            
-            if (callNow) func.apply(context, args);
-        };
-    }
-    
-    function throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-    
-    // ==========================================================================
-    // 性能監控
-    // ==========================================================================
-    
-    function setupPerformanceMonitoring() {
-        // 頁面載入時間監控
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                if (performance && performance.timing) {
-                    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                    console.log(`頁面載入時間: ${loadTime}ms`);
-                    
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'page_load_time', {
-                            'event_category': 'performance',
-                            'value': Math.round(loadTime)
-                        });
-                    }
-                }
-            }, 0);
-        });
-        
-        // 錯誤監控
-        window.addEventListener('error', function(e) {
-            console.error('JavaScript 錯誤:', e.error);
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'js_error', {
-                    'event_category': 'error',
-                    'event_label': e.message,
-                    'value': 1
-                });
-            }
-        });
-        
-        // Promise 錯誤監控
-        window.addEventListener('unhandledrejection', function(e) {
-            console.error('未處理的 Promise 錯誤:', e.reason);
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'promise_error', {
-                    'event_category': 'error',
-                    'event_label': e.reason?.toString() || 'Unknown promise error',
-                    'value': 1
-                });
-            }
-        });
-    }
-    
-    // ==========================================================================
-    // Safari 特殊處理
-    // ==========================================================================
-    
-    function applySafariSpecificFixes() {
-        if (!isSafari) return;
-        
-        // Safari 中的 backdrop-filter 後備處理
-        const elementsWithBackdrop = document.querySelectorAll('.navbar, .map-overlay, .hours-item');
-        elementsWithBackdrop.forEach(el => {
-            if (!CSS.supports('backdrop-filter', 'blur(10px)')) {
-                el.style.background = 'rgba(255, 255, 255, 0.98)';
-            }
-        });
-        
-        // Safari 中的 CSS Grid 後備處理
-        const gridElements = document.querySelectorAll('.hours-grid, .benefits-grid');
-        gridElements.forEach(el => {
-            if (!CSS.supports('display', 'grid')) {
-                el.style.display = 'flex';
-                el.style.flexWrap = 'wrap';
-            }
-        });
-        
-        // Safari 滾動性能優化
-        document.body.style.webkitOverflowScrolling = 'touch';
-        
-        console.log('Safari 特殊修復已應用');
-    }
-    
-    // ==========================================================================
-    // 輔助功能支援
-    // ==========================================================================
-    
-    function setupAccessibilityFeatures() {
+
+    /**
+     * 設定輔助功能支援
+     */
+    setupAccessibilityFeatures() {
         // 鍵盤導航支援
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener(CONSTANTS.EVENTS.KEYDOWN || 'keydown', (e) => {
             // ESC 鍵關閉任何彈出內容
             if (e.key === 'Escape') {
-                const activeModals = document.querySelectorAll('.modal.show, .dropdown.show');
+                const activeModals = document.querySelectorAll('.modal.show, .dropdown.show, .inquiry-modal.show');
                 activeModals.forEach(modal => {
-                    // 觸發關閉事件或移除 show 類別
                     modal.classList.remove('show');
                 });
             }
-            
-            // Tab 鍵焦點管理
-            if (e.key === 'Tab') {
-                // 確保焦點在可見元素上
-                const focusableElements = document.querySelectorAll(
-                    'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled])'
-                );
-                
-                // 可以在此處添加更多的焦點管理邏輯
-            }
         });
-        
+
         // 為動態內容添加適當的 ARIA 標籤
+        this.setupAriaLabels();
+        
+        // 焦點管理
+        this.setupFocusManagement();
+    }
+
+    /**
+     * 設定 ARIA 標籤
+     */
+    setupAriaLabels() {
+        // 新聞項目
         const newsItems = document.querySelectorAll('.news-item');
         newsItems.forEach((item, index) => {
             if (!item.getAttribute('role')) {
@@ -1060,8 +397,8 @@
                 }
             }
         });
-        
-        // 為分享按鈕添加更好的標籤
+
+        // 分享按鈕
         const shareButtons = document.querySelectorAll('.share-btn');
         shareButtons.forEach(btn => {
             const platform = btn.classList.contains('facebook') ? 'Facebook' : 
@@ -1071,41 +408,164 @@
             }
         });
     }
-    
-    // ==========================================================================
-    // 應用初始化
-    // ==========================================================================
-    
-    // 立即執行初始化
-    initializeApp();
-    
-    // 設定性能監控
-    setupPerformanceMonitoring();
-    
-    // 應用 Safari 特殊修復
-    applySafariSpecificFixes();
-    
-    // 設定輔助功能
-    setupAccessibilityFeatures();
-    
-    // 對外公開的 API
-    window.JixiangApp = {
-        showToast: showToast,
-        scrollToTop: window.scrollToTop,
-        handleSearch: handleSearch,
-        shareToFacebook: window.shareToFacebook,
-        shareToLine: window.shareToLine,
-        copyLink: window.copyLink,
-        version: '1.0.0'
-    };
-    
-    // 將全域函數公開
-    window.handleSearch = handleSearch;
-    
-    console.log('吉翔不動產網站腳本載入完成', {
-        isSafari: isSafari,
-        version: '1.0.0',
-        timestamp: new Date().toISOString()
-    });
-    
-})();
+
+    /**
+     * 設定焦點管理
+     */
+    setupFocusManagement() {
+        // 跳過連結支援
+        const skipLink = document.createElement('a');
+        skipLink.href = CONSTANTS.SELECTORS.MAIN_CONTENT || '#main-content';
+        skipLink.textContent = '跳至主要內容';
+        skipLink.className = 'skip-link';
+        skipLink.style.cssText = `
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 9999;
+            border-radius: 4px;
+        `;
+        
+        skipLink.addEventListener('focus', () => {
+            skipLink.style.top = '6px';
+        });
+        
+        skipLink.addEventListener('blur', () => {
+            skipLink.style.top = '-40px';
+        });
+        
+        document.body.insertBefore(skipLink, document.body.firstChild);
+    }
+
+    /**
+     * 設定錯誤處理
+     */
+    setupErrorHandling() {
+        // 全域錯誤處理
+        window.addEventListener('error', (e) => {
+            if (APP_CONFIG.debug) {
+                console.error('全域錯誤:', e.error);
+            }
+            
+            // 不要向用戶顯示技術錯誤，只記錄
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'js_error', {
+                    event_category: 'error',
+                    event_label: e.message,
+                    value: 1
+                });
+            }
+        });
+
+        // Promise 錯誤處理
+        window.addEventListener('unhandledrejection', (e) => {
+            if (APP_CONFIG.debug) {
+                console.error('未處理的 Promise 錯誤:', e.reason);
+            }
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'promise_error', {
+                    event_category: 'error',
+                    event_label: e.reason?.toString() || 'Unknown promise error',
+                    value: 1
+                });
+            }
+        });
+    }
+
+    /**
+     * 處理初始化錯誤
+     */
+    handleInitializationError(error) {
+        console.error('初始化失敗:', error);
+        
+        // 顯示友善的錯誤訊息
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'initialization-error';
+        errorMessage.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            z-index: 9999;
+            max-width: 400px;
+            text-align: center;
+        `;
+        errorMessage.innerHTML = `
+            <h4>載入中遇到問題</h4>
+            <p>請重新整理頁面，或稍後再試。</p>
+            <button onclick="window.location.reload()" style="
+                background: #721c24;
+                color: white;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 0.5rem;
+            ">重新載入</button>
+        `;
+        
+        document.body.appendChild(errorMessage);
+        
+        // 5秒後自動移除錯誤訊息
+        setTimeout(() => {
+            if (errorMessage.parentNode) {
+                errorMessage.parentNode.removeChild(errorMessage);
+            }
+        }, 5000);
+    }
+
+    /**
+     * 獲取模組實例
+     * @param {string} moduleName - 模組名稱
+     * @returns {Object|null} 模組實例
+     */
+    getModule(moduleName) {
+        return this.modules.get(moduleName) || null;
+    }
+
+    /**
+     * 重新載入頁面內容
+     * @param {string} contentType - 內容類型
+     */
+    async reloadContent(contentType) {
+        try {
+            const newContent = await this.contentLoader.reloadContent(contentType);
+            
+            // 重新渲染內容
+            switch (contentType) {
+                case 'news':
+                    this.contentLoader.renderNews(newContent);
+                    break;
+                case 'services':
+                    this.contentLoader.renderServices(newContent);
+                    break;
+            }
+            
+            // 重新初始化動畫
+            const animationManager = this.modules.get('animations');
+            if (animationManager) {
+                animationManager.observeElements();
+            }
+            
+        } catch (error) {
+            console.error('重新載入內容失敗:', error);
+            showToast('載入失敗，請重新整理頁面', 3000);
+        }
+    }
+}
+
+// 創建並啟動應用程式
+const app = new JixiangApp();
+
+// 導出應用程式實例供其他地方使用
+export default app;
