@@ -4,8 +4,8 @@
  * 優化版本 - 更好的相容性和錯誤處理
  */
 
-import { isSafari } from '../utils/safari.js';
-import { smoothScrollTo } from './scroll.js';
+import { isSafari } from '../../utils/safari.js';
+import { scrollToElement } from '../../utils/ui.js';
 
 export class FloatingButton {
     constructor(options = {}) {
@@ -84,7 +84,7 @@ export class FloatingButton {
         Object.assign(this.button.style, defaultStyles);
         
         // Safari 相容性
-        if (isSafari) {
+        if (isSafari()) {
             this.button.style.webkitTransform = 'scale(0.9)';
             this.button.style.webkitTransition = 'all 0.3s ease';
         }
@@ -150,14 +150,14 @@ export class FloatingButton {
             this.button.style.opacity = '1';
             this.button.style.transform = 'scale(1)';
             this.button.style.pointerEvents = 'auto';
-            if (isSafari) {
+            if (isSafari()) {
                 this.button.style.webkitTransform = 'scale(1)';
             }
         } else {
             this.button.style.opacity = '0';
             this.button.style.transform = 'scale(0.9)';
             this.button.style.pointerEvents = 'none';
-            if (isSafari) {
+            if (isSafari()) {
                 this.button.style.webkitTransform = 'scale(0.9)';
             }
         }
@@ -190,7 +190,7 @@ export class FloatingButton {
         // 觸控設備的反饋效果
         if (this.button) {
             this.button.style.transform = 'scale(0.95)';
-            if (isSafari) {
+            if (isSafari()) {
                 this.button.style.webkitTransform = 'scale(0.95)';
             }
         }
@@ -201,14 +201,14 @@ export class FloatingButton {
 
         // 點擊縮放效果
         this.button.style.transform = 'scale(0.9)';
-        if (isSafari) {
+        if (isSafari()) {
             this.button.style.webkitTransform = 'scale(0.9)';
         }
         
         setTimeout(() => {
             if (this.button && !this.isDestroyed) {
                 this.button.style.transform = 'scale(1)';
-                if (isSafari) {
+                if (isSafari()) {
                     this.button.style.webkitTransform = 'scale(1)';
                 }
             }
@@ -224,13 +224,47 @@ export class FloatingButton {
                 });
             } else {
                 // 舊版瀏覽器後備方案
-                smoothScrollTo(0, 600);
+                this.smoothScrollTo(0, 600);
             }
         } catch (error) {
             console.error('滾動到頂部失敗:', error);
             // 最後的後備方案
             window.scrollTo(0, 0);
         }
+    }
+
+    /**
+     * 自定義平滑滾動實現
+     * @param {number} targetY - 目標 Y 座標
+     * @param {number} duration - 動畫時間
+     */
+    smoothScrollTo(targetY, duration) {
+        const startY = window.pageYOffset;
+        const diff = targetY - startY;
+        const startTime = performance.now();
+        
+        function step(timestamp) {
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = this.easeInOutCubic(progress);
+            
+            window.scrollTo(0, startY + diff * easeProgress);
+            
+            if (progress < 1) {
+                requestAnimationFrame(step.bind(this));
+            }
+        }
+        
+        requestAnimationFrame(step.bind(this));
+    }
+
+    /**
+     * 緩動函數
+     * @param {number} t - 時間進度 (0-1)
+     * @returns {number} 緩動後的進度
+     */
+    easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
     }
 
     trackClick() {
@@ -297,20 +331,57 @@ export class FloatingButton {
 }
 
 // 導出全域函數供其他地方使用
-export function scrollToTop() {
+export function scrollToTop(options = {}) {
+    const { behavior = 'smooth', duration = 600 } = options;
+    
     try {
-        if ('scrollBehavior' in document.documentElement.style) {
+        if ('scrollBehavior' in document.documentElement.style && behavior === 'smooth') {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         } else {
-            smoothScrollTo(0, 600);
+            // 自定義平滑滾動
+            smoothScrollTo(0, duration);
         }
     } catch (error) {
         console.error('全域 scrollToTop 失敗:', error);
         window.scrollTo(0, 0);
     }
+}
+
+/**
+ * 自定義平滑滾動實現
+ * @param {number} targetY - 目標 Y 座標
+ * @param {number} duration - 動畫時間
+ */
+function smoothScrollTo(targetY, duration) {
+    const startY = window.pageYOffset;
+    const diff = targetY - startY;
+    const startTime = performance.now();
+    
+    function step(timestamp) {
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startY + diff * easeProgress);
+        
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+    
+    requestAnimationFrame(step);
+}
+
+/**
+ * 緩動函數
+ * @param {number} t - 時間進度 (0-1)
+ * @returns {number} 緩動後的進度
+ */
+function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 }
 
 // 導出創建實例的便利函數
