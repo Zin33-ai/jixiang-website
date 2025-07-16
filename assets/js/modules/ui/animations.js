@@ -3,9 +3,9 @@
  * 處理滾動動畫、Intersection Observer 和各種視覺效果
  */
 
-import { throttle } from '../utils/ui.js';
-import { isSafari } from '../utils/safari.js';
-import { safeQuerySelectorAll } from '../utils/dom.js';
+import { throttle } from '../../utils/ui.js';
+import { isSafari } from '../../utils/safari.js';
+import { safeQuerySelectorAll } from '../../utils/dom.js';
 
 // 動畫設定
 const ANIMATION_CONFIG = {
@@ -482,6 +482,20 @@ export function initAnimations(options = {}) {
 }
 
 /**
+ * 初始化計數器
+ */
+export function initializeCounters() {
+    setupCounterAnimations();
+}
+
+/**
+ * 觀察元素
+ */
+export function observeElements() {
+    setupIntersectionObserver();
+}
+
+/**
  * 銷毀動畫系統（清理功能）
  */
 export function destroyAnimations() {
@@ -506,4 +520,99 @@ export function destroyAnimations() {
  */
 export function isAnimationsInitialized() {
     return isInitialized;
+}
+
+/**
+ * AnimationManager 類別 - 包裝所有動畫功能
+ */
+export class AnimationManager {
+    constructor(observerOptions = {}) {
+        this.config = { ...ANIMATION_CONFIG, observerOptions: { ...ANIMATION_CONFIG.observerOptions, ...observerOptions } };
+        this.isInitialized = false;
+        
+        // 自動初始化
+        this.init();
+    }
+    
+    /**
+     * 初始化動畫管理器
+     */
+    init() {
+        if (this.isInitialized) {
+            console.log('AnimationManager 已初始化');
+            return;
+        }
+        
+        try {
+            initAnimations(this.config);
+            this.isInitialized = true;
+            console.log('✅ AnimationManager 類別初始化完成');
+        } catch (error) {
+            console.error('❌ AnimationManager 初始化失敗:', error);
+        }
+    }
+    
+    /**
+     * 初始化計數器
+     */
+    initializeCounters() {
+        initializeCounters();
+    }
+    
+    /**
+     * 觀察元素
+     */
+    observeElements() {
+        observeElements();
+    }
+    
+    /**
+     * 觸發初始動畫
+     */
+    triggerInitial(delay) {
+        triggerInitialAnimations(delay);
+    }
+    
+    /**
+     * 添加動畫
+     */
+    addAnimation(target, type, options) {
+        addAnimation(target, type, options);
+    }
+    
+    /**
+     * 移除動畫
+     */
+    removeAnimation(target) {
+        removeAnimation(target);
+    }
+    
+    /**
+     * 暫停動畫
+     */
+    pause() {
+        pauseAnimations();
+    }
+    
+    /**
+     * 恢復動畫
+     */
+    resume() {
+        resumeAnimations();
+    }
+    
+    /**
+     * 銷毀動畫管理器
+     */
+    destroy() {
+        destroyAnimations();
+        this.isInitialized = false;
+    }
+    
+    /**
+     * 檢查是否已初始化
+     */
+    isReady() {
+        return this.isInitialized;
+    }
 }
