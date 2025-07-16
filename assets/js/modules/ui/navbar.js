@@ -3,9 +3,9 @@
  * 處理導航欄的建立、滾動效果和響應式行為
  */
 
-import { getCurrentPage } from '../utils/dom.js';
-import { throttle } from '../utils/ui.js';
-import { isSafari } from '../utils/safari.js';
+import { getCurrentPage } from '../../utils/dom.js';
+import { throttle } from '../../utils/ui.js';
+import { isSafari } from '../../utils/safari.js';
 
 // 導航欄設定
 const NAVBAR_CONFIG = {
@@ -504,8 +504,10 @@ function handleNavbarResize() {
     if (!isMobile) {
         const collapse = navbar.querySelector('.navbar-collapse');
         if (collapse && collapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
-            bsCollapse.hide();
+            if (typeof bootstrap !== 'undefined') {
+                const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
+                bsCollapse.hide();
+            }
         }
     }
 }
@@ -570,4 +572,68 @@ export function getNavbar() {
  */
 export function isNavbarInitialized() {
     return isInitialized;
+}
+
+/**
+ * Navbar 類別 - 包裝所有導航欄功能
+ */
+export class Navbar {
+    constructor(config = {}) {
+        this.config = { ...NAVBAR_CONFIG, ...config };
+        this.navbar = null;
+        this.isInitialized = false;
+        
+        // 自動初始化
+        this.init();
+    }
+    
+    /**
+     * 初始化導航欄
+     */
+    init() {
+        if (this.isInitialized) {
+            console.log('Navbar 已初始化');
+            return this.navbar;
+        }
+        
+        try {
+            this.navbar = initNavbar(this.config);
+            this.isInitialized = true;
+            console.log('✅ Navbar 類別初始化完成');
+            return this.navbar;
+        } catch (error) {
+            console.error('❌ Navbar 初始化失敗:', error);
+            return null;
+        }
+    }
+    
+    /**
+     * 銷毀導航欄
+     */
+    destroy() {
+        destroyNavbar();
+        this.navbar = null;
+        this.isInitialized = false;
+    }
+    
+    /**
+     * 獲取導航欄元素
+     */
+    getElement() {
+        return getNavbar();
+    }
+    
+    /**
+     * 更新當前頁面
+     */
+    updateActivePage(page) {
+        updateActiveNavItem(page);
+    }
+    
+    /**
+     * 檢查是否已初始化
+     */
+    isReady() {
+        return this.isInitialized;
+    }
 }
