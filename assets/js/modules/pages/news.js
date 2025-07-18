@@ -4,7 +4,7 @@
 
 import { isSafari } from '../../utils/safari.js';
 import { showToast } from '../../utils/ui.js';
-import { trackSocialShare } from '../tracking.js';
+import { trackSocialShare } from '../analytics/tracking.js';
 
 export class NewsPage {
     constructor() {
