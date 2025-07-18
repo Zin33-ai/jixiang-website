@@ -2,6 +2,7 @@
  * 首頁特定功能模組
  */
 
+import { showToast } from '../../utils/ui.js';
 export class HomePage {
     constructor() {
         this.init();
