@@ -30,7 +30,7 @@ import { AboutPage } from './modules/pages/about.js';
 import { ContentLoader } from './cms/content-loader.js';
 import { getCurrentPage } from './utils/dom.js';
 import { showToast } from './utils/ui.js';
-import { isSafari, applySafariSpecificFixes } from './utils/safari.js';
+import { isSafari } from './utils/safari.js';
 
 /**
  * 主應用程式類別
