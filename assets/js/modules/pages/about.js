@@ -4,8 +4,8 @@
  */
 
 // 導入依賴模組
-import { debounce, throttle } from '../utils/performance.js';
-import { showToast } from '../utils/ui.js';
+import { debounce, throttle } from '../../utils/ui.js';
+import { showToast } from '../../utils/ui.js';
 
 export class AboutPage {
     constructor(options = {}) {
