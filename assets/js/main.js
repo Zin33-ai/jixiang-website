@@ -306,7 +306,12 @@ class JixiangApp {
         this.setupGlobalFunctions();
         
         // 應用 Safari 特殊修復
-        applySafariSpecificFixes();
+        if (isSafari()) {
+    document.body.classList.add('is-safari');
+    if (APP_CONFIG.debug) {
+        console.log('🦁 Safari 瀏覽器檢測到，已套用相容性類別');
+    }
+}
         
         // 設定輔助功能
         this.setupAccessibilityFeatures();
