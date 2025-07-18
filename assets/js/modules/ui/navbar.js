@@ -211,20 +211,41 @@ function setupToggleAnimation() {
 }
 
 /**
- * 手機 Safari 專用選單切換
+ * 手機 Safari 專用選單切換（修復版）
  */
 function setupMobileSafariToggle(toggler, collapse) {
     let isOpen = false;
+    let isAnimating = false;
+    
+    // 強制重置選單狀態
+    function resetMenu() {
+        isOpen = false;
+        isAnimating = false;
+        collapse.style.display = 'none';
+        collapse.style.opacity = '';
+        collapse.style.transform = '';
+        collapse.style.transition = '';
+        collapse.classList.remove('show');
+        toggler.setAttribute('aria-expanded', 'false');
+        toggler.classList.add('collapsed');
+        
+        console.log('選單狀態已重置');
+    }
     
     // 初始狀態
-    collapse.style.display = 'none';
-    collapse.classList.remove('show');
-    toggler.setAttribute('aria-expanded', 'false');
-    toggler.classList.add('collapsed');
+    resetMenu();
     
-    // 切換功能
+    // 切換功能（防止重複觸發）
     function toggleMenu() {
+        if (isAnimating) {
+            console.log('動畫進行中，跳過切換');
+            return;
+        }
+        
+        isAnimating = true;
         isOpen = !isOpen;
+        
+        console.log('切換選單:', isOpen ? '開啟' : '關閉');
         
         if (isOpen) {
             // 開啟選單
@@ -241,6 +262,11 @@ function setupMobileSafariToggle(toggler, collapse) {
                 collapse.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                 collapse.style.opacity = '1';
                 collapse.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                    console.log('開啟動畫完成');
+                }, 350);
             });
             
         } else {
@@ -254,42 +280,75 @@ function setupMobileSafariToggle(toggler, collapse) {
                 collapse.classList.remove('show');
                 toggler.setAttribute('aria-expanded', 'false');
                 toggler.classList.add('collapsed');
-            }, 300);
+                isAnimating = false;
+                console.log('關閉動畫完成');
+            }, 350);
         }
     }
     
+    // 移除現有的事件監聽器並重新綁定
+    const newToggler = toggler.cloneNode(true);
+    toggler.parentNode.replaceChild(newToggler, toggler);
+    
     // 綁定點擊事件
-    toggler.addEventListener('click', (e) => {
+    newToggler.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        console.log('漢堡按鈕被點擊');
         toggleMenu();
+    });
+    
+    // 添加長按重置功能（Safari 救援）
+    let pressTimer = null;
+    newToggler.addEventListener('touchstart', (e) => {
+        pressTimer = setTimeout(() => {
+            console.log('長按檢測到，重置選單狀態');
+            resetMenu();
+        }, 2000);
+    });
+    
+    newToggler.addEventListener('touchend', () => {
+        if (pressTimer) {
+            clearTimeout(pressTimer);
+            pressTimer = null;
+        }
     });
     
     // 點擊選單項目後關閉
     const navLinks = collapse.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (isOpen) {
-                toggleMenu();
+            console.log('選單項目被點擊');
+            if (isOpen && !isAnimating) {
+                setTimeout(() => toggleMenu(), 100);
             }
         });
     });
     
     // 點擊外部關閉選單
     document.addEventListener('click', (e) => {
-        if (isOpen && !navbar.contains(e.target)) {
+        if (isOpen && !navbar.contains(e.target) && !isAnimating) {
+            console.log('點擊外部，關閉選單');
             toggleMenu();
         }
     });
     
-    // 視窗調整大小時關閉選單
+    // 視窗調整大小時重置選單
     window.addEventListener('resize', () => {
-        if (window.innerWidth >= 992 && isOpen) {
-            toggleMenu();
+        if (window.innerWidth >= 992) {
+            console.log('視窗變大，重置選單');
+            resetMenu();
         }
     });
     
-    console.log('手機 Safari 選單切換已設定');
+    // 全域重置函數（調試用）
+    window.resetNavbarMenu = resetMenu;
+    
+    // 全域切換函數（調試用）
+    window.toggleNavbarMenu = toggleMenu;
+    
+    console.log('手機 Safari 選單切換已設定（修復版）');
+    console.log('調試功能: window.resetNavbarMenu() 和 window.toggleNavbarMenu()');
 }
 
 /**
@@ -343,10 +402,9 @@ function setupNavLinkHandlers() {
                 if (collapse && collapse.classList.contains('show')) {
                     
                     if (isMobileSafari) {
-                        // 手機 Safari：直接觸發切換
-                        const toggler = navbar.querySelector('.navbar-toggler');
-                        if (toggler) {
-                            toggler.click();
+                        // 手機 Safari：使用全域切換函數
+                        if (typeof window.toggleNavbarMenu === 'function') {
+                            setTimeout(() => window.toggleNavbarMenu(), 150);
                         }
                     } else if (typeof bootstrap !== 'undefined') {
                         // 其他瀏覽器：使用 Bootstrap
@@ -427,6 +485,13 @@ function setupKeyboardNavigation() {
                 e.preventDefault();
                 focusableElements[focusableElements.length - 1].focus();
                 break;
+                
+            case 'Escape':
+                // ESC 鍵關閉選單
+                if (typeof window.resetNavbarMenu === 'function') {
+                    window.resetNavbarMenu();
+                }
+                break;
         }
     });
 }
@@ -504,7 +569,9 @@ function handleNavbarResize() {
     if (!isMobile) {
         const collapse = navbar.querySelector('.navbar-collapse');
         if (collapse && collapse.classList.contains('show')) {
-            if (typeof bootstrap !== 'undefined') {
+            if (typeof window.resetNavbarMenu === 'function') {
+                window.resetNavbarMenu();
+            } else if (typeof bootstrap !== 'undefined') {
                 const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
                 bsCollapse.hide();
             }
