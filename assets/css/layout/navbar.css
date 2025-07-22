@@ -363,8 +363,11 @@
     .navbar {
         border-bottom: 2px solid var(--text-dark);
     }
-/* 🍎 Safari iOS 專用 - 在現有 CSS 最後面添加 */
+}
+
+/* 🔥 所有手機版瀏覽器專用修復 */
 @media (max-width: 991.98px) {
+    /* 白色區域隱藏問題 */
     .navbar-collapse:not(.show) {
         position: absolute !important;
         top: -9999px !important;
@@ -374,5 +377,23 @@
         overflow: hidden !important;
         visibility: hidden !important;
         opacity: 0 !important;
+    }
+    
+    /* 🆕 漢堡按鈕變 X 動畫修復 */
+    .navbar-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(1),
+    .navbar-toggler:not(.collapsed) .custom-toggler-icon span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px) !important;
+        -webkit-transform: rotate(45deg) translate(5px, 6px) !important;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(2),
+    .navbar-toggler:not(.collapsed) .custom-toggler-icon span:nth-child(2) {
+        opacity: 0 !important;
+    }
+
+    .navbar-toggler[aria-expanded="true"] .custom-toggler-icon span:nth-child(3),
+    .navbar-toggler:not(.collapsed) .custom-toggler-icon span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px) !important;
+        -webkit-transform: rotate(-45deg) translate(6px, -6px) !important;
     }
 }
