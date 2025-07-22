@@ -51,12 +51,18 @@
     align-items: center;
 }
 
-/* 🔥 修改導航收合區域 - 確保電話號碼在正確位置 */
+/* 🔥 修改導航收合區域 - 修復手機版隱藏問題 */
 .navbar-collapse {
     flex-grow: 1; /* 讓收合區域可以伸展 */
-    display: flex !important;
     justify-content: space-between;
     align-items: center;
+}
+
+/* 🆕 桌面版才顯示為 flex */
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: flex !important;
+    }
 }
 
 /* 導航選單 */
@@ -187,10 +193,11 @@
     -webkit-transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* 行動版導航 - 配合 Bootstrap */
+/* 🆕 手機版導航 - 修復版本 */
 @media (max-width: 991.98px) {
-    /* 🔥 行動版時重新調整佈局 */
+    /* 🔥 手機版的顯示控制 - 讓 JavaScript 能夠控制 */
     .navbar-collapse {
+        display: none; /* 預設隱藏 */
         flex-direction: column;
         justify-content: flex-start;
         align-items: stretch;
@@ -198,7 +205,18 @@
         border-radius: 0 0 var(--radius-md) var(--radius-md);
         box-shadow: var(--shadow-lg);
         margin-top: var(--spacing-sm);
+        padding: 0; /* 預設無 padding */
+        overflow: hidden;
+        /* 🆕 添加高度控制 */
+        height: 0;
+        transition: height 0.3s ease, padding 0.3s ease;
+    }
+    
+    /* 🆕 只有在 show 狀態時才顯示並添加 padding */
+    .navbar-collapse.show {
+        display: flex !important;
         padding: var(--spacing-md) 0;
+        height: auto;
     }
     
     .navbar-nav {
@@ -308,12 +326,30 @@
     }
 }
 
+/* 🆕 Safari 手機版特殊修復 */
+@supports (-webkit-appearance:none) {
+    @media (max-width: 991.98px) {
+        .navbar-collapse {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+        
+        .navbar-collapse:not(.show) {
+            display: none !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    }
+}
+
 /* 可訪問性 */
 @media (prefers-reduced-motion: reduce) {
     .navbar,
     .nav-link::after,
     .dropdown-menu,
-    .custom-toggler-icon span {
+    .custom-toggler-icon span,
+    .navbar-collapse {
         transition: none !important;
     }
 }
