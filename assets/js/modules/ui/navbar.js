@@ -286,12 +286,8 @@ function setupMobileSafariToggle(toggler, collapse) {
         }
     }
     
-    // 移除現有的事件監聽器並重新綁定
-    const newToggler = toggler.cloneNode(true);
-    toggler.parentNode.replaceChild(newToggler, toggler);
-    
     // 綁定點擊事件
-    newToggler.addEventListener('click', (e) => {
+    toggler.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         console.log('漢堡按鈕被點擊');
@@ -300,14 +296,14 @@ function setupMobileSafariToggle(toggler, collapse) {
     
     // 添加長按重置功能（Safari 救援）
     let pressTimer = null;
-    newToggler.addEventListener('touchstart', (e) => {
+    toggler.addEventListener('touchstart', (e) => {
         pressTimer = setTimeout(() => {
             console.log('長按檢測到，重置選單狀態');
             resetMenu();
         }, 2000);
     });
     
-    newToggler.addEventListener('touchend', () => {
+    toggler.addEventListener('touchend', () => {
         if (pressTimer) {
             clearTimeout(pressTimer);
             pressTimer = null;
