@@ -424,7 +424,7 @@ textarea {
 /* 1. 基礎頁面間距修正 - 避免導航欄遮擋 */
 body {
     /* 桌面版給導航欄留出空間 */
-    padding-top: 80px !important;
+    padding-top: 100px !important;
 }
 
 /* 2. 主要內容容器修正 */
@@ -444,7 +444,7 @@ main {
 .banner-section {
     /* Hero 區塊需要額外的上方間距 */
     margin-top: 0 !important;
-    padding-top: 3rem !important;
+    padding-top: 1rem !important;
     position: relative;
     z-index: 1;
 }
@@ -467,7 +467,7 @@ main {
 @media (max-width: 991.98px) {
     body {
         /* 手機版導航欄較小，調整間距 */
-        padding-top: 70px !important;
+        padding-top: 85px !important;
     }
     
     .main-content,
