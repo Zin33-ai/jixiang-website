@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>吉翔不動產 - 內容管理系統</title>
+  
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
+  <!-- 自訂樣式 -->
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    
+    /* 載入中的樣式 */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 18px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <!-- 載入提示 -->
+  <div class="loading" id="loading">
+    <div>
+      <h2>🏠 吉翔不動產內容管理系統</h2>
+      <p>系統載入中，請稍候...</p>
+    </div>
+  </div>
+
+  <!-- Netlify CMS 核心 -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  
+  <!-- Identity 登入邏輯 -->
+  <script>
+    // 隱藏載入提示
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) loading.style.display = 'none';
+      }, 2000);
+    });
+
+    // Netlify Identity 設定
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+    
+    // CMS 載入完成後的設定
+    window.CMS_MANUAL_INIT = true;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // 等待 CMS 載入
+      if (window.CMS) {
+        window.CMS.init();
+      } else {
+        // 如果 CMS 還沒載入，等待一下再初始化
+        setTimeout(() => {
+          if (window.CMS) {
+            window.CMS.init();
+          }
+        }, 1000);
+      }
+    });
+  </script>
+</body>
+</html>
